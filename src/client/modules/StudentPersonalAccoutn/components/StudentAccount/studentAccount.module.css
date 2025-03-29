@@ -1,0 +1,13 @@
+.account {
+  min-height: 882px;
+  padding: 50px 0 36px 0;
+}
+.account__wrapper {
+  background-color: #F7F7F7;
+  padding: 26px 190px 82px 36px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/*# sourceMappingURL=studentAccount.module.css.map */

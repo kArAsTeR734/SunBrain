@@ -1,0 +1,15 @@
+.createTaskButton {
+  position: relative;
+  width: 160px;
+  height: 40px;
+  text-align: center;
+  border-radius: 4px;
+  background: #FF8000;
+  border: none;
+  transition: 0.4s all;
+  color:#fff;
+  cursor: pointer;
+  &:hover {
+    scale: 1.03;
+  }
+}

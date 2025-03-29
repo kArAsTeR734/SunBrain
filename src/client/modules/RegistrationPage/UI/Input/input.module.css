@@ -1,0 +1,17 @@
+.input {
+  width: 318px;
+  height: 45px;
+  border-radius: 8px;
+  background: rgb(249, 249, 249);
+  border: none;
+  margin-bottom: 16px;
+  padding: 16px 0 16px 16px;
+}
+.input_label {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: 7px;
+}
+
+/*# sourceMappingURL=input.module.css.map */
