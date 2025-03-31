@@ -4,9 +4,9 @@ const StudentAccountInfo = () => {
     return (
         <>
             <div className={classes.general}>
-                <div className={classes.general__header}>
+                <h2 className={classes.general__header}>
                     Общая информация
-                </div>
+                </h2>
                 <div className={classes.general__avatar}>
                     <img className={classes.account__general__avatar_img}
                          src="/src/client/modules/StudentPersonalAccoutn/assets/img/avatar.jpeg"
