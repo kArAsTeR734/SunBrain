@@ -7,6 +7,7 @@ import TeacherDashboard from "./pages/TeacherDashboard.tsx";
 import StudentAccountPage from "./pages/StudentPersonalAccount.tsx";
 import StudentObjectCatalog from "./pages/StudentObjectCatalog.tsx";
 import StudentPersonalCalendar from "./pages/StudentPersonalCalendar.tsx";
+import StudentHomework from "./modules/StudentHomework";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path = "/student/catalog" element={<StudentObjectCatalog/>}/>
             <Route path = "/student/calendar" element={<StudentPersonalCalendar/>}/>
             <Route path = "/student/catalog/*" element={<StudentObjectCatalog/>}/>
+            <Route path = "/student/catalog/math/*" element={<StudentHomework/>}/>
             <Route path = "/student/account" element={<StudentAccountPage/>}/>
         </Routes>
     </>

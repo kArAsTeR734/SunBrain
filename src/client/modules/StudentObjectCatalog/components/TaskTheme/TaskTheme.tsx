@@ -7,10 +7,10 @@ const TaskTheme:FC<Theme> = ({...props}) => {
 
     return (
         <>
-            <Link to = '/'>
+            <Link to = '/student/catalog/math/*'>
                 <div className={classes.theme__wrapper}>
                     <span className={classes.theme__wrapper__number}>{props.themeNumber}</span>
-                    <div className={classes.theme__wrapper__title}>{props.themeTitle}</div>
+                        <div className={classes.theme__wrapper__title}>{props.themeTitle}</div>
                 </div>
             </Link>
 

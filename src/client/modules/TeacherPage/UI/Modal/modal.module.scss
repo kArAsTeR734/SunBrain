@@ -107,41 +107,35 @@
   margin-top: 14px;
 }
 
-.title,.units,.item,.description{
-  margin-top: 18px;
-}
-
-.title_description,.units_description,.item_description,.description.description{
+.label{
   font-size: 14px;
   font-weight: 400;
   text-align: left;
-  margin-bottom: 7px;
 }
-.title_field,.unit_field,.item_field{
+
+.select{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #131313;
+  font-size: 1rem;
+}
+
+.field{
   width: 352px;
   height: 40px;
   border: 1px solid rgb(223, 221, 221);
   border-radius: 4px;
   padding: 10px 0 10px 12px;
-}
-.description_field{
-  border: 1px solid rgb(223, 221, 221);
-  border-radius: 4px;
-  width: 352px;
-  height: 120px;
-  overflow-wrap: break-word;
-  resize: none;
-  padding: 8px 8px 0 12px;
-  &:focus{
-    outline: none;
-  }
+  margin: 8px 0;
 }
 
 .modal_buttons{
   display: flex;
   justify-content:start;
   height: 64px;
-  margin-top: 90px;
+  margin-top: 200px;
   padding: 0 24px 24px 24px;
 }
 .cancel_btn,.confirm_btn,.change_btn{

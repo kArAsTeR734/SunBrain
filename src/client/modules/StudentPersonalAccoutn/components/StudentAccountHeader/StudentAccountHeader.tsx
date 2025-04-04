@@ -29,9 +29,7 @@ const StudentAccountHeader = () => {
                         </li>
                     </nav>
                     <div className={headerClasses.accountICon}>
-                        <img src="#" alt="accountIcon"/>
-                        <select name="" id="">
-                        </select>
+                        <img src="/src/client/assets/ProfileIcon.svg" alt="accountIcon"/>
                     </div>
                 </header>
                 <div className={headerClasses.buttonWrapper}>

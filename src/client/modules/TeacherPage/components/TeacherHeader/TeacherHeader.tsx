@@ -3,8 +3,12 @@ import css from './teacherHeader.module.css'
 import CreateTaskButton from "../CreateTaskButton/CreateTaskButton.tsx";
 import buttonCss from '../CreateTaskButton/createTaskButton.module.css'
 import StudentSearch from "../../UI/StudentSearch/StudentSearch.tsx";
+import {useModal} from "../../hooks/useModal.ts";
 
 const TeacherHeader = () => {
+
+    const {modal,setActive} = useModal();
+
     return (
         <section className={css.header}>
             <div className="container">
@@ -16,7 +20,7 @@ const TeacherHeader = () => {
                         <Link to="/" className={css.logoName}>SunBrain</Link>
                     </div>
                     <StudentSearch/>
-                    <CreateTaskButton onClick={()=> console.log('Hello World')} className={buttonCss.createTaskButton}>Создать задачу</CreateTaskButton>
+                    <CreateTaskButton onClick={()=> setActive(modal)} className={buttonCss.createTaskButton}>Создать задачу</CreateTaskButton>
                 </header>
             </div>
         </section>

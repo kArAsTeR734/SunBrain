@@ -2,13 +2,6 @@ import classes from './dashBoard.module.css'
 
 const DashBoard = () => {
 
-    // const {modal,setActive} = useModal();
-    // const {searchedDetails} = useSearchProvider();
-    // const {editingDetail, setEditingDetail,isLoading} = useTable();
-    // const handleEditItem = (student:StudentItem) => {
-    //     setActive(modal);
-    //     setEditingDetail(student);
-    // }
     return (
         <>
                 <section className={classes.products}>

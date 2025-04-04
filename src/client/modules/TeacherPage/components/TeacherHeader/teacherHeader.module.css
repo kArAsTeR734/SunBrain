@@ -2,7 +2,7 @@
   position: relative;
   min-height: 88px;
   padding: 11px 0 5px 0;
-  z-index: 100;
+  z-index: 1;
 }
 
 .headerWrapper {
@@ -18,7 +18,7 @@
 }
 
 .logoName {
-  color: rgb(0, 0, 0);
+  color: #FF8000;
   font-size: 32px;
   font-weight: 400;
   line-height: 39px;

@@ -1,0 +1,63 @@
+.homework__task {
+  border-radius: 8px;
+  margin-top: 25px;
+  background-color: #fff;
+  padding: 40px 40px 0 40px;
+}
+.homework__task__header {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+}
+.homework__task__number {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #191919;
+}
+.homework__task__text {
+  margin-top: 24px;
+}
+.homework__task__description {
+  font-size: 24px;
+  font-family: "Times New Roman", serif;
+  color: #000;
+  line-height: normal;
+  font-weight: 400;
+}
+.homework__task__image {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+.homework__task__solution {
+  border-top: 1px solid #ECF3F5;
+}
+.homework__task__solution_header {
+  padding: 20px 25px 20px 40px;
+  cursor: pointer;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #191919;
+  user-select: none;
+}
+.homework__task__solution_header:before {
+  content: "";
+  position: absolute;
+  top: 25px;
+  right: 46px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--secondary, #000000);
+  border-right: 2px solid var(--secondary, #000000);
+  transform: rotate(135deg);
+}
+
+/*# sourceMappingURL=homeworkItem.module.css.map */

@@ -1,0 +1,12 @@
+.calendar{
+  min-height: 490px;
+  overflow-x:scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #FF8000 #f3f7fb;
+  margin: 24px 40px 50px 40px;
+  background: rgba(#FFE0C1,0.36);
+  &__wrapper{
+    display: flex;
+    min-width: 100%;
+  }
+}

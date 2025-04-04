@@ -1,0 +1,32 @@
+.calendarHeader {
+  min-height: 85px;
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.calendarHeader__links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.calendarHeader__link {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22.89px;
+  text-align: center;
+}
+.calendarHeader__currentLink {
+  color: #000;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -1%;
+  text-align: left;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=calendarHeader.module.css.map */
