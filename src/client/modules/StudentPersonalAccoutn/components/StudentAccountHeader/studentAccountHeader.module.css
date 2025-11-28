@@ -4,6 +4,47 @@
   padding: 11px 0 5px 0;
   z-index: 100;
 }
+.header__profile {
+  position: relative;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.header__profile__item {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  margin: inherit;
+  padding: inherit;
+  border: none;
+  cursor: pointer;
+}
+.header__profile__item__text {
+  margin-right: 10px;
+}
+.header__profile__item__text p {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+.header__profile__initials {
+  margin-right: 10px;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #dfe2ea;
+}
+.header__profile__initials p {
+  display: flex;
+  line-height: 36px;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  font-weight: 700;
+  font-style: normal;
+}
 
 .headerWrapper {
   display: flex;

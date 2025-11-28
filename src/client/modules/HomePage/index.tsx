@@ -1,5 +1,5 @@
-import Header from "../../shared/Header/Header.tsx";
-import Footer from "../../shared/Footer/Footer.tsx";
+import Header from "../../shared/ui/Header/Header.tsx";
+import Footer from "../../shared/ui/Footer/Footer.tsx";
 import Promo from "./components/Promo/Promo.tsx";
 import Advantages from "./components/Advantages/Advantages.tsx";
 import Help from "./components/Help/Help.tsx";

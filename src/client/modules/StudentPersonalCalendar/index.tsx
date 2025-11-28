@@ -1,4 +1,4 @@
-import Footer from "../../shared/Footer/Footer.tsx";
+import Footer from "../../shared/ui/Footer/Footer.tsx";
 import CalendarHeader from "./components/CalendarHeader/CalendarHeader.tsx";
 import CalendarSlider from "./components/CalendarSlider/CalendarSlider.tsx";
 import StudentAccountHeader from "../StudentPersonalAccoutn/components/StudentAccountHeader/StudentAccountHeader.tsx";

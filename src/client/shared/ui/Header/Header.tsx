@@ -1,10 +1,16 @@
-import Button from "../../modules/HomePage/UI/Button/Button.tsx";
-import headerClasses from "../../shared/Header/header.module.css";
+import headerClasses from "./header.module.css";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import buttonClasses from '../../UI/Button/button.module.css'
+import Button from "../Button/Button.tsx";
 
 const Header = () => {
     const navigate = useNavigate();
+    const navItems = [
+        {label: 'О нас', href: '/'},
+        {label: 'Примеры задач', href: '/catalog'},
+        {label: 'Отзывы', href: '/feedback'},
+        {label: 'Контакты', href: '/contacts'},
+    ]
 
     return (
         <section className={headerClasses.header}>
@@ -12,23 +18,16 @@ const Header = () => {
                 <header className={headerClasses.headerWrapper}>
                     <div className={headerClasses.headerLogo}>
                         <NavLink to="/" className={headerClasses.icon}>
-                            <img src="/src/client/modules/HomePage/assets/icons/logo.svg" alt=""/>
+                            <img src="../../../modules/HomePage/assets/icons/logo.svg" alt=""/>
                         </NavLink>
                         <Link to="/" className={headerClasses.logoName}>SunBrain</Link>
                     </div>
                     <nav className={headerClasses.menu}>
-                        <li className={headerClasses.menu__item}>
-                            <a href="/">О нас</a>
-                        </li>
-                        <li className={headerClasses.menu__item}>
-                            <NavLink to="student/catalog">Примеры задач</NavLink>
-                        </li>
-                        <li className={headerClasses.menu__item}>
-                            <NavLink to="/feedback">Отзывы</NavLink>
-                        </li>
-                        <li className={headerClasses.menu__item}>
-                            <NavLink to="/contacts">Контакты</NavLink>
-                        </li>
+                        {navItems.map(({label, href}) => (
+                            <li className={headerClasses.menu__item}>
+                                <NavLink to={href}>{label}</NavLink>
+                            </li>
+                        ))}
                     </nav>
                     <Button onClick={() => navigate('/login')} className={buttonClasses.signInBtn}>Войти</Button>
                 </header>

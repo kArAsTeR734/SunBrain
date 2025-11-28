@@ -1,5 +1,4 @@
 export enum SubjectType{
-    Math,
-    Physic,
-    Info,
+    MATH,
+    PHYSIC,
 }

@@ -1,7 +1,7 @@
 import {Link, NavLink} from "react-router-dom";
 import headerClasses from './studentAccountHeader.module.css'
-import Button from "../../../../UI/Button/Button.tsx";
-import buttonClasses from '../../../../UI/Button/button.module.css'
+import Button from "../../../../shared/ui/Button/Button.tsx";
+import buttonClasses from '../../../../shared/ui/Button/button.module.css'
 
 const StudentAccountHeader = () => {
     return (
@@ -28,8 +28,18 @@ const StudentAccountHeader = () => {
                             <NavLink to="/contacts">Контакты</NavLink>
                         </li>
                     </nav>
-                    <div className={headerClasses.accountICon}>
-                        <img src="/src/client/assets/ProfileIcon.svg" alt="accountIcon"/>
+                    <div className={headerClasses.header__profile}>
+                        <button className={headerClasses.header__profile__item}>
+                            <div className={headerClasses.header__profile__initials}>
+                                <p>НБ</p>
+                            </div>
+                            <div className={headerClasses.header__profile__item__text}>
+                                <p>Никита Беляев</p>
+                            </div>
+                        </button>
+                        <div className="profile__dropdown-icon">
+                            <img src="/src/client/modules/StudentPersonalAccoutn/assets/icons/chevron-down.svg" alt="accountIcon"/>
+                        </div>
                     </div>
                 </header>
                 <div className={headerClasses.buttonWrapper}>

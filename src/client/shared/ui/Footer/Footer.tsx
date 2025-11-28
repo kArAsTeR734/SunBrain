@@ -41,7 +41,6 @@ const Footer = () => {
                         <a href="tel:+88003020412" className={classes.footerLink}>+7 (499) 922-89-74</a>
                     </div>
                 </div>
-
             </div>
         </section>
     );

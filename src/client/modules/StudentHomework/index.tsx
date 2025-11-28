@@ -1,4 +1,4 @@
-import Footer from "../../shared/Footer/Footer.tsx";
+import Footer from "../../shared/ui/Footer/Footer.tsx";
 import HomeworkList from "./components/HomeworkList/HomeworkList.tsx";
 import StudentAccountHeader from "../StudentPersonalAccoutn/components/StudentAccountHeader/StudentAccountHeader.tsx";
 

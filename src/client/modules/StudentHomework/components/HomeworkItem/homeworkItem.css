@@ -1,0 +1,87 @@
+.task {
+  border-radius: 8px;
+  margin-top: 25px;
+  background-color: #EFF1F5;
+  padding: 40px 40px 15px 40px;
+}
+.task__header {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+}
+.task__number {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #191919;
+}
+.task__text {
+  margin-top: 24px;
+}
+.task__description {
+  font-size: 24px;
+  font-family: "Times New Roman", serif;
+  color: #000;
+  line-height: normal;
+  font-weight: 400;
+}
+.task__image {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+  padding-block: 50px;
+}
+.task__actions {
+  display: flex;
+  align-items: center;
+  column-gap: 60px;
+  margin-top: 25px;
+}
+.task__answer {
+  width: 40%;
+  position: relative;
+}
+.task__answer-field {
+  width: 100%;
+  position: relative;
+  height: 60px;
+  outline: none;
+  line-height: 58px;
+  font-size: 16px;
+  padding: 0 20px;
+  background: #fff;
+  border: 1px solid rgba(28, 28, 28, 0.2);
+  border-radius: 3px;
+  font-family: Open Sans, sans-serif;
+  transition: border-color 0.2s linear 0s;
+}
+.task__answer-field--correct {
+  border: 2px solid #4CAF50;
+}
+.task__answer-field--invalid {
+  border: 2px solid #f44336;
+}
+.task__check {
+  background-color: #DFE2EA;
+  color: #000;
+  border-color: transparent;
+  border-radius: 6px;
+  width: 160px;
+  height: 60px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  cursor: pointer;
+  transition: ease 0.2s;
+}
+.task__check:hover {
+  color: #fff;
+  background-color: #FF8000;
+}
+
+/*# sourceMappingURL=homeworkItem.css.map */
