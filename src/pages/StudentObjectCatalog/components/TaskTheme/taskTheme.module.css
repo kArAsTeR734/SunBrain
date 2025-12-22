@@ -1,0 +1,40 @@
+.theme__wrapper {
+  width: 576px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 20px 0 20px 20px;
+  margin: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.theme__wrapper:hover {
+  background-color: #FF5C00;
+}
+.theme__wrapper:hover .theme__wrapper__number, .theme__wrapper:hover .theme__wrapper__title {
+  color: #fff;
+}
+.theme__wrapper__number {
+  color: rgb(51, 51, 51);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: left;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+.theme__wrapper__title {
+  color: rgb(51, 51, 51);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: left;
+  padding-left: 10px;
+  text-transform: uppercase;
+  flex-grow: 2;
+  transition: color 0.3s ease;
+}
+
+/*# sourceMappingURL=taskTheme.module.css.map */
