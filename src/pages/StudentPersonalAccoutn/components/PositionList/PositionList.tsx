@@ -1,10 +1,10 @@
 import PositionItem from '../PositionItem/PositionItem.tsx';
-import classes from './positionList.module.css';
+import './positionList.scss';
 
 const PositionList = () => {
   return (
     <>
-      <div className={classes.position__items}>
+      <div className='position__items'>
         <PositionItem />
       </div>
     </>

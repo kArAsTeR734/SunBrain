@@ -10,15 +10,13 @@
   line-height: 26px;
   text-align: left;
 }
-
-.progressContainer {
+.item__progress--container {
   margin-top: 10px;
   width: 100%;
   background: #ddd;
   border-radius: 10px;
 }
-
-.progressValue {
+.item__progress {
   border-radius: 10px;
   height: 20px;
   background: #76b852;
@@ -27,4 +25,4 @@
   transition: width 0.5s;
 }
 
-/*# sourceMappingURL=progressItem.module.css.map */
+/*# sourceMappingURL=progressItem.css.map */

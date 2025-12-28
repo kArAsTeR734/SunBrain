@@ -1,12 +1,12 @@
 import PositionList from '../PositionList/PositionList.tsx';
-import classes from './studentAccountPosition.module.css';
+import './studentAccountPosition.css';
 
 const StudentAccountPosition = () => {
   return (
     <>
-      <div className={classes.position}>
-        <div className={classes.position__wrapper}>
-          <div className={classes.position__header}>
+      <div className='position'>
+        <div className='position__wrapper'>
+          <div className='position__header'>
             Текущая позиция в рейтинге
           </div>
           <PositionList />

@@ -1,44 +1,62 @@
 import {Link, useNavigate} from 'react-router-dom';
-import registrationClasses from './registrationForm.module.css';
-import loginClasses from '../../../LoginPage/components/LoginForm/loginForm.module.css';
 import {useFormValidationContext} from '@/shared/hooks/useFormValidationContext.ts';
 import {SubmitHandler} from 'react-hook-form';
 import {TextField} from '@mui/material';
 import clsx from 'clsx';
 import Button from "../../../../shared/ui/Button/Button.tsx";
+import './registrationForm.scss'
 import {
   confirmPasswordValidation,
-  emailValidation,
+  emailValidation, fullNameValidation,
   passwordValidation
 } from "../../../LoginPage/components/config/validationConfig.ts";
+import {useRegistration} from "@/features/Authorization/useRegistration.ts";
+import {RegistrationRequestData} from "@/api/types/api-types.ts";
+import {useEffect} from "react";
 
 export interface RegistrationFormInput {
   email: string;
   password: string;
   confirmPassword: string;
+  fullName: string;
+  role?:string
 }
 
 const RegistrationForm = () => {
-  const navigate = useNavigate();
-  const {register, handleSubmit, shouldShowError, getErrorMessage} =
+  const {register, handleSubmit, shouldShowError, getErrorMessage, reset} =
       useFormValidationContext<RegistrationFormInput>();
 
-  const onSubmit: SubmitHandler<RegistrationFormInput> = async () => {
-    console.log('Данные с формы отправленны');
-    navigate('/student/account');
+  const { mutateAsync: registration, reset: clearError} = useRegistration();
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<RegistrationFormInput> = async (formData) => {
+    const registerData: RegistrationRequestData = {
+      email: formData.email,
+      password: formData.password,
+      fullName:formData.fullName,
+    };
+    try {
+      await registration(registerData);
+      navigate('/login');
+    } finally {
+      reset();
+    }
   };
 
+  useEffect(() => {
+    clearError();
+  }, []);
   return (
       <>
-        <section className={registrationClasses.registration}>
+        <section className='registration'>
           <div className="container">
-            <h2 className={registrationClasses.registration__header}>
+            <h2 className='registration__header'>
               Регистрация
             </h2>
-            <div className={registrationClasses.registration__wrapper}>
+            <div className='registration__wrapper'>
               <form
                   onSubmit={handleSubmit(onSubmit)}
-                  className={loginClasses.login__form}
+                  className='registration__form'
               >
                 <TextField
                     {...register('email', emailValidation)}
@@ -49,6 +67,16 @@ const RegistrationForm = () => {
                     id="email"
                     name="email"
                     placeholder="example@.com"
+                />
+                <TextField
+                    {...register('fullName', fullNameValidation)}
+                    type="text"
+                    error={shouldShowError('fullName')}
+                    helperText={shouldShowError('fullName') ? getErrorMessage('fullName') : ''}
+                    label="Имя и Фамилия"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Иван Иванович"
                 />
                 <TextField
                     {...register('password', passwordValidation)}
@@ -71,21 +99,16 @@ const RegistrationForm = () => {
                     placeholder="******"
                 />
 
-                <div className={loginClasses.login__actions}>
+                <div className='registration__actions'>
                   <Button
                       className={[
                         'button',
                         'button__auth',
                       ].join(' ')}
                   >
-                    <Link
-                        className={clsx('button', 'button__text')}
-                        to="/student/account"
-                    >
                       Зарегистрироваться
-                    </Link>
                   </Button>
-                  <div className={loginClasses.login__actions_divider}>Или</div>
+                  <div className='registration__actions_divider'>Или</div>
                   <Button
                       className={clsx('button', 'button__auth',)}
                   >

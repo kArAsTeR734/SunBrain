@@ -1,51 +1,46 @@
-import classes from './positionItem.module.css';
+import './positionItem.css';
+import clsx from "clsx";
 
 const PositionItem = () => {
   return (
     <>
-      <div className={classes.position__item}>
+      <div className='position__item'>
         <div
-          className={[classes.position__item_placement, classes.first].join(
-            ' ',
-          )}
+          className={clsx('position__item-placement', 'first')}
         >
           1.
         </div>
-        <div className={classes.position__item_info}>
+        <p className='position__item-info'>
           Иван Петрович Николаевич
-        </div>
-        <div className={classes.position__item_score}>90 баллов</div>
+        </p>
+        <p className='position__item-score'>90 баллов</p>
       </div>
-      <div className={classes.position__item}>
+      <div className='position__item'>
         <div
-          className={[classes.position__item_placement, classes.second].join(
-            ' ',
-          )}
+            className={clsx('position__item-placement', 'second')}
         >
           2.
         </div>
-        <div className={classes.position__item_info}>
+        <div className='position__item-info'>
           Петров Дмитрий сергеевич
         </div>
-        <div className={classes.position__item_score}>88 баллов</div>
+        <div className='position__item-score'>88 баллов</div>
       </div>
-      <div className={classes.position__item}>
+      <div className='position__item'>
         <div
-          className={[classes.position__item_placement, classes.third].join(
-            ' ',
-          )}
+            className={clsx('position__item-placement', 'third')}
         >
           3.
         </div>
-        <div className={classes.position__item_info}>Иван Иванов Иванович</div>
-        <div className={classes.position__item_score}>85 баллов</div>
+        <div className='position__item-info'>Иван Иванов Иванович</div>
+        <div className='position__item-score'>85 баллов</div>
       </div>
-      <div className={classes.position__item}>
-        <div className={classes.position__item_placement}>8.</div>
-        <div className={classes.position__item_info}>
+      <div className='position__item'>
+        <div className={clsx('position__item-placement')}>8.</div>
+        <div className='position__item-info'>
           Беляев Никита Николаевич
         </div>
-        <div className={classes.position__item_score}>63 баллов</div>
+        <div className='position__item-score'>63 баллов</div>
       </div>
     </>
   );

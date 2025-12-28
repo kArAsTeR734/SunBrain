@@ -6,14 +6,14 @@
   background-color: rgba(250, 250, 250, 0.4);
   padding: 10px;
 }
-.position__item_placement {
+.position__item-placement {
   color: rgb(18, 18, 18);
   font-size: 18px;
   font-weight: 400;
   text-align: left;
   text-transform: uppercase;
 }
-.position__item_info {
+.position__item-info {
   display: flex;
   flex-grow: 1;
   color: rgb(51, 51, 51);
@@ -23,7 +23,7 @@
   margin-left: 5px;
   text-transform: capitalize;
 }
-.position__item_score {
+.position__item-score {
   color: #000;
   font-size: 18px;
   font-weight: 400;
@@ -33,7 +33,7 @@
 }
 
 .first {
-  color: #FFD700;
+  color: #ff0000;
 }
 
 .second {
@@ -44,4 +44,4 @@
   color: #CD7F32;
 }
 
-/*# sourceMappingURL=positionItem.module.css.map */
+/*# sourceMappingURL=positionItem.css.map */

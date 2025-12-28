@@ -1,15 +1,30 @@
-export interface UserInfoInterface{
-  id:number,
-  email:string,
-  fullName:string,
-  role:string,
-  createdAt:Date,
+interface LeaderboardUser {
+  fullName: string;
+  points: number;
+  position: number;
+}
+
+interface ProfileDataInterface {
+  user: {
+    id: number;
+    email: string;
+    fullName: string;
+    role: string;
+  };
+  leaderboard: {
+    topUsers: LeaderboardUser[];
+    currentUser: {
+      fullName: string;
+      points: number;
+    };
+  };
 }
 
 export interface RegistrationRequestDataInterface {
-  login: string;
-  password: string;
-  passwordConfirmed: string;
+  email: string,
+  password: string,
+  fullName: string,
+  role?: string,
 }
 
 export interface LoginReturnDataInterface {
@@ -18,11 +33,11 @@ export interface LoginReturnDataInterface {
 
 export type LoginRequestData = Omit<
   RegistrationRequestData,
-  'passwordConfirmed'
+    'role' | 'fullName'
 >;
 
 export type LoginReturnData = LoginReturnDataInterface;
 
-export type UserInfo = UserInfoInterface;
-
 export type RegistrationRequestData = RegistrationRequestDataInterface;
+
+export type ProfileData = ProfileDataInterface;

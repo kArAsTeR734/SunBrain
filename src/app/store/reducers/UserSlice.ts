@@ -1,10 +1,10 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import {AuthorizationService} from "@/api/services/AuthorizationService.ts";
-import {UserInfo} from "@/api/types/api-types.ts";
+import {ProfileData} from "@/api/types/api-types.ts";
 
 export interface UserState {
   isAuth: boolean;
-  user: UserInfo | null;
+  user: ProfileData | null;
 }
 
 const initialState: UserState = {
@@ -19,7 +19,7 @@ export const userSlice = createSlice({
     setAuth: (state, action: PayloadAction<boolean>) => {
       state.isAuth = action.payload;
     },
-    setUser: (state, action: PayloadAction<UserInfo>) => {
+    setUser: (state, action: PayloadAction<ProfileData>) => {
       state.user = action.payload;
     },
     logout: (state) => {

@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { store } from '../../main.tsx';
-
 import { AuthorizationService } from '../services/AuthorizationService.ts';
 import {userSlice} from "@/app/store/reducers/UserSlice.ts";
 
 let isRefreshing = false;
 export const api = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://localhost:5000',
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -46,11 +45,9 @@ api.interceptors.response.use(
 );
 
 export const authApi = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://localhost:5000',
   headers: {
     'Content-Type': 'application/json',
   },
   withCredentials: true,
 });
-
-authApi.defaults.headers.common['X-Requested-With'] = null;

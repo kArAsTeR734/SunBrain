@@ -1,12 +1,12 @@
-import classes from './progressItem.module.css';
+import './progressItem.css';
 
 const ProgressItem = () => {
   return (
     <>
-      <div className={classes.item}>
-        <div className={classes.item_subject}>Математика</div>
-        <div className={classes.progressContainer}>
-          <div className={classes.progressValue}></div>
+      <div className='item'>
+        <div className='item_subject'>Математика</div>
+        <div className='item__progress--container'>
+          <div className='item__progress'></div>
         </div>
       </div>
     </>

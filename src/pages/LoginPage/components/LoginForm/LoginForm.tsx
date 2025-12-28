@@ -1,15 +1,17 @@
-import loginClasses from './loginForm.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormValidationContext } from '@/shared/hooks/useFormValidationContext.ts';
 import { SubmitHandler } from 'react-hook-form';
 import { TextField } from '@mui/material';
+import './loginForm.scss'
 import {
   emailValidation,
   passwordValidation,
 } from '../config/validationConfig.ts';
 import clsx from 'clsx';
-import Button from "../../../../shared/ui/Button/Button.tsx";
-import '../../../../shared/ui/Button/button.css'
+import Button from "@/shared/ui/Button/Button.tsx";
+import '@/shared/ui/Button/button.css'
+import {LoginRequestData} from "@/api/types/api-types.ts";
+import {useLogin} from "@/features/Authorization/useLogin.ts";
 
 export interface LoginFormInput {
   email: string;
@@ -17,24 +19,33 @@ export interface LoginFormInput {
 }
 
 const LoginForm = () => {
-  const navigate = useNavigate();
-  const { register, handleSubmit, shouldShowError, getErrorMessage } =
+  const { register, handleSubmit, shouldShowError, getErrorMessage,reset } =
     useFormValidationContext<LoginFormInput>();
+  const navigate = useNavigate();
+  const { mutateAsync: login} = useLogin();
 
-  const onSubmit: SubmitHandler<LoginFormInput> = () => {
-    console.log('Данные с формы отправленны');
-    navigate('/student/account');
+  const onSubmit: SubmitHandler<LoginFormInput> = async (formData) => {
+    const loginData: LoginRequestData = {
+      email: formData.email,
+      password: formData.password,
+    };
+    try {
+      await login(loginData);
+      navigate('/student/account')
+    } finally {
+      reset();
+    }
   };
 
   return (
     <>
-      <section className={loginClasses.login}>
+      <section className='login'>
         <div className="container">
-          <h2 className={loginClasses.login__header}>Войти</h2>
-          <div className={loginClasses.login__wrapper}>
+          <h2 className='login__header'>Войти</h2>
+          <div className='login__wrapper'>
             <form
               onSubmit={() => handleSubmit(onSubmit)}
-              className={loginClasses.login__form}
+              className='login__form'
             >
               <TextField
                 {...register('email', emailValidation)}
@@ -60,16 +71,16 @@ const LoginForm = () => {
                 placeholder="Пароль"
                 type="password"
               />
-              <div className={loginClasses.login__actions}>
+              <div className='login__actions'>
                 <Button
                   className={clsx(
                     'button',
                     'button__auth',
                   )}
                 >
-                  <Link to="/student/account">Войти</Link>
+                  Войти
                 </Button>
-                <div className={loginClasses.login__actions_divider}>Или</div>
+                <div className='login__actions_divider'>Или</div>
                 <Button
                   className={clsx(
                     'button',

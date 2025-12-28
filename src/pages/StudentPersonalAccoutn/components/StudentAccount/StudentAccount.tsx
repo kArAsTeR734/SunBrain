@@ -1,4 +1,4 @@
-import classes from './studentAccount.module.css';
+import './studentAccount.css';
 import StudentAccountInfo from '../StudentAccountInfo/StudentAccountInfo.tsx';
 import StudentAccountProgress from '../StudentAccountProgress/StudentAccountProgress.tsx';
 import StudentAccountPosition from '../StudentAccountPosition/StudentAccountPosition.tsx';
@@ -6,11 +6,11 @@ import StudentAccountPosition from '../StudentAccountPosition/StudentAccountPosi
 const StudentAccount = () => {
   return (
     <>
-      <section className={classes.account}>
+      <section className='account'>
         <div className="container">
-          <div className={classes.account__wrapper}>
+          <div className='account__wrapper'>
             <StudentAccountInfo />
-            <div className={classes.account__specialInfo}>
+            <div className='account__special--info'>
               <StudentAccountProgress />
               <StudentAccountPosition />
             </div>

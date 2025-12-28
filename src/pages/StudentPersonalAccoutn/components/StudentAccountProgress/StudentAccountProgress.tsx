@@ -1,11 +1,11 @@
-import classes from './studentAccountProgress.module.css';
+import './studentAccountProgress.css';
 import ProgressList from '../ProgressList/ProgressList.tsx';
 
 const StudentAccountProgress = () => {
   return (
     <>
-      <div className={classes.progress}>
-        <h2 className={classes.progress__header}>Прогресс обучения</h2>
+      <div className='progress'>
+        <h2 className='progress__header'>Прогресс обучения</h2>
         <ProgressList />
       </div>
     </>

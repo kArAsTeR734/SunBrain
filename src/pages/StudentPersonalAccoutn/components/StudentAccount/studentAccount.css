@@ -7,9 +7,9 @@
   background-color: #F7F7F7;
   display: flex;
 }
-.account__specialInfo {
+.account__special--info {
   display: flex;
   flex-direction: column;
 }
 
-/*# sourceMappingURL=studentAccount.module.css.map */
+/*# sourceMappingURL=studentAccount.css.map */

@@ -6,7 +6,7 @@
   background-color: rgb(250, 250, 250,0.4);
   padding: 10px;
 
-  &_placement {
+  &-placement {
     color: rgb(18, 18, 18);
     font-size: 18px;
     font-weight: 400;
@@ -14,7 +14,7 @@
     text-transform: uppercase;
   }
 
-  &_info {
+  &-info {
     display: flex;
     flex-grow: 1;
     color: rgb(51, 51, 51);
@@ -24,7 +24,7 @@
     margin-left: 5px;
     text-transform: capitalize;
   }
-  &_score{
+  &-score{
     color: #000;
     font-size: 18px;
     font-weight: 400;
@@ -35,7 +35,7 @@
 }
 
 .first {
-  color: #FFD700;
+  color: #ff0000;
 }
 
 .second{

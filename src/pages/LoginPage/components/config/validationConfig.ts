@@ -8,6 +8,22 @@ export const emailValidation = {
   },
 };
 
+export const fullNameValidation = {
+  required: 'Поле обязательно к заполнению',
+  minLength: {
+    value: 3,
+    message: 'Минимальная длина 3 символа',
+  },
+};
+
+export const roleValidation = {
+  required: 'Поле обязательно к заполнению',
+  minLength: {
+    value: 4,
+    message: 'Минимальная длина 4 символа',
+  },
+};
+
 export const passwordValidation = {
   required: 'Поле обязательно к заполнению' as const,
   minLength: {

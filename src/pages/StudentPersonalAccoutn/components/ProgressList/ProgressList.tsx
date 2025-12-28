@@ -1,10 +1,10 @@
-import classes from './progressList.module.css';
+import './progressList.scss';
 import ProgressItem from '../ProgressItem/ProgressItem.tsx';
 
 const ProgressList = () => {
   return (
     <>
-      <div className={classes.items}>
+      <div className='items'>
         <ProgressItem />
       </div>
     </>
