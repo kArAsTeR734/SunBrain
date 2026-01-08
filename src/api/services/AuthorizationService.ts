@@ -1,8 +1,8 @@
 import { authApi } from '../config/api.config.ts';
-import type {
+import {
   LoginRequestData,
-  LoginReturnData,
-  RegistrationRequestData,
+  LoginReturnData, RefreshDataInterface,
+  RegistrationRequestData
 } from '../types/api-types.ts';
 
 export class AuthorizationService {
@@ -21,12 +21,8 @@ export class AuthorizationService {
     return response.data;
   }
 
-  public static async refresh(): Promise<{ accessToken: string }> {
+  public static async refresh(): Promise<RefreshDataInterface> {
     const response = await authApi.post('/api/auth/refresh');
-    console.log('Current cookies:', document.cookie);
-    console.log('Sending refresh request...');
-    localStorage.setItem('access_token', response.data.accessToken);
-
     return response.data;
   }
 

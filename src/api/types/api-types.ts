@@ -20,6 +20,13 @@ interface ProfileDataInterface {
   };
 }
 
+interface UserLoginData{
+  id:number,
+  email:string,
+  fullName:string,
+  role:string,
+}
+
 export interface RegistrationRequestDataInterface {
   email: string,
   password: string,
@@ -28,7 +35,16 @@ export interface RegistrationRequestDataInterface {
 }
 
 export interface LoginReturnDataInterface {
-  accessToken: string;
+  success:boolean,
+  message:string,
+  data:{
+    user:UserLoginData,
+    accessToken:string
+  }
+}
+
+export interface RefreshDataInterface {
+  accessToken:string;
 }
 
 export type LoginRequestData = Omit<

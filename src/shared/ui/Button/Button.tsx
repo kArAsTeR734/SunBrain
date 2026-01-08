@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { ButtonHTMLAttributes, FC} from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;

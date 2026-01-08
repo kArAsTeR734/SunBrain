@@ -21,8 +21,8 @@ export interface LoginFormInput {
 const LoginForm = () => {
   const { register, handleSubmit, shouldShowError, getErrorMessage,reset } =
     useFormValidationContext<LoginFormInput>();
-  const navigate = useNavigate();
   const { mutateAsync: login} = useLogin();
+  const navigate = useNavigate()
 
   const onSubmit: SubmitHandler<LoginFormInput> = async (formData) => {
     const loginData: LoginRequestData = {
@@ -44,7 +44,7 @@ const LoginForm = () => {
           <h2 className='login__header'>Войти</h2>
           <div className='login__wrapper'>
             <form
-              onSubmit={() => handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(onSubmit)}
               className='login__form'
             >
               <TextField
@@ -73,6 +73,7 @@ const LoginForm = () => {
               />
               <div className='login__actions'>
                 <Button
+                  type='submit'
                   className={clsx(
                     'button',
                     'button__auth',
@@ -82,6 +83,7 @@ const LoginForm = () => {
                 </Button>
                 <div className='login__actions_divider'>Или</div>
                 <Button
+                  type='button'
                   className={clsx(
                     'button',
                     'button__auth',

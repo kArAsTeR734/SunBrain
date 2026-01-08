@@ -1,0 +1,64 @@
+
+
+.profile {
+  position: relative;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &-item {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    margin: inherit;
+    padding: inherit;
+    border: none;
+    cursor: pointer;
+
+    &--text {
+      margin-right: 10px;
+
+      p {
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+  }
+
+  &-initials {
+    margin-right: 10px;
+    min-width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background-color: #dfe2ea;
+
+    p {
+      display: flex;
+      line-height: 36px;
+      justify-content: center;
+      align-items: center;
+      color: #000000;
+      font-weight: 700;
+      font-style: normal;
+    }
+  }
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 66px;
+  height: 74px;
+  margin-right: 47px;
+}

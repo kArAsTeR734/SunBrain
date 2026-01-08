@@ -3,6 +3,7 @@
   min-height: 88px;
   padding: 11px 0 5px 0;
   z-index: 100;
+
 }
 .header__profile {
   position: relative;
@@ -102,4 +103,4 @@
   color: #FF8000;
 }
 
-/*# sourceMappingURL=header.module.css.map */
+/*# sourceMappingURL=header.css.map */
