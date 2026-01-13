@@ -21,7 +21,7 @@ const PositionList = () => {
     <>
       <div className='position__items'>
         {leaderboardData?.topUsers.map(({position,fullName,points}) => (
-            <div className='position__item'>
+            <div className='position__item' key={position}>
               <div
                   className={clsx('position__item-placement', 'first')}
               >

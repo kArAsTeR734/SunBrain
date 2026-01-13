@@ -2,8 +2,18 @@ import classes from './promo.module.css';
 import '../../../../shared/ui/Button/button.css'
 import clsx from "clsx";
 import Button from "../../../../shared/ui/Button/Button.tsx";
+import {useNavigate} from "react-router-dom";
 
 const Promo = () => {
+  const navigate = useNavigate();
+
+  const handleClickTest = () => {
+    navigate('/test');
+  }
+
+  const handleClickAccount = () => {
+    navigate('login');
+  }
   return (
     <section className={classes.promo}>
       <div className="container">
@@ -15,10 +25,14 @@ const Promo = () => {
           искусственного интеллекта.
         </div>
         <div className={classes.actionButtons}>
-          <Button className={clsx('button', 'button__pass-test')}>
+          <Button className={clsx('button', 'button__pass-test')}
+          onClick={handleClickTest}
+          >
             Пройти вступительный тест
           </Button>
-          <Button className={clsx('button', 'button__have-account')}>
+          <Button className={clsx('button', 'button__have-account')}
+          onClick={handleClickAccount}
+          >
             У меня уже есть аккаунт
           </Button>
         </div>

@@ -1,7 +1,7 @@
 import HomeworkHeader from '../HomeworkHeader/HomeworkHeader.tsx';
-import HomeworkHints from '../HomeworkHints/HomeworkHints.tsx';
 import HomeworkTaskList from '../HomeworkTaskList/HomeworkTaskList.tsx';
 import classes from './homeworkList.module.css';
+import Hints from "@/shared/ui/Hints/Hints.tsx";
 
 const HomeworkList = () => {
   return (
@@ -9,7 +9,7 @@ const HomeworkList = () => {
       <section className={classes.homeworkList}>
         <div className="container">
           <HomeworkHeader />
-          <HomeworkHints />
+          <Hints />
           <HomeworkTaskList />
         </div>
       </section>

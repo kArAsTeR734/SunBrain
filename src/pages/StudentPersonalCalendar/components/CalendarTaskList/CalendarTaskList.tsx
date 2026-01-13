@@ -1,5 +1,5 @@
 import CalendarTask from '../CalendarTask/CalendarTask.tsx';
-import classes from './calendarTaskList.module.css';
+import './calendarTaskList.css';
 import {isTask} from "@/utils/isCalendarTask.ts";
 import {CalendarTaskInterface} from "../../models/types.ts";
 import {FC} from "react";
@@ -13,7 +13,7 @@ const CalendarTaskList:FC<CalendarTaskListProps> = ({task}) => {
   return (
     haveATask && (
       <>
-        <div className={classes.calendar__tasks}>
+        <div className='calendar__tasks'>
           <CalendarTask {...task} />
         </div>
       </>

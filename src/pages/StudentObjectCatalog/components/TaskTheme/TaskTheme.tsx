@@ -1,21 +1,25 @@
-import classes from './taskTheme.module.css';
+import './taskTheme.scss';
 import { FC } from 'react';
-import { Theme } from '../models/Theme.ts';
-import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {PATHS} from "@/app/routes/config.tsx";
+import {Theme} from "@/pages/StudentObjectCatalog/components/models/Theme.ts";
 
-const TaskTheme: FC<Theme> = ({themeTitle,themeNumber}) => {
+const TaskTheme: FC<Theme> = ({themeTitle,themeNumber}: Theme) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(PATHS.STUDENT.SUBJECT_HOMEWORK);
+  };
   return (
     <>
-      <Link to="/student/catalog/math/*">
-        <div className={classes.theme__wrapper}>
-          <span className={classes.theme__wrapper__number}>
-            {themeNumber}
-          </span>
-          <div className={classes.theme__wrapper__title}>
-            {themeTitle}
-          </div>
-        </div>
-      </Link>
+      <div className='theme-wrapper' onClick={handleClick}>
+        <p className='theme-wrapper-number'>
+          {themeNumber}
+        </p>
+        <p className='theme-wrapper-title'>
+          {themeTitle}
+        </p>
+      </div>
     </>
   );
 };

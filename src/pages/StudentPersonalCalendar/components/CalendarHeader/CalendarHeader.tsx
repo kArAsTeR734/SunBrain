@@ -1,15 +1,16 @@
-import classes from './calendarHeader.module.css';
+import './calendarHeader.css';
 
 const CalendarHeader = () => {
   return (
     <>
-      <section className={classes.calendarHeader}>
-        <div className={classes.calendarHeader__links}>
-          <a className={classes.calendarHeader__link} href="#">
+      <section className='calendar-header'>
+        <div className='calendar-header__links'>
+          <a className='calendar-header__links-link'
+             href="#">
             Личный кабинет
           </a>
         </div>
-        <div className={classes.calendarHeader__currentLink}>
+        <div className='calendar-header__links-link'>
           Календарь занятий
         </div>
       </section>

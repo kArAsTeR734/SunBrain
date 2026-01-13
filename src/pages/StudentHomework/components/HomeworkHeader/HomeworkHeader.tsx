@@ -1,17 +1,27 @@
-import classes from './homework.module.css';
+import './homework.css';
+import {useParams} from "react-router-dom";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const HomeworkHeader = () => {
+  const { subjectId, themeId } = useParams<{
+    subjectId: string;
+    themeId?: string;
+  }>();
   return (
     <>
-      <section className={classes.homeworkHeader}>
-        <div className={classes.homeworkHeader__links}>
-          <a className={classes.homeworkHeader__link} href="#">
+      <section className='homework-header'>
+        <div className='homework-header__links'>
+          <a className='homework-header__links-link' href="#">
             Личный кабинет
           </a>
+          <ArrowForwardIcon/>
+          <a className='catalog__header__link'>
+            Задания по предмету {subjectId}
+          </a>
         </div>
-        <div className={classes.homeworkHeader__theme}>
-          Тема 1. Геометрия на плоскости (планиметрия)
-        </div>
+        <h1 className='homework-header__theme'>
+          Тема {themeId}
+        </h1>
       </section>
     </>
   );

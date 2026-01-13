@@ -57,7 +57,6 @@ export const useAuthQuery = () => {
       }
     },
     retry: false,
-    staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
     refetchOnMount: true,
     enabled: true,

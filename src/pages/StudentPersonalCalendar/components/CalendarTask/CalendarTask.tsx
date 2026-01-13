@@ -1,16 +1,16 @@
-import classes from './calendarTask.module.css';
+import './calendarTask.css';
 import { FC } from 'react';
 import {CalendarTaskInterface} from "../../models/types.ts";
 
 const CalendarTask: FC<CalendarTaskInterface> = ({theme,subject,deadline}) => {
   return (
     <>
-      <div className={classes.calendar__task__item}>
-        <div className={classes.calendar__task__wrapper}>
-          <div className={classes.calendar__task__subject}>{subject}</div>
-          <div className={classes.calendar__task__title}>Домашнее задание</div>
-          <div className={classes.calendar__task__theme}>{theme}</div>
-          <div className={classes.calendar__task__deadline}>
+      <div className='calendar__task-item'>
+        <div className='calendar__task-wrapper'>
+          <div className='calendar__task-subject'>{subject}</div>
+          <div className='calendar__task-title'>Домашнее задание</div>
+          <div className='calendar__task-theme'>{theme}</div>
+          <div className='calendar__task-deadline'>
             {deadline}
           </div>
         </div>

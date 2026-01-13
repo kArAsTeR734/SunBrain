@@ -34,7 +34,7 @@
   }
   &__have-account{
     box-shadow: 0 2px 10px 0 rgba(101, 192, 237, 0.5);
-    background: rgb(28, 79, 188);
+    background: #1C4FBCFF;
     width: 298px;
     height: 56px;
   }
@@ -43,6 +43,8 @@
     height: 46px;
     box-shadow: 0 2px 10px 0 rgba(101, 192, 237, 0.5);
     background: linear-gradient(133.91deg, rgb(24, 161, 204) 16.258%,rgb(146, 209, 255) 95.918%);
-    margin-top: 15px;
+  }
+  &--logout{
+    background:#1C4FBCFF;
   }
 }

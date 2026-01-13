@@ -1,4 +1,4 @@
-import classes from './calendarSlider.module.css';
+import './calendarSlider.css';
 import CalendarItem from '../CalendarItem/CalendarItem.tsx';
 import {useEffect, useState} from 'react';
 import {CalendarItemInterface} from '../../models/types.ts'
@@ -19,8 +19,8 @@ const CalendarSlider = () => {
 
   return (
     <>
-      <section className={classes.calendar}>
-        <div className={classes.calendar__wrapper}>
+      <section className='calendar'>
+        <div className='calendar__wrapper'>
           {calendarItems.map((item, index) => (
               <CalendarItem
                   key={index}

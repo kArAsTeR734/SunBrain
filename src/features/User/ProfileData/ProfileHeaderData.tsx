@@ -5,7 +5,9 @@ import {useAuthQuery} from '@/features/Authorization/useCheckAuth.ts';
 import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './ProfileHeaderData.scss'
+import '@/shared/ui/Button/button.scss'
 import {getUserInitials} from "@/utils/getUserInitials.ts";
+import {AuthorizationService} from "@/api/services/AuthorizationService.ts";
 
 const ProfileHeaderData = () => {
   const navigate = useNavigate();
@@ -21,6 +23,15 @@ const ProfileHeaderData = () => {
   }, [dispatch, setAuth]);
 
   const isUserAuthenticated = authData?.isAuthenticated;
+
+  const handleLogout = async () => {
+    await AuthorizationService.logout();
+    window.location.reload();
+  }
+
+  const handleTest = () => {
+    navigate('/test');
+  }
 
   if (isLoading) {
     return <div>Загрузка...</div>;
@@ -45,13 +56,24 @@ const ProfileHeaderData = () => {
                     <p>{user?.fullName ||
                         'Пользователь'}</p>
                   </div>
+                  <div className="profile__dropdown-icon">
+                    <img
+                        src="/src/assets/chevron-down.svg"
+                        alt="accountIcon"
+                    />
+                  </div>
                 </button>
-                <div className="profile__dropdown-icon">
-                  <img
-                      src="/src/assets/chevron-down.svg"
-                      alt="accountIcon"
-                  />
+                <div className="user-actions__buttons">
+                  <button className="button button__pass-test--student"
+                          onClick={handleTest}>
+                    Пройти тест
+                  </button>
+                  <button className="button button--logout"
+                          onClick={handleLogout}>
+                    Выйти
+                  </button>
                 </div>
+
               </div>
           )}
         </div>

@@ -1,0 +1,30 @@
+.homework-header {
+  min-height: 85px;
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.homework-header__links {
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+.homework-header__links-link {
+  text-decoration: none;
+  color: #191919;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22.89px;
+  text-align: center;
+}
+.homework-header__theme {
+  color: #FF8000;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -1%;
+  text-align: left;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=homework.css.map */
