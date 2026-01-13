@@ -1,7 +1,7 @@
 import { Link, NavLink} from 'react-router-dom';
 import './header.scss';
-import ProfileData from '@/features/User/ProfileData/ProfileData.tsx';
 import NavbarMenu from '@/widgets/Header/NavbarMenu/NavbarMenu.tsx';
+import ProfileHeaderData from "@/features/User/ProfileData/ProfileHeaderData.tsx";
 
 const Header = () => {
   return (
@@ -20,7 +20,7 @@ const Header = () => {
             </Link>
           </div>
           <NavbarMenu/>
-          <ProfileData/>
+          <ProfileHeaderData/>
         </header>
       </div>
     </section>

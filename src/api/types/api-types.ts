@@ -1,26 +1,30 @@
-interface LeaderboardUser {
-  fullName: string;
-  points: number;
-  position: number;
+export interface LeaderboardUser {
+  fullName: string,
+  points: number,
+  position: number,
 }
 
-interface ProfileDataInterface {
-  user: {
-    id: number;
-    email: string;
-    fullName: string;
-    role: string;
-  };
-  leaderboard: {
-    topUsers: LeaderboardUser[];
-    currentUser: {
-      fullName: string;
-      points: number;
-    };
-  };
+export interface ProfileDataInterface {
+  success:boolean,
+  data:{
+    user: {
+      avatarUrl:string,
+      id: number,
+      email: string,
+      fullName: string,
+      role: string,
+    },
+    leaderboard: {
+      topUsers: LeaderboardUser[],
+      currentUser: {
+        fullName: string,
+        points: number,
+        position: number,
+      },
+    },
+  }
 }
-
-interface UserLoginData{
+export interface UserData{
   id:number,
   email:string,
   fullName:string,
@@ -38,13 +42,13 @@ export interface LoginReturnDataInterface {
   success:boolean,
   message:string,
   data:{
-    user:UserLoginData,
+    user:UserData,
     accessToken:string
   }
 }
 
 export interface RefreshDataInterface {
-  accessToken:string;
+  accessToken:string,
 }
 
 export type LoginRequestData = Omit<

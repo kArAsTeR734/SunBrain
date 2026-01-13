@@ -32,6 +32,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
+        localStorage.removeItem('access_token');
         await AuthorizationService.refresh();
         store.dispatch(setAuth(true));
         originalRequest.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`;

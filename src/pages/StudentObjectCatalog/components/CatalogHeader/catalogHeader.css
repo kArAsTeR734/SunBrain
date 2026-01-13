@@ -1,16 +1,16 @@
-.catalogHeader {
+.catalog__header {
   min-height: 85px;
   padding-top: 32px;
   display: flex;
   flex-direction: column;
 }
-.catalogHeader__links {
+.catalog__header__links {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
-.catalogHeader__link {
+.catalog__header__link {
   text-decoration: none;
   color: #000;
   font-size: 18px;
@@ -18,7 +18,7 @@
   line-height: 22.89px;
   text-align: center;
 }
-.catalogHeader__currentLink {
+.catalog__header__currentLink {
   color: #000;
   font-size: 32px;
   font-weight: 400;
@@ -27,4 +27,4 @@
   margin-top: 10px;
 }
 
-/*# sourceMappingURL=catalogHeader.module.css.map */
+/*# sourceMappingURL=catalogHeader.css.map */

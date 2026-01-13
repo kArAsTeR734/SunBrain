@@ -1,10 +1,10 @@
-import classes from './catalogHints.module.css';
+import './catalogHints.scss';
 import CatalogHint from '../CatalogHint/CatalogHint.tsx';
 
 const CatalogHints = () => {
   return (
     <>
-      <div className={classes.catalog__hints}>
+      <div className='catalog__hints'>
         <CatalogHint />
       </div>
     </>

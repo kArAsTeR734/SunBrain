@@ -5,6 +5,7 @@ import HomePage from '../../pages/HomePage';
 import LoginPage from '../../pages/LoginPage';
 import RegistrationPage from '../../pages/RegistrationPage';
 import StudentCalendarPage from "../../pages/StudentPersonalCalendar";
+import MathTest from "@/features/User/MathTest/MathTest.tsx";
 
 export const CATALOG_ITEMS = [
   { id: 'ephysic', path: 'ephysic', title: 'ЕГЭ Физика' },
@@ -26,6 +27,7 @@ export const PATHS = {
     SUBJECT: (subjectId: SubjectPath) => `/student/catalog/${subjectId}`,
     MATH_HOMEWORK: '/student/catalog/math',
   },
+  TEST:'/test'
 } as const;
 
 export const getRoutesConfig = (): RouteObject[] => [
@@ -53,4 +55,8 @@ export const getRoutesConfig = (): RouteObject[] => [
     path: PATHS.STUDENT.CALENDAR,
     element: <StudentCalendarPage />,
   },
+  {
+    path: PATHS.TEST,
+    element: <MathTest/>
+  }
 ];

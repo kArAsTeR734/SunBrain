@@ -1,46 +1,22 @@
 import './positionItem.css';
 import clsx from "clsx";
+import {LeaderboardUser} from "@/api/types/api-types.ts";
 
-const PositionItem = () => {
+const PositionItem = ({fullName,position,points}:LeaderboardUser) => {
+
   return (
     <>
+
       <div className='position__item'>
         <div
-          className={clsx('position__item-placement', 'first')}
+            className={clsx('position__item-placement', 'first')}
         >
-          1.
-        </div>
-        <p className='position__item-info'>
-          Иван Петрович Николаевич
-        </p>
-        <p className='position__item-score'>90 баллов</p>
-      </div>
-      <div className='position__item'>
-        <div
-            className={clsx('position__item-placement', 'second')}
-        >
-          2.
+          {position}.
         </div>
         <div className='position__item-info'>
-          Петров Дмитрий сергеевич
+          {fullName}
         </div>
-        <div className='position__item-score'>88 баллов</div>
-      </div>
-      <div className='position__item'>
-        <div
-            className={clsx('position__item-placement', 'third')}
-        >
-          3.
-        </div>
-        <div className='position__item-info'>Иван Иванов Иванович</div>
-        <div className='position__item-score'>85 баллов</div>
-      </div>
-      <div className='position__item'>
-        <div className={clsx('position__item-placement')}>8.</div>
-        <div className='position__item-info'>
-          Беляев Никита Николаевич
-        </div>
-        <div className='position__item-score'>63 баллов</div>
+        <div className='position__item-score'>{points} баллов</div>
       </div>
     </>
   );

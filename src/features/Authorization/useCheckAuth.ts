@@ -1,43 +1,73 @@
-// hooks/useAuthQuery.ts
-import { useQuery } from '@tanstack/react-query';
-import { AuthorizationService } from '@/api/services/AuthorizationService.ts';
+import {useQuery} from "@tanstack/react-query";
+import {AuthorizationService} from "@/api/services/AuthorizationService.ts";
 
 export const useAuthQuery = () => {
   return useQuery({
     queryKey: ['checkAuth'],
     queryFn: async () => {
-      const token = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem('access_token');
 
-      if (!token) {
-        console.log('Токена нет, пытаемся обновить...');
+      if (accessToken && accessToken !== 'undefined') {
         try {
-          const data = await AuthorizationService.refresh();
-          localStorage.setItem('access_token', data.accessToken);
+          const isExpired = checkTokenExpiration(accessToken);
 
-          return {
-            isAuthenticated: true,
-            accessToken: data.accessToken,
-            message: 'Token refreshed successfully'
-          };
+          if (!isExpired) {
+            return {
+              isAuthenticated: true,
+              token: accessToken
+            };
+          }
         } catch (error) {
-          console.log('Refresh failed:', error);
-          return {
-            isAuthenticated: false,
-            accessToken: null,
-            message: 'No token available'
-          };
+          console.log('Access token invalid:', error);
+          localStorage.removeItem('access_token');
         }
       }
-      return {
-        isAuthenticated: true,
-        accessToken: token,
-        message: 'Token exists'
-      };
+
+      const refreshToken = localStorage.getItem('refresh_token');
+
+      if (!refreshToken || refreshToken === 'undefined') {
+        console.log('Нет refresh токена, пользователь не авторизован');
+        return {
+          isAuthenticated: false,
+          reason: 'no_tokens'
+        };
+      }
+
+      try {
+        console.log('Пытаемся обновить токены...');
+        const data = await AuthorizationService.refresh();
+
+        localStorage.setItem('access_token', data.accessToken);
+
+
+        return {
+          isAuthenticated: true,
+          token: data.accessToken
+        };
+      } catch (error) {
+        console.log('Refresh failed:', error);
+
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+
+        return {
+          isAuthenticated: false,
+          reason: 'refresh_failed'
+        };
+      }
     },
     retry: false,
     staleTime: 5 * 60 * 1000,
-
     refetchOnWindowFocus: false,
     refetchOnMount: true,
+    enabled: true,
   });
+};
+
+const checkTokenExpiration = (token: string): boolean => {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expirationTime = payload.exp * 1000;
+    const currentTime = Date.now();
+
+    return expirationTime - currentTime < 30000;
 };

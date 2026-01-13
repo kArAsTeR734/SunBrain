@@ -1,15 +1,15 @@
-import classes from './catalogHeader.module.css';
+import './catalogHeader.css';
 
 const CatalogHeader = () => {
   return (
     <>
-      <section className={classes.catalogHeader}>
-        <div className={classes.catalogHeader__links}>
-          <a className={classes.catalogHeader__link} href="#">
+      <section className='catalog__header'>
+        <div className='catalog__header__links'>
+          <a className='catalog__header__link' href="#">
             Личный кабинет
           </a>
         </div>
-        <div className={classes.catalogHeader__currentLink}>
+        <div className='catalog__header__link'>
           Каталог заданий
         </div>
       </section>
