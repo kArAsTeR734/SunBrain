@@ -1,0 +1,67 @@
+.profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.profile-item {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+.profile-item--text {
+  margin-right: 10px;
+}
+.profile-item--text p {
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+.profile-initials {
+  margin-right: 10px;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #FF8000;
+}
+.profile-initials p {
+  display: flex;
+  line-height: 36px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+.user-actions__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 66px;
+  height: 74px;
+  margin-right: 47px;
+}
+
+/*# sourceMappingURL=ProfileHeaderData.css.map */

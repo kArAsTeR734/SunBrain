@@ -1,7 +1,7 @@
 import Button from '@/shared/ui/Button/Button.tsx';
 import {userSlice} from '@/app/store/reducers/UserSlice.ts';
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/redux.ts';
-import {useAuthQuery} from '@/features/Authorization/useCheckAuth.ts';
+import {useAuthQuery} from '@/features/Authorization/hooks/useCheckAuth.ts';
 import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './ProfileHeaderData.scss'

@@ -1,0 +1,82 @@
+.solution {
+  border-top: 1px solid #ecf3f5;
+}
+
+.solution__toggle {
+  padding: 20px 25px 20px 40px;
+  cursor: pointer;
+  position: relative;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1;
+  color: #191919;
+  user-select: none;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 300px;
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid var(--secondary, #000);
+    border-right: 2px solid var(--secondary, #000);
+    transform: rotate(135deg);
+  }
+}
+
+.solution__content {
+  margin-top: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid #27ae60;
+}
+
+.solution__step {
+  background: #fff;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 6px;
+  border-left: 3px solid #3498db;
+
+  p {
+    line-height: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  strong{
+    line-height: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+}
+
+.solution__final {
+  background: #e8f5e8;
+  padding: 16px;
+  border-radius: 6px;
+  border-left: 3px solid #27ae60;
+  margin-top: 16px;
+
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #27ae60;
+    margin: 0;
+  }
+}
+
+/* KaTeX стили */
+.katex {
+  display: inline;
+}
+
+.katex-display {
+  display: block;
+}
+
+.katex .mord {
+  font-size: 2rem;
+}

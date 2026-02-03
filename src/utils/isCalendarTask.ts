@@ -1,4 +1,4 @@
-import {CalendarTaskInterface} from "../pages/StudentPersonalCalendar/models/types.ts";
+import {CalendarTaskInterface} from "../shared/types/calendarTypes.ts";
 
 export function isTask(task: CalendarTaskInterface | null) {
   if(!task)

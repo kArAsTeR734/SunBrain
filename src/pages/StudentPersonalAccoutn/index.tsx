@@ -1,12 +1,14 @@
-import Footer from '../../widgets/Footer/Footer.tsx';
-import StudentAccount from './components/StudentAccount/StudentAccount.tsx';
-import Header from '../../widgets/Header/Header.tsx';
+import Header from "@/widgets/Header";
+import Footer from "@/widgets/Footer";
+import StudentAccount from "@/widgets/StudentAccount";
+import TaskGenerator from "@/shared/TaskGenerator.tsx";
 
 const StudentPersonalAccountPage = () => {
   return (
     <>
       <Header />
       <StudentAccount />
+      <TaskGenerator/>
       <Footer />
     </>
   );

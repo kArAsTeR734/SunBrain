@@ -16,7 +16,7 @@ const CatalogHint = () => {
   return (
     <>
       {catalogHints.map(({number, imgSrc, title}) => (
-          <div className='catalog-hint'>
+          <div className='catalog-hint' key={number}>
             <div className='catalog-hint__img'>
               <img
                   src={imgSrc}

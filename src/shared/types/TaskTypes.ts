@@ -1,7 +1,7 @@
 interface TaskInterface {
   number: number;
   description: string;
-  imagePath?: string;
+  imagePath?: string | undefined;
   answer: string;
 }
 

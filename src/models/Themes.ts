@@ -1,7 +1,7 @@
-import {egeMathThemes} from "../pages/StudentObjectCatalog/components/db/egeMathThemes.ts";
-import {ogeMathThemes} from "../pages/StudentObjectCatalog/components/db/ogeMathThemes.ts";
-import {ogePhysicsThemes} from "../pages/StudentObjectCatalog/components/db/ogePhysicThemes.ts";
-import {egePhysicsThemes} from "../pages/StudentObjectCatalog/components/db/egePhysicThemes.ts";
+import {egeMathThemes} from "../shared/constants/egeMathThemes.ts";
+import {ogeMathThemes} from "../shared/constants/ogeMathThemes.ts";
+import {ogePhysicsThemes} from "../shared/constants/ogePhysicThemes.ts";
+import {egePhysicsThemes} from "../shared/constants/egePhysicThemes.ts";
 
 export const THEMES_BY_SUBJECT = {
   emath: egeMathThemes,
