@@ -17,6 +17,8 @@ export const CATALOG_ITEMS = [
 
 export type SubjectPath = (typeof CATALOG_ITEMS)[number]['path'];
 
+export type SubjectTitle = (typeof CATALOG_ITEMS)[number]['title']
+
 export const PATHS = {
   HOME: '/',
   LOGIN: '/login',
@@ -25,9 +27,9 @@ export const PATHS = {
     CATALOG: '/student/catalog',
     CALENDAR: '/student/calendar',
     ACCOUNT: '/student/account',
-    SUBJECT: (subjectId: SubjectPath) => `/student/catalog/${subjectId}`,
+    SUBJECT: (subjectId: SubjectPath) => `/student/homework/${subjectId}`,
     HOMEWORK: `/student/homework`,
-    SUBJECT_HOMEWORK:(subjectId: SubjectPath) => `/student/homework/${subjectId}`,
+    SUBJECT_HOMEWORK: (subjectId: SubjectPath, themeId?: string) => `/student/homework/${subjectId}/${themeId}`
   },
   TEST:'/test'
 } as const;
@@ -50,7 +52,7 @@ export const getRoutesConfig = (): RouteObject[] => [
     element: <StudentPersonalAccountPage />,
   },
   {
-    path: `${PATHS.STUDENT.CATALOG}/*`,
+    path: `${PATHS.STUDENT.CATALOG}`,
     element: <StudentObjectCatalogPage />,
   },
   {

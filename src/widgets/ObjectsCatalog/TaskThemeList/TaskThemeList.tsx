@@ -15,7 +15,7 @@ const TaskThemeList = () => {
   return (
     <>
       <section className='themes'>
-        <h2>Задания по предмету: {getSubjectTitle(subjectId)}</h2>
+        <h2 style={{marginLeft:20}}>Задания по предмету: {getSubjectTitle(subjectId)}</h2>
         <div className='themes__list'>
           {themes.map((theme) => (
             <TaskTheme key={theme.themeNumber}

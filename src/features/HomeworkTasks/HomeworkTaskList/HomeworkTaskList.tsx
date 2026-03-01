@@ -11,7 +11,6 @@ const HomeworkTaskList:FC<HomeworkTaskListProps> = ({homeworkItems}) => {
     return (
         <>
           <section className={classes.homework__taskList}>
-            <h2 className={classes.homework__taskList_header}>Решаем задачи</h2>
             {homeworkItems ? (
                 homeworkItems.map((task) => <HomeworkItem key={task.number} task={task} />)
             ) : (

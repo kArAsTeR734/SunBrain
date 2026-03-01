@@ -1,10 +1,8 @@
 import './objectsCatalog.css';
 import CatalogObjectCards from '@/widgets/ObjectsCatalog/CatalogObjectCards/CatalogObjectCards.tsx';
-import { Route, Routes } from 'react-router-dom';
-import TaskThemeList from '@/widgets/ObjectsCatalog/TaskThemeList/TaskThemeList.tsx';
-import StudentHomeworkPage from "@/pages/StudentHomework";
 import Hints from "@/shared/ui/Hints/Hints.tsx";
 import ProfileNavigation from "@/shared/ui/ProfileNavigation";
+import Footer from '@/widgets/Footer';
 
 export const ObjectsCatalog = () => {
   return (
@@ -12,11 +10,8 @@ export const ObjectsCatalog = () => {
       <div className="container">
         <ProfileNavigation/>
         <Hints />
-        <Routes>
-          <Route index element={<CatalogObjectCards />} />
-          <Route path=":subjectId" element={<TaskThemeList />} />
-          <Route path=":subjectId" element={<StudentHomeworkPage />} />
-        </Routes>
+        <CatalogObjectCards />
+        <Footer/>
       </div>
     </section>
   );

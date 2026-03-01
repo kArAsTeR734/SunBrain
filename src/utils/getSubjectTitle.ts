@@ -1,14 +1,10 @@
-import { SubjectId } from '../models/Themes.ts';
+import { CATALOG_ITEMS} from '@/app/routes/config.tsx';
 
-function getSubjectTitle(subjectId?: SubjectId) {
-  const titles = {
-    emath: 'ЕГЭ Математика',
-    omath: 'ОГЭ Математика',
-    ephysic: 'ЕГЭ Физика',
-    ophysic: 'ОГЭ Физика',
-  };
-
-  return subjectId ? titles[subjectId] : 'Выберите предмет';
+function getSubjectTitle(path: string | undefined): string {
+  return (
+    CATALOG_ITEMS.find(item => item.path === path)?.title ??
+    ''
+  );
 }
 
 export default getSubjectTitle;

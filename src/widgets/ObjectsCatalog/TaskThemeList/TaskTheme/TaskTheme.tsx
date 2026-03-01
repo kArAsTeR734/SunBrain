@@ -1,14 +1,14 @@
 import './taskTheme.scss';
 import { FC } from 'react';
-import {useNavigate} from 'react-router-dom';
-import {PATHS} from "@/app/routes/config.tsx";
+import { useNavigate, useParams } from 'react-router-dom';
 import {Theme} from "@/models/Theme.ts";
+import { SubjectId } from '@/models/Themes.ts';
 
 const TaskTheme: FC<Theme> = ({themeTitle,themeNumber}: Theme) => {
   const navigate = useNavigate();
-
+  const { subjectId } = useParams<{ subjectId: SubjectId }>();
   const handleClick = () => {
-    navigate(PATHS.STUDENT.SUBJECT_HOMEWORK);
+    navigate(`/student/homework/${subjectId}/${themeNumber}`);
   };
   return (
     <>

@@ -5,7 +5,6 @@ import '../App.css';
 
 function App() {
   const routes = useRoutes(getRoutesConfig());
-  console.log(routes);
   return (
     <React.Suspense fallback={<div>Загрузка...</div>}>
         {routes}

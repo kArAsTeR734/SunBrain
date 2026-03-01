@@ -8,7 +8,7 @@ const CatalogObjectCards = () => {
   return (
       <div className='catalog-cards'>
         {catalogItems.map((item) => (
-            <ObjectCard {...item}/>
+            <ObjectCard key={item.fullPath} {...item}/>
         ))}
       </div>
   );

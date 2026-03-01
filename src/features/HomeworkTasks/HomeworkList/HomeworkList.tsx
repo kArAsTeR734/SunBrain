@@ -1,21 +1,28 @@
 import HomeworkTaskList from '../HomeworkTaskList/HomeworkTaskList.tsx';
 import classes from './homeworkList.module.css';
-import Hints from "@/shared/ui/Hints/Hints.tsx";
-import ProfileNavigation from "@/shared/ui/ProfileNavigation";
 import {Task} from "@/shared/types/TaskTypes.ts";
-import {FC} from "react";
+import { useEffect, useState } from 'react';
+import { mathTasks } from '@/shared/constants/mathTasks.ts';
+import { physicTasks } from '@/shared/constants/physicTasks.ts';
+import { SubjectPath } from '@/app/routes/config.tsx';
+import {useOutletContext} from 'react-router-dom'
 
-interface HomeworkListProps {
-  homeworkItems: Task[];
-}
+const HomeworkList = () => {
+  const [homeworkItems, setHomeworkItems] = useState<Task[]>([]);
+  const {subjectId} = useOutletContext<{ subjectId: SubjectPath }>();
 
-const HomeworkList:FC<HomeworkListProps> = ({homeworkItems}) => {
+  useEffect(() => {
+    if(subjectId === "emath"){
+      setHomeworkItems(mathTasks);
+    }
+    if(subjectId==="ephysic"){
+      setHomeworkItems(physicTasks);
+    }
+  },[subjectId])
   return (
     <>
       <section className={classes.homeworkList}>
         <div className="container">
-          <ProfileNavigation />
-          <Hints />
           <HomeworkTaskList homeworkItems={homeworkItems} />
         </div>
       </section>
