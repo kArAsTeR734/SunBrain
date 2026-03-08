@@ -1,10 +1,10 @@
 import {api} from '../config/api.config.ts';
-import type {ProfileData} from '../types/api-types.ts';
+import { ProfileData } from '@entities/User/types.ts';
+import { request } from '@shared/api/api-client.ts';
 
 export class UserService {
   public static async getUserInfo(): Promise<ProfileData> {
-    const response = await api.get('/api/profile/me');
-    return response.data;
+    return request(api.get('/api/profile/me'));
   }
 
   public static async uploadAvatar(file: File): Promise<{ avatarUrl: string }> {

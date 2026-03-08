@@ -7,7 +7,7 @@ import getSubjectTitle from '../../../utils/getSubjectTitle.ts';
 const TaskThemeList = () => {
   const { subjectId } = useParams<{ subjectId: SubjectId }>();
   const themes = subjectId ? THEMES_BY_SUBJECT[subjectId] : [];
-  if(!subjectId){
+  if(!subjectId || !themes){
     return (
         <h1>Заданий по этому предмету не существует</h1>
     )

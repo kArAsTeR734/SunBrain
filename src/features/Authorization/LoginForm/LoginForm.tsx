@@ -10,7 +10,7 @@ import {
 import clsx from 'clsx';
 import Button from "@/shared/ui/Button/Button.tsx";
 import '@/shared/ui/Button/button.css'
-import {LoginRequestData} from "@/api/types/api-types.ts";
+import {LoginRequest} from "@/api/types/api-types.ts";
 import {useLogin} from "@/features/Authorization/hooks/useLogin.ts";
 
 export interface LoginFormInput {
@@ -25,7 +25,7 @@ const LoginForm = () => {
   const navigate = useNavigate()
 
   const onSubmit: SubmitHandler<LoginFormInput> = async (formData) => {
-    const loginData: LoginRequestData = {
+    const loginData: LoginRequest = {
       email: formData.email,
       password: formData.password,
     };

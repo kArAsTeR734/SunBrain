@@ -1,15 +1,22 @@
 import axios from 'axios';
-import { store } from '../../main.tsx';
 import { AuthorizationService } from '../services/AuthorizationService.ts';
-import {userSlice} from "@/app/store/reducers/UserSlice.ts";
 
-let isRefreshing = false;
+export const API_URL = 'http://localhost:5000';
+
 export const api = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+  }
+});
+
+export const authApi = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json'
   },
+  withCredentials: true
 });
 
 api.interceptors.request.use(async (config) => {
@@ -19,36 +26,30 @@ api.interceptors.request.use(async (config) => {
 
 api.interceptors.response.use(
   (response) => response,
+
   async (error) => {
     const originalRequest = error.config;
-    const { setAuth } = userSlice.actions;
 
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
-      !isRefreshing
+      !originalRequest.url?.includes('/auth/refresh')
     ) {
-      isRefreshing = true;
       originalRequest._retry = true;
-
       try {
-        localStorage.removeItem('access_token');
-        await AuthorizationService.refresh();
-        store.dispatch(setAuth(true));
-        originalRequest.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`;
+        const response = await AuthorizationService.refresh();
+
+        localStorage.setItem('access_token', response.accessToken);
+
+        originalRequest.headers.Authorization =
+          `Bearer ${response.accessToken}`;
+
         return api(originalRequest);
       } catch (refreshError) {
+        localStorage.removeItem('access_token');
         return Promise.reject(refreshError);
       }
     }
     return Promise.reject(error);
-  },
+  }
 );
-
-export const authApi = axios.create({
-  baseURL: 'http://localhost:5000',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  withCredentials: true,
-});

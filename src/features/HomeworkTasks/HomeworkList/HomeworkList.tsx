@@ -4,30 +4,30 @@ import {Task} from "@/shared/types/TaskTypes.ts";
 import { useEffect, useState } from 'react';
 import { mathTasks } from '@/shared/constants/mathTasks.ts';
 import { physicTasks } from '@/shared/constants/physicTasks.ts';
-import { SubjectPath } from '@/app/routes/config.tsx';
+import { SubjectPath } from '@/app/providers/routes/config.tsx';
 import {useOutletContext} from 'react-router-dom'
 
-const HomeworkList = () => {
-  const [homeworkItems, setHomeworkItems] = useState<Task[]>([]);
+const TaskList = () => {
+  const [taskItems, setTaskItems] = useState<Task[]>([]);
   const {subjectId} = useOutletContext<{ subjectId: SubjectPath }>();
 
   useEffect(() => {
     if(subjectId === "emath"){
-      setHomeworkItems(mathTasks);
+      setTaskItems(mathTasks);
     }
     if(subjectId==="ephysic"){
-      setHomeworkItems(physicTasks);
+      setTaskItems(physicTasks);
     }
   },[subjectId])
   return (
     <>
       <section className={classes.homeworkList}>
         <div className="container">
-          <HomeworkTaskList homeworkItems={homeworkItems} />
+          <HomeworkTaskList homeworkItems={taskItems} />
         </div>
       </section>
     </>
   );
 };
 
-export default HomeworkList;
+export default TaskList;

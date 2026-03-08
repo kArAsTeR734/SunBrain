@@ -1,4 +1,4 @@
-import { CATALOG_ITEMS} from '@/app/routes/config.tsx';
+import { CATALOG_ITEMS} from '@/app/providers/routes/config.tsx';
 
 function getSubjectTitle(path: string | undefined): string {
   return (

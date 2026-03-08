@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  GeneratedTask,
 } from '../api/types/ai-types.ts';
+import { Task } from '@shared/types/TaskTypes.ts';
 
 interface AITaskGeneratorProps {
   userId?: string;
   initialTopic?: string;
-  onTaskGenerated?: (_task: GeneratedTask) => void;
+  onTaskGenerated?: (_task: Task) => void;
   className?: string;
 }
 

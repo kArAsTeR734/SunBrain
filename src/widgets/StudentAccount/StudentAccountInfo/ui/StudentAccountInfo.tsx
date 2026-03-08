@@ -1,35 +1,30 @@
 import './studentAccountInfo.css';
-import {useGetProfileInfo} from "@/features/User/useGetProfileInfo.ts";
-import {useUploadAvatar} from "@/features/User/useUploadAvatar.ts";
+import {useUploadAvatar} from "@features/User/hooks/useUploadAvatar.ts";
 import AvatarUpload from "@/features/User/AvatarUpload/AvatarUpload.tsx";
+import {useAppSelector } from '@shared/hooks/redux.ts';
 
 export const StudentAccountInfo = () => {
-  const { data: profileData, isLoading } = useGetProfileInfo();
   const uploadAvatarMutation = useUploadAvatar();
-
+  const {user} = useAppSelector(state => state.userReducer);
   const handleUpload = async (file: File) => {
     await uploadAvatarMutation.mutateAsync(file);
   };
 
-  if (isLoading) {
-    return <div>Загрузка профиля...</div>;
-  }
-  const user = profileData?.user;
   return (
     <>
       <div className='general'>
         <h2 className='general__header'>Общая информация</h2>
         <AvatarUpload
-            currentAvatar={profileData?.user?.avatarUrl || ''}
+            currentAvatar={user?.avatarUrl ?? ''}
             onUpload={handleUpload}
             size={150}
         />
         <div className='general__info'>
           <div className='general__info_item'>
-            ФИО: {user?.fullName}
+            ФИО: {user?.fullName ?? ''}
           </div>
           <div className='general__info_item'>
-            Адрес электронной почты: {user?.email}
+            Адрес электронной почты: {user?.email ?? ''}
           </div>
         </div>
       </div>

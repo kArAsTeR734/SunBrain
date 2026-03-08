@@ -1,6 +1,6 @@
 import PositionItem from '@/widgets/StudentAccount/PositionList/ui/PositionItem/PositionItem.tsx';
 import './positionList.scss';
-import {useGetProfileInfo} from "@/features/User/useGetProfileInfo.ts";
+import {useGetProfileInfo} from "@features/User/hooks/useGetProfileInfo.ts";
 import clsx from "clsx";
 import {useAppSelector} from "@/shared/hooks/redux.ts";
 

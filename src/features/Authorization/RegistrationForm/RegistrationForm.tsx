@@ -11,8 +11,8 @@ import {
   passwordValidation
 } from "@/features/Authorization/config/validationConfig.ts";
 import {useRegistration} from "@/features/Authorization/hooks/useRegistration.ts";
-import {RegistrationRequestData} from "@/api/types/api-types.ts";
 import {useEffect} from "react";
+import { RegistrationRequest } from '@/api/types/api-types.ts';
 
 export interface RegistrationFormInput {
   email: string;
@@ -30,7 +30,7 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<RegistrationFormInput> = async (formData) => {
-    const registerData: RegistrationRequestData = {
+    const registerData: RegistrationRequest = {
       email: formData.email,
       password: formData.password,
       fullName:formData.fullName,

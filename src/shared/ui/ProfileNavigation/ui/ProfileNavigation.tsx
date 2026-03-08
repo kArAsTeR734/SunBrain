@@ -1,21 +1,21 @@
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import {useAppLocation} from "@/shared/hooks/useAppLocation.ts";
 import './ProfileNavigation.scss'
 import React from "react";
+import useBreadcrumbs from '@shared/hooks/useAppLocation.ts';
 
 export const ProfileNavigation = () => {
-  const navigationLinks = useAppLocation();
-
+  const navigationLinks = useBreadcrumbs();
+  console.log(navigationLinks);
   return (
       <section className='profile-navigation'>
         <nav className='profile-navigation__links'>
           {navigationLinks.map((link) => (
-              <React.Fragment key={link}>
+              <React.Fragment key={link.href}>
                 <a className='profile-navigation__link'
-                   href="#"
-                   key={link}
+                   href={link.href}
+                   key={link.href}
                 >
-                  {link}
+                  {link.label}
                 </a>
                 {link !== navigationLinks[navigationLinks.length - 1] && <ArrowForwardIcon/>}
               </React.Fragment>

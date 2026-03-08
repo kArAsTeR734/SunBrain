@@ -1,40 +1,44 @@
 import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
 import {AuthorizationService} from "@/api/services/AuthorizationService.ts";
-import {LeaderboardUser, UserData} from "@/api/types/api-types.ts";
+import { LeaderboardUser, ProfileUser } from '@entities/User/types.ts';
 
 export interface UserState {
-  isAuth: boolean;
-  user: UserData | null;
-  leaderboard: LeaderboardUser | null;
+  isAuth: boolean,
+  isLoading: boolean,
+  user: ProfileUser | null,
+  leaderboard: LeaderboardUser | null,
 }
 
 const initialState: UserState = {
   isAuth: false,
+  isLoading:true,
   user: null,
   leaderboard: null
 };
 
 export const userSlice = createSlice({
-  name: 'transcription',
+  name: 'user',
   initialState,
   reducers: {
     setAuth: (state, action: PayloadAction<boolean>) => {
       state.isAuth = action.payload;
     },
-    setUser: (state, action: PayloadAction<UserData>) => {
+    setUser: (state, action: PayloadAction<ProfileUser | null>) => {
       state.user = action.payload;
+    },
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload;
     },
     setLeaderboard: (state, action: PayloadAction<LeaderboardUser>) => {
       state.leaderboard = action.payload;
     },
     logout: (state) => {
-      state.isAuth = false;
       AuthorizationService.logout();
+      localStorage.removeItem('access_token');
+      state.isAuth = false;
       state.user = null;
+      state.leaderboard = null;
     },
-    sameAction: (state, action: PayloadAction<UserData>) => {
-      state.user = action.payload;
-    }
   },
 });
 

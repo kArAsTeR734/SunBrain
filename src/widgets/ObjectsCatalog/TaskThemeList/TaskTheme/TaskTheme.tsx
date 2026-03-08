@@ -8,7 +8,7 @@ const TaskTheme: FC<Theme> = ({themeTitle,themeNumber}: Theme) => {
   const navigate = useNavigate();
   const { subjectId } = useParams<{ subjectId: SubjectId }>();
   const handleClick = () => {
-    navigate(`/student/homework/${subjectId}/${themeNumber}`);
+    navigate(`/student/catalog/${subjectId}/${themeNumber}`);
   };
   return (
     <>

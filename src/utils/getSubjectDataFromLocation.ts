@@ -1,4 +1,4 @@
-import { CATALOG_ITEMS } from '@/app/routes/config.tsx';
+import { CATALOG_ITEMS } from '@/app/providers/routes/config.tsx';
 
 export interface SubjectReturnType {
   subjectId:string,

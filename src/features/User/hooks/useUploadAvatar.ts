@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { UserService } from '@/api/services/UserService';
+import { UserService } from '@/api/services/UserService.ts';
 
 export const useUploadAvatar = () => {
   const queryClient = useQueryClient();

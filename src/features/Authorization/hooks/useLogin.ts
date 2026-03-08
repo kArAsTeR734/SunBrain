@@ -4,15 +4,15 @@ import { userSlice } from '@/app/store/reducers/UserSlice.ts';
 import { useAppDispatch } from '@/shared/hooks/redux.ts';
 
 export const useLogin = () => {
-  const {setAuth} = userSlice.actions;
+  const {setAuth,setUser} = userSlice.actions;
   const dispatch = useAppDispatch();
 
   return useMutation({
     mutationFn: AuthorizationService.login,
     onSuccess: (userData) => {
-      console.log(userData);
       dispatch(setAuth(true));
-      localStorage.setItem('access_token', userData.data.accessToken);
+      dispatch(setUser(userData.user))
+      localStorage.setItem('access_token', userData.accessToken);
     },
     onError: (error) => {
       console.log(error, error.message);
