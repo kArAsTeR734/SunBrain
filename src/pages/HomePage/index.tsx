@@ -1,9 +1,9 @@
-import Home from "@/widgets/Home";
+import Home from '@/widgets/Home';
 
 const HomePage = () => {
   return (
     <>
-      <Home/>
+      <Home />
     </>
   );
 };

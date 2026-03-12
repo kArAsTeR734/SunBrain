@@ -1,7 +1,7 @@
 .task {
   border-radius: 8px;
   margin-top: 25px;
-  background-color: #EFF1F5;
+  background-color: #eff1f5;
   padding: 40px 40px 15px 40px;
 }
 .task__header {
@@ -24,7 +24,7 @@
 }
 .task__description {
   font-size: 32px;
-  font-family: "Times New Roman", serif;
+  font-family: 'Times New Roman', serif;
   color: #000;
   line-height: normal;
   font-weight: 400;
@@ -57,17 +57,19 @@
   background: #fff;
   border: 1px solid rgba(28, 28, 28, 0.2);
   border-radius: 3px;
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   transition: border-color 0.2s linear 0s;
 }
 .task__answer-field--correct {
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
 }
 .task__answer-field--invalid {
   border: 2px solid #f44336;
 }
 .task__check {
-  background-color: #DFE2EA;
+  background-color: #dfe2ea;
   color: #000;
   border-color: transparent;
   border-radius: 6px;
@@ -81,7 +83,7 @@
 }
 .task__check:hover {
   color: #fff;
-  background-color: #FF8000;
+  background-color: #ff8000;
 }
 
 /*# sourceMappingURL=homeworkItem.css.map */

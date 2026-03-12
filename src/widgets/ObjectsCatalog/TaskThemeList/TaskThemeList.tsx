@@ -7,20 +7,18 @@ import getSubjectTitle from '../../../utils/getSubjectTitle.ts';
 const TaskThemeList = () => {
   const { subjectId } = useParams<{ subjectId: SubjectId }>();
   const themes = subjectId ? THEMES_BY_SUBJECT[subjectId] : [];
-  if(!subjectId || !themes){
-    return (
-        <h1>Заданий по этому предмету не существует</h1>
-    )
+  if (!subjectId || !themes) {
+    return <h1>Заданий по этому предмету не существует</h1>;
   }
   return (
     <>
-      <section className='themes'>
-        <h2 style={{marginLeft:20}}>Задания по предмету: {getSubjectTitle(subjectId)}</h2>
-        <div className='themes__list'>
+      <section className="themes">
+        <h2 style={{ marginLeft: 20 }}>
+          Задания по предмету: {getSubjectTitle(subjectId)}
+        </h2>
+        <div className="themes__list">
           {themes.map((theme) => (
-            <TaskTheme key={theme.themeNumber}
-                       {...theme}
-            />
+            <TaskTheme key={theme.themeNumber} {...theme} />
           ))}
         </div>
       </section>

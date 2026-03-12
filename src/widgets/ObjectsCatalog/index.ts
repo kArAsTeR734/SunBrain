@@ -1,3 +1,3 @@
-import {ObjectsCatalog} from "./ui/ObjectsCatalog";
+import { ObjectsCatalog } from './ui/ObjectsCatalog';
 
 export default ObjectsCatalog;

@@ -2,7 +2,7 @@
   min-height: 490px;
   overflow-x: scroll;
   scrollbar-width: thin;
-  scrollbar-color: #FF8000 #f3f7fb;
+  scrollbar-color: #ff8000 #f3f7fb;
   margin: 24px 40px 50px 40px;
   background: rgba(255, 224, 193, 0.36);
 }

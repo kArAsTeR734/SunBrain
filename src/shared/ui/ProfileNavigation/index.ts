@@ -1,3 +1,3 @@
-import {ProfileNavigation} from './ui/ProfileNavigation';
+import { ProfileNavigation } from './ui/ProfileNavigation';
 
 export default ProfileNavigation;

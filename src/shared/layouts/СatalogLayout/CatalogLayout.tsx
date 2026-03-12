@@ -5,7 +5,7 @@ const CatalogLayout = () => {
 
   return (
     <>
-      <Outlet context ={{subjectId}}/>
+      <Outlet context={{ subjectId }} />
     </>
   );
 };

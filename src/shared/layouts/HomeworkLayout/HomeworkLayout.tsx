@@ -1,11 +1,11 @@
 import { Outlet, useParams } from 'react-router-dom';
 
 const HomeworkLayout = () => {
-  const { subjectId } = useParams();
-
+  const {homeworkId } = useParams();
+  console.log(homeworkId);
   return (
     <>
-      <Outlet context ={{subjectId}}/>
+      <Outlet context={{ homeworkId }} />
     </>
   );
 };

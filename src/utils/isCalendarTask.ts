@@ -1,8 +1,11 @@
-import {CalendarTaskInterface} from "../shared/types/calendarTypes.ts";
+import { HomeworkListItem } from '@entities/Homework/model/types.ts';
 
-export function isTask(task: CalendarTaskInterface | null) {
-  if(!task)
-    return false;
+export function isTask(task: HomeworkListItem | null) {
+  if (!task) return false;
 
-  return !(task.deadline.length == 0 && task.subject?.length == 0 && task.theme?.length == 0) ;
+  return !(
+    task.deadline.length == 0 &&
+    task.subject?.length == 0 &&
+    task.title?.length == 0
+  );
 }

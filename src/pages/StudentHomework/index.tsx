@@ -7,11 +7,13 @@ import { StudentHomework } from '@/widgets/StudentHomework/ui/StudentHomework.ts
 const StudentHomeworkPage = () => {
   return (
     <>
-      <Header/>
-      <ProfileNavigation/>
-      <Hints/>
-      <StudentHomework/>
-      <Footer/>
+      <Header />
+      <div className="container">
+        <ProfileNavigation />
+        <Hints />
+        <StudentHomework />
+      </div>
+      <Footer />
     </>
   );
 };

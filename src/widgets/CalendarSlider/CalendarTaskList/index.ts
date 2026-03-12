@@ -1,3 +1,3 @@
-import {CalendarTaskList} from "./ui/CalendarTaskList";
+import { CalendarTaskList } from './ui/CalendarTaskList';
 
 export default CalendarTaskList;

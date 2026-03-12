@@ -1,4 +1,4 @@
-import './studentAccount.css';
+import './studentAccount.scss';
 import StudentAccountInfo from '@/widgets/StudentAccount/StudentAccountInfo';
 import StudentAccountPosition from '@/widgets/StudentAccount/StudentAccountPosition';
 import { Suspense } from 'react';
@@ -6,27 +6,25 @@ import UserAuthPlaceholder from '@entities/User/ui/UserAuthPlaceholder/UserAuthP
 import { useAppSelector } from '@shared/hooks/redux.ts';
 
 export const StudentAccount = () => {
-  const { isAuth } = useAppSelector(state => state.userReducer);
+  const { isAuth } = useAppSelector((state) => state.userReducer);
   return (
     <>
       <section className="account">
         <div className="container">
-          {
-            isAuth ?
-              <Suspense fallback={<UserAuthPlaceholder />}>
-                <div className="account__wrapper">
-                  <StudentAccountInfo />
-                  <div className="account__special--info">
-                    <StudentAccountPosition />
-                  </div>
+          {isAuth ? (
+            <Suspense fallback={<UserAuthPlaceholder />}>
+              <div className="account__wrapper">
+                <StudentAccountInfo />
+                <div className="account__special--info">
+                  <StudentAccountPosition />
                 </div>
-              </Suspense>
-              : <UserAuthPlaceholder/>
-          }
-
+              </div>
+            </Suspense>
+          ) : (
+            <UserAuthPlaceholder />
+          )}
         </div>
       </section>
     </>
   );
 };
-

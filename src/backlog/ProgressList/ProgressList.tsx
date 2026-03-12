@@ -4,7 +4,7 @@ import ProgressItem from '../ProgressItem/ProgressItem.tsx';
 const ProgressList = () => {
   return (
     <>
-      <div className='items'>
+      <div className="items">
         <ProgressItem />
       </div>
     </>

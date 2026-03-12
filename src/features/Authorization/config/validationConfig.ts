@@ -1,4 +1,4 @@
-import {RegistrationFormInput} from "@/features/Authorization/RegistrationForm/RegistrationForm.tsx";
+import { RegistrationFormInput } from '@/features/Authorization/RegistrationForm/RegistrationForm.tsx';
 
 export const emailValidation = {
   required: 'Поле обязательно к заполнению',

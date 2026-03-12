@@ -1,19 +1,19 @@
-import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
-import {AuthorizationService} from "@/api/services/AuthorizationService.ts";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { AuthorizationService } from '@/api/services/AuthorizationService.ts';
 import { LeaderboardUser, ProfileUser } from '@entities/User/types.ts';
 
 export interface UserState {
-  isAuth: boolean,
-  isLoading: boolean,
-  user: ProfileUser | null,
-  leaderboard: LeaderboardUser | null,
+  isAuth: boolean;
+  isLoading: boolean;
+  user: ProfileUser | null;
+  leaderboard: LeaderboardUser | null;
 }
 
 const initialState: UserState = {
   isAuth: false,
-  isLoading:true,
+  isLoading: true,
   user: null,
-  leaderboard: null
+  leaderboard: null,
 };
 
 export const userSlice = createSlice({
@@ -38,6 +38,7 @@ export const userSlice = createSlice({
       state.isAuth = false;
       state.user = null;
       state.leaderboard = null;
+      alert('Вы вышли из аккаунта!');
     },
   },
 });

@@ -2,7 +2,7 @@ import RegistrationForm, {
   RegistrationFormInput,
 } from '@/features/Authorization/RegistrationForm/RegistrationForm.tsx';
 import { FormProvider, useForm } from 'react-hook-form';
-import Header from "@/widgets/Header";
+import Header from '@/widgets/Header';
 
 const RegistrationPage = () => {
   const methods = useForm<RegistrationFormInput>();

@@ -1,3 +1,3 @@
-import {ObjectCard} from "./ui/ObjectCard";
+import { ObjectCard } from './ui/ObjectCard';
 
 export default ObjectCard;

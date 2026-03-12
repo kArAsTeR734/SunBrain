@@ -1,8 +1,9 @@
-import LoginForm, {
-  LoginFormInput,
-} from '@/features/Authorization/LoginForm/LoginForm.tsx';
+import {
+  LoginForm,
+  LoginFormInput
+} from '@features/login/ui/LoginForm.tsx';
 import { FormProvider, useForm } from 'react-hook-form';
-import Header from "@/widgets/Header";
+import Header from '@/widgets/Header';
 
 const LoginPage = () => {
   const methods = useForm<LoginFormInput>();

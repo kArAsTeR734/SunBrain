@@ -11,7 +11,7 @@
   transition: 0.3s all;
 }
 .card:hover {
-  background-color: #FF8000;
+  background-color: #ff8000;
   color: #fff;
 }
 .card__title {

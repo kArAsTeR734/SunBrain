@@ -12,11 +12,9 @@ export const checkAuth = () => async (dispatch: AppDispatch) => {
 
     dispatch(setUser(response.user));
     dispatch(setAuth(true));
-
   } catch (error) {
     dispatch(setAuth(false));
     dispatch(setUser(null));
-
   } finally {
     dispatch(setLoading(false));
   }

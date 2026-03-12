@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { UserService } from "@/api/services/UserService.ts";
-import { userSlice } from "@app/store/reducers/UserSlice.ts";
-import { useAppDispatch } from "@shared/hooks/redux.ts";
+import { useQuery } from '@tanstack/react-query';
+import { UserService } from '@/api/services/UserService.ts';
+import { userSlice } from '@app/store/reducers/UserSlice.ts';
+import { useAppDispatch } from '@shared/hooks/redux.ts';
 
 export const useGetProfileInfo = () => {
-  const {setUser,setLeaderboard } = userSlice.actions;
+  const { setUser, setLeaderboard } = userSlice.actions;
   const dispatch = useAppDispatch();
 
   return useQuery({
@@ -22,13 +22,13 @@ export const useGetProfileInfo = () => {
         const user = profileData.user;
         const leaderboard = profileData.leaderboard;
         dispatch(setUser(user));
-        dispatch(setLeaderboard(leaderboard.currentUser))
+        dispatch(setLeaderboard(leaderboard.currentUser));
         return {
           user,
-          leaderboard
+          leaderboard,
         };
       } catch (error) {
-        if(error instanceof Error) {
+        if (error instanceof Error) {
           console.error('Ошибка получения информации о пользователе:', error);
           throw error;
         }

@@ -1,6 +1,6 @@
-import {CalendarTaskInterface} from "../types/calendarTypes.ts";
+import type { CalendarTask } from '@features/Calendar/types.ts';
 
-export const calendarTasks:CalendarTaskInterface[] = [
+export const calendarTasks: CalendarTask[] = [
   {
     subject: 'ОГЭ - Математика',
     theme: 'Математика. Задача №20. Разложение на множители',

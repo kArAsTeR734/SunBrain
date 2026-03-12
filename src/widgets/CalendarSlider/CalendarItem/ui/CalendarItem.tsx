@@ -1,22 +1,16 @@
-import './calendarItem.css';
-import {FC} from "react";
-import {CalendarTaskInterface, DataTime} from "@/shared/types/calendarTypes.ts";
-import CalendarTaskList from "@/widgets/CalendarSlider/CalendarTaskList";
+import './calendarItem.scss';
+import { FC } from 'react';
+import {DataTime } from '@features/Calendar/types.ts';
 
-export interface CalendarItemProps{
-  dataTime:DataTime,
-  task:CalendarTaskInterface
+export interface CalendarItemProps {
+  dataTime: DataTime;
 }
 
-export const CalendarItem:FC<CalendarItemProps> = ({dataTime,task}) => {
+export const CalendarItem: FC<CalendarItemProps> = ({ dataTime }) => {
   return (
-    <>
-      <div className='calendar__item'>
-        <div className='calendar__data'>{dataTime.date}</div>
-        <div className='calendar__day'>{dataTime.weekDay}</div>
-        <CalendarTaskList task={task}/>
-      </div>
-    </>
+    <div className="calendar__item">
+      <div className="calendar__date">{dataTime.date}</div>
+      <div className="calendar__day">{dataTime.weekDay}</div>
+    </div>
   );
 };
-

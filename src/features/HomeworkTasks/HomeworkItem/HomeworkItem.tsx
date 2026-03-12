@@ -1,13 +1,13 @@
 import { FC, useState } from 'react';
 import './homeworkItem.scss';
 import useInput from '../../../shared/hooks/useInput.ts';
-import { Task } from '@/shared/types/TaskTypes.ts';
 import Button from '../../../shared/ui/Button/Button.tsx';
 import clsx from 'clsx';
 import TaskSolution from '@/features/HomeworkTasks/TaskSolution/TaskSolution.tsx';
+import { HomeworkTask } from '@entities/Homework/model/types.ts';
 
 interface HomeworkItemProps {
-  task: Task;
+  task: HomeworkTask;
 }
 
 const HomeworkItem: FC<HomeworkItemProps> = ({ task }) => {
@@ -21,7 +21,7 @@ const HomeworkItem: FC<HomeworkItemProps> = ({ task }) => {
     setIsTaskComplete(true);
   };
 
-  if(!task){
+  if (!task) {
     return null;
   }
 
@@ -37,7 +37,7 @@ const HomeworkItem: FC<HomeworkItemProps> = ({ task }) => {
           <p className="task__description">{task.description}</p>
         </div>
         <div className="task__image">
-          <img src={task.imagePath} alt="task-img"/>
+          <img src={task.imagePath} alt="task-img" />
         </div>
         <div className="task__actions">
           <div className="task__answer">

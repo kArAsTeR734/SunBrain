@@ -1,14 +1,19 @@
-import { AuthResponse, LoginRequest, RegistrationRequest } from '@features/Authorization/config/types.ts';
+import {
+  AuthResponse,
+  LoginRequest,
+  RegistrationRequest,
+} from '@features/Authorization/config/types.ts';
 import { authApi } from '@/api/config/api.config.ts';
 import { request } from '@shared/api/api-client.ts';
 
 export class AuthorizationService {
-
   public static async login(data: LoginRequest): Promise<AuthResponse> {
     return request(authApi.post('/api/auth/login', data));
   }
 
-  public static async register(data: RegistrationRequest): Promise<AuthResponse> {
+  public static async register(
+    data: RegistrationRequest,
+  ): Promise<AuthResponse> {
     return request(authApi.post('/api/auth/register', data));
   }
 
@@ -19,5 +24,4 @@ export class AuthorizationService {
   public static async logout(): Promise<void> {
     await authApi.post('/api/auth/logout');
   }
-
 }

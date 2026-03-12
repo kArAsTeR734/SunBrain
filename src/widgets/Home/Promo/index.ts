@@ -1,3 +1,3 @@
-import {Promo} from './ui/Promo';
+import { Promo } from './ui/Promo';
 
 export default Promo;

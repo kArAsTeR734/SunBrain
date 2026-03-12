@@ -1,4 +1,4 @@
-import { useMatches } from "react-router-dom";
+import { useMatches } from 'react-router-dom';
 import { AppRouteHandle } from '@app/providers/routes/config.tsx';
 
 const useBreadcrumbs = () => {
@@ -6,21 +6,23 @@ const useBreadcrumbs = () => {
 
   return matches
     .filter(
-      (match): match is typeof match & {
+      (
+        match,
+      ): match is typeof match & {
         handle: AppRouteHandle;
-      } => Boolean((match.handle as AppRouteHandle)?.breadcrumb)
+      } => Boolean((match.handle as AppRouteHandle)?.breadcrumb),
     )
-    .map(match => {
+    .map((match) => {
       const handle = match.handle as AppRouteHandle;
 
       const label =
-        typeof handle.breadcrumb === "function"
+        typeof handle.breadcrumb === 'function'
           ? handle.breadcrumb(match)
           : handle.breadcrumb;
 
       return {
         label,
-        href: match.pathname
+        href: match.pathname,
       };
     });
 };

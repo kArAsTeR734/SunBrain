@@ -1,3 +1,3 @@
-import {Help} from './ui/Help'
+import { Help } from './ui/Help';
 
 export default Help;

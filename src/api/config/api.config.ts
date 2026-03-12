@@ -7,16 +7,16 @@ export const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-  }
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+  },
 });
 
 export const authApi = axios.create({
   baseURL: API_URL,
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
-  withCredentials: true
+  withCredentials: true,
 });
 
 api.interceptors.request.use(async (config) => {
@@ -41,8 +41,7 @@ api.interceptors.response.use(
 
         localStorage.setItem('access_token', response.accessToken);
 
-        originalRequest.headers.Authorization =
-          `Bearer ${response.accessToken}`;
+        originalRequest.headers.Authorization = `Bearer ${response.accessToken}`;
 
         return api(originalRequest);
       } catch (refreshError) {
@@ -51,5 +50,5 @@ api.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  }
+  },
 );

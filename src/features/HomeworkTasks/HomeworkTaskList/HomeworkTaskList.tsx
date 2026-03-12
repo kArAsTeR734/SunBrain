@@ -1,24 +1,26 @@
 import classes from './homeworkTaskList.module.css';
 import HomeworkItem from '../HomeworkItem/HomeworkItem.tsx';
-import {Task} from "@/shared/types/TaskTypes.ts";
-import {FC} from "react";
+import { FC } from 'react';
+import { HomeworkTask } from '@entities/Homework/model/types.ts';
 
 interface HomeworkTaskListProps {
-  homeworkItems: Task[];
+  homeworkItems: HomeworkTask[];
 }
 
-const HomeworkTaskList:FC<HomeworkTaskListProps> = ({homeworkItems}) => {
-    return (
-        <>
-          <section className={classes.homework__taskList}>
-            {homeworkItems ? (
-                homeworkItems.map((task) => <HomeworkItem key={task.number} task={task} />)
-            ) : (
-                <h1 style={{ textAlign: 'center' }}>Задач по этой теме пока нет</h1>
-            )}
-          </section>
-        </>
-    );
+const HomeworkTaskList: FC<HomeworkTaskListProps> = ({ homeworkItems }) => {
+  return (
+    <>
+      <section className={classes.homework__taskList}>
+        {homeworkItems ? (
+          homeworkItems.map((task) => (
+            <HomeworkItem key={task.number} task={task} />
+          ))
+        ) : (
+          <h1 style={{ textAlign: 'center' }}>Задач по этой теме пока нет</h1>
+        )}
+      </section>
+    </>
+  );
 };
 
 export default HomeworkTaskList;

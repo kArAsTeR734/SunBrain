@@ -4,7 +4,7 @@ import { userSlice } from '@app/store/reducers/UserSlice.ts';
 import { useAppDispatch } from '@shared/hooks/redux.ts';
 
 export const useRegistration = () => {
-  const {setAuth,setUser} = userSlice.actions;
+  const { setAuth, setUser } = userSlice.actions;
   const dispatch = useAppDispatch();
 
   return useMutation({
@@ -12,11 +12,11 @@ export const useRegistration = () => {
     onSuccess: (userData) => {
       console.log(userData);
       dispatch(setAuth(true));
-      dispatch(setUser(userData.user))
+      dispatch(setUser(userData.user));
       localStorage.setItem('access_token', userData.accessToken);
     },
     onError: (error) => {
       console.log(error, error.message);
-    }
+    },
   });
 };

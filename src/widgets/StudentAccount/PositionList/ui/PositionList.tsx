@@ -1,44 +1,43 @@
 import PositionItem from '@/widgets/StudentAccount/PositionList/ui/PositionItem/PositionItem.tsx';
 import './positionList.scss';
-import {useGetProfileInfo} from "@features/User/hooks/useGetProfileInfo.ts";
-import clsx from "clsx";
-import {useAppSelector} from "@/shared/hooks/redux.ts";
+import { useGetProfileInfo } from '@features/User/hooks/useGetProfileInfo.ts';
+import clsx from 'clsx';
+import { useAppSelector } from '@/shared/hooks/redux.ts';
 
 export const PositionList = () => {
-  const {data:userData} = useGetProfileInfo();
-  const leaderboardData = userData?.leaderboard
-  const currentUserLeaderBoardData = useAppSelector(state => state.userReducer.leaderboard)
+  const { data: userData } = useGetProfileInfo();
+  const leaderboardData = userData?.leaderboard;
+  const currentUserLeaderBoardData = useAppSelector(
+    (state) => state.userReducer.leaderboard,
+  );
 
-  if(!currentUserLeaderBoardData){
+  if (!currentUserLeaderBoardData) {
     return (
-        <>
-          <p>Не удалось получить инофрмацию о пользователе</p>
-        </>
-    )
+      <>
+        <p>Не удалось получить инофрмацию о пользователе</p>
+      </>
+    );
   }
 
   return (
     <>
-      <div className='position__items'>
-        {leaderboardData?.topUsers.map(({position,fullName,points}) => (
-            <div className='position__item' key={position}>
-              <div
-                  className={clsx('position__item-placement', 'first')}
-              >
-                {position}
-              </div>
-              <p className='position__item-info'>
-                {fullName}
-              </p>
-              <p className='position__item-score'>{points} баллов</p>
+      <div className="position__items">
+        {leaderboardData?.topUsers.map(({ position, fullName, points }) => (
+          <div className="position__item" key={position}>
+            <div className={clsx('position__item-placement', 'first')}>
+              {position}
             </div>
+            <p className="position__item-info">{fullName}</p>
+            <p className="position__item-score">{points} баллов</p>
+          </div>
         ))}
 
-        <PositionItem fullName={currentUserLeaderBoardData?.fullName}
-                      points={currentUserLeaderBoardData.points}
-                      position={currentUserLeaderBoardData.position}/>
+        <PositionItem
+          fullName={currentUserLeaderBoardData?.fullName}
+          points={currentUserLeaderBoardData.points}
+          position={currentUserLeaderBoardData.position}
+        />
       </div>
     </>
   );
 };
-

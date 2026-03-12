@@ -22,10 +22,7 @@ export const Help = () => {
           </div>
           <div className="helpImg">
             <a href="#">
-              <img
-                src="/src/assets/teacher.svg"
-                alt=""
-              />
+              <img src="/src/assets/teacher.svg" alt="" />
             </a>
           </div>
         </div>
@@ -34,4 +31,3 @@ export const Help = () => {
     </section>
   );
 };
-

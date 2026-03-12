@@ -1,6 +1,6 @@
-import Header from "@/widgets/Header";
-import Footer from "@/widgets/Footer";
-import StudentAccount from "@/widgets/StudentAccount";
+import Header from '@/widgets/Header';
+import Footer from '@/widgets/Footer';
+import StudentAccount from '@/widgets/StudentAccount';
 
 const StudentPersonalAccountPage = () => {
   return (

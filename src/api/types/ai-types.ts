@@ -1,8 +1,8 @@
-import {type Task} from '@/shared/types/TaskTypes.ts';
+import { type Task } from '@/shared/types/TaskTypes.ts';
 
 export interface GenerateTaskRequest {
-  studentId:number,
-  prompt:string,
+  studentId: number;
+  prompt: string;
 }
 
 export interface TestResult {

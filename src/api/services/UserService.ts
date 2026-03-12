@@ -1,4 +1,4 @@
-import {api} from '../config/api.config.ts';
+import { api } from '../config/api.config.ts';
 import { ProfileData } from '@entities/User/types.ts';
 import { request } from '@shared/api/api-client.ts';
 
@@ -15,7 +15,7 @@ export class UserService {
 
     const response = await api.post('/api/profile/me/avatar', formData, {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
       },
     });
@@ -28,7 +28,7 @@ export class UserService {
 
     await api.delete('/api/profile/me/avatar', {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   }

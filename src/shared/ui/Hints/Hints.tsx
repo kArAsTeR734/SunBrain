@@ -1,13 +1,13 @@
 import './Hints.scss';
-import CatalogHint from "@/shared/ui/Hints/CatalogHint/CatalogHint.tsx";
+import CatalogHint from '@/shared/ui/Hints/CatalogHint/CatalogHint.tsx';
 
 const CatalogHints = () => {
   return (
-      <>
-        <div className='catalog__hints'>
-          <CatalogHint />
-        </div>
-      </>
+    <>
+      <div className="catalog__hints">
+        <CatalogHint />
+      </div>
+    </>
   );
 };
 

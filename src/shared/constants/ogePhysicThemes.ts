@@ -1,4 +1,4 @@
-import { Theme } from '../../models/Theme.ts';
+import { Theme } from "@/models/Theme";
 
 export const ogePhysicsThemes: Theme[] = [
   {

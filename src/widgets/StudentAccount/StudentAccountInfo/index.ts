@@ -1,3 +1,3 @@
-import {StudentAccountInfo} from "./ui/StudentAccountInfo";
+import { StudentAccountInfo } from './ui/StudentAccountInfo';
 
 export default StudentAccountInfo;

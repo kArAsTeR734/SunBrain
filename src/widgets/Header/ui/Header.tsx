@@ -1,7 +1,7 @@
-import { Link, NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './header.scss';
 import NavbarMenu from '@/widgets/Header/ui/NavbarMenu/NavbarMenu.tsx';
-import ProfileHeaderData from "@/features/User/ProfileData/ProfileHeaderData.tsx";
+import ProfileHeaderData from '@/features/User/ProfileData/ProfileHeaderData.tsx';
 
 export const Header = () => {
   return (
@@ -10,20 +10,16 @@ export const Header = () => {
         <header className="header__wrapper">
           <div className="header__logo">
             <NavLink to="/" className="icon">
-              <img
-                src="/src/assets/logo.svg"
-                alt=""
-              />
+              <img src="/src/assets/logo.svg" alt="" />
             </NavLink>
             <Link to="/" className="header__logo--name">
               SunBrain
             </Link>
           </div>
-          <NavbarMenu/>
-          <ProfileHeaderData/>
+          <NavbarMenu />
+          <ProfileHeaderData />
         </header>
       </div>
     </section>
   );
 };
-

@@ -4,15 +4,16 @@ import StudentPersonalAccountPage from '../../../pages/StudentPersonalAccoutn';
 import HomePage from '../../../pages/HomePage';
 import LoginPage from '../../../pages/LoginPage';
 import RegistrationPage from '../../../pages/RegistrationPage';
-import StudentCalendarPage from "../../../pages/StudentPersonalCalendar";
-import KnowledgeTest from "@/features/Test/KnowledgeTest/KnowledgeTest.tsx";
-import StudentHomeworkPage from "@/pages/StudentHomework";
+import StudentCalendarPage from '../../../pages/StudentPersonalCalendar';
+import StudentHomeworkPage from '@/pages/StudentHomework';
 import NotFound from '@/pages/NotFound';
-import { THEMES_BY_SUBJECT } from '@/models/Themes.ts';
 import CatalogObjectCards from '@widgets/ObjectsCatalog/CatalogObjectCards/CatalogObjectCards.tsx';
 import CatalogLayout from '@shared/layouts/СatalogLayout/CatalogLayout.tsx';
 import TaskThemeList from '@widgets/ObjectsCatalog/TaskThemeList/TaskThemeList.tsx';
 import TaskList from '@features/HomeworkTasks/HomeworkList/HomeworkList.tsx';
+import { THEMES_BY_SUBJECT } from '@/models/Themes.ts';
+import HomeworkLayout from '@shared/layouts/HomeworkLayout/HomeworkLayout.tsx';
+import KnowledgeTestPage from '@pages/KnowledgeTestPage';
 
 export type AppRouteHandle = {
   breadcrumb?: string | ((_match: any) => string);
@@ -37,6 +38,7 @@ export const CATALOG_ITEMS = [
 
 export type SubjectPath = (typeof CATALOG_ITEMS)[number]['path'];
 
+
 export const PATHS = {
   HOME: '/',
   LOGIN: '/login',
@@ -48,8 +50,8 @@ export const PATHS = {
     SUBJECT: (subjectId: SubjectPath) => `/student/catalog/${subjectId}`,
     HOMEWORK: `/student/homework`,
   },
-  TEST:'/test',
-  NOT_FOUND:'*'
+  TEST: '/test',
+  NOT_FOUND: '*',
 } as const;
 
 export const getRoutesConfig = (): AppRouteObject[] => [
@@ -57,124 +59,109 @@ export const getRoutesConfig = (): AppRouteObject[] => [
     path: PATHS.HOME,
     element: <HomePage />,
     handle: {
-      breadcrumb: "Главная"
-    }
+      breadcrumb: 'Главная',
+    },
   },
   {
     path: PATHS.LOGIN,
     element: <LoginPage />,
     handle: {
-      breadcrumb: "Вход"
-    }
+      breadcrumb: 'Вход',
+    },
   },
   {
     path: PATHS.REGISTRATION,
     element: <RegistrationPage />,
     handle: {
-      breadcrumb: "Регистрация"
-    }
+      breadcrumb: 'Регистрация',
+    },
   },
   {
     path: PATHS.STUDENT.ACCOUNT,
     element: <StudentPersonalAccountPage />,
     handle: {
-      breadcrumb: "Личный кабинет"
-    }
+      breadcrumb: 'Личный кабинет',
+    },
   },
   {
     path: `${PATHS.STUDENT.CATALOG}`,
     element: <StudentObjectCatalogPage />,
     handle: {
-      breadcrumb: "Каталог заданий"
+      breadcrumb: 'Каталог заданий',
     },
     children: [
       {
-        index:true,
-        element:<CatalogObjectCards/>,
+        index: true,
+        element: <CatalogObjectCards />,
       },
       {
-        path:':subjectId',
-        element: <CatalogLayout/>,
+        path: ':subjectId',
+        element: <CatalogLayout />,
         handle: {
           breadcrumb: (match: { params: SubjectParams }) => {
             const subject = CATALOG_ITEMS.find(
-              item => item.path === match.params.subjectId
+              (item) => item.path === match.params.subjectId,
             );
 
             return subject ? subject.title : 'Предмет';
-          }
+          },
         },
         children: [
           {
             index: true,
-            element: <TaskThemeList />
+            element: <TaskThemeList />,
           },
           {
-            path: ":themeId",
+            path: ':themeId',
             element: <TaskList />,
             handle: {
               breadcrumb: (match: { params: SubjectParams }) => {
                 const { subjectId, themeId } = match.params;
-                const theme = THEMES_BY_SUBJECT[subjectId]
-                  .find(theme => theme.themeNumber === match.params.themeId);
-                return theme ? `Задания по теме ${theme.themeTitle}` : `Тема ${themeId}`;
-              }
-            }
-          }
-        ]
-      }
-    ]
+                const theme = THEMES_BY_SUBJECT[subjectId].find(
+                  (theme) => theme.themeNumber === match.params.themeId,
+                );
+                return theme
+                  ? `Задания по теме ${theme.themeTitle}`
+                  : `Тема ${themeId}`;
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   {
     path: PATHS.STUDENT.CALENDAR,
     element: <StudentCalendarPage />,
     handle: {
-      breadcrumb: "Календарь заданий"
-    }
+      breadcrumb: 'Календарь заданий',
+    },
   },
   {
     path: PATHS.STUDENT.HOMEWORK,
     element: <StudentHomeworkPage />,
     handle: {
-      breadcrumb: "Каталог предметов"
+      breadcrumb: 'Домашнее задание',
     },
     children: [
       {
-        path: ":subjectId",
-        element: <StudentHomeworkPage />,
-        handle: {
-          breadcrumb: (match: { params: SubjectParams }) => {
-            const subject = CATALOG_ITEMS.find(
-              item => item.path === match.params.subjectId
-            );
-
-            return subject?.title ?? "Предмет";
+        path: ':homeworkId',
+        element: <HomeworkLayout />,
+        children: [
+          {
+            index: true,
+            element: <TaskList/>
           }
-        }
+        ]
       },
-      {
-        path: ":subjectId/:themeId",
-        element: <StudentHomeworkPage />,
-        handle: {
-          breadcrumb: (match: { params: SubjectParams }) => {
-            const { subjectId, themeId } = match.params;
-            const theme = THEMES_BY_SUBJECT[subjectId]
-              .find(theme => theme.themeNumber === match.params.themeId);
-            return theme ? `Задания по теме ${theme.themeTitle}` : `Тема ${themeId}`;
-          }
-        }
-      }
-    ]
+    ],
   },
   {
     path: PATHS.TEST,
-    element: <KnowledgeTest />,
-    handle: {
-      breadcrumb: "Тестирование"
-    }
+    element: <KnowledgeTestPage />,
   },
   {
     path: PATHS.NOT_FOUND,
-    element: <NotFound />
-  }
+    element: <NotFound />,
+  },
 ];

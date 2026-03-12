@@ -1,35 +1,29 @@
 import classes from './footer.module.css';
-import {aboutLinks, studyLinks} from "@/shared/constants/footerLinks.ts";
+import { aboutLinks, studyLinks } from '@/shared/constants/footerLinks.ts';
 
 export const Footer = () => {
   return (
     <section className={classes.footer}>
       <div className="container">
-        <a href="#">
-          <img
-            src="/src/assets/logo.svg"
-            alt="logo"
-          />
-        </a>
         <div className={classes.footerWrapper}>
           <div className="about">
             <div className={classes.footerHeader}>О SunBrain</div>
-            {aboutLinks.map(({href,label}) => (
-                <div key={label} className={classes.footerItem}>
-                  <a href={href} className={classes.footerLink}>
-                    {label}
-                  </a>
-                </div>
+            {aboutLinks.map(({ href, label }) => (
+              <div key={label} className={classes.footerItem}>
+                <a href={href} className={classes.footerLink}>
+                  {label}
+                </a>
+              </div>
             ))}
           </div>
           <div className="study">
             <div className={classes.footerHeader}>Учеба в SunBrain</div>
-            {studyLinks.map(({href,label}) => (
-                <div key={label} className={classes.footerItem}>
-                  <a href={href} className={classes.footerLink}>
-                    {label}
-                  </a>
-                </div>
+            {studyLinks.map(({ href, label }) => (
+              <div key={label} className={classes.footerItem}>
+                <a href={href} className={classes.footerLink}>
+                  {label}
+                </a>
+              </div>
             ))}
           </div>
           <div className="contacts">
@@ -43,4 +37,3 @@ export const Footer = () => {
     </section>
   );
 };
-
