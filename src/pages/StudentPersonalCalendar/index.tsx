@@ -1,14 +1,14 @@
 import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
-import ProfileNavigation from '@/shared/ui/ProfileNavigation';
 import CalendarSlider from '@/widgets/CalendarSlider';
+import { Breadcrumbs } from '@widgets/Breadcrumbs';
 
 const StudentCalendarPage = () => {
   return (
     <>
       <Header />
       <div className="container">
-        <ProfileNavigation />
+        <Breadcrumbs/>
       </div>
       <CalendarSlider />
       <Footer />

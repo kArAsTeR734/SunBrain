@@ -1,5 +1,5 @@
 import './ProfileTrigger.scss'
-import { getUserInitials } from '@/utils/getUserInitials.ts';
+import { getUserInitials } from '@shared/utils/getUserInitials.ts';
 import { useAppSelector } from '@shared/hooks/redux.ts';
 
 const ProfileTrigger = () => {

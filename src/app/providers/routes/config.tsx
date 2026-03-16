@@ -10,10 +10,11 @@ import NotFound from '@/pages/NotFound';
 import CatalogObjectCards from '@widgets/ObjectsCatalog/CatalogObjectCards/CatalogObjectCards.tsx';
 import CatalogLayout from '@shared/layouts/СatalogLayout/CatalogLayout.tsx';
 import TaskThemeList from '@widgets/ObjectsCatalog/TaskThemeList/TaskThemeList.tsx';
-import TaskList from '@features/HomeworkTasks/HomeworkList/HomeworkList.tsx';
-import { THEMES_BY_SUBJECT } from '@/models/Themes.ts';
 import HomeworkLayout from '@shared/layouts/HomeworkLayout/HomeworkLayout.tsx';
 import KnowledgeTestPage from '@pages/KnowledgeTestPage';
+import { StudentHomework } from '@/widgets/StudentHomework/ui/StudentHomework.tsx';
+import HomeworkTaskList from '@features/HomeworkTasks/ui/HomeworkTaskList/HomeworkTaskList.tsx';
+import CatalogTaskList from '@widgets/CatalogTaskList/CatalogTaskList.tsx';
 
 export type AppRouteHandle = {
   breadcrumb?: string | ((_match: any) => string);
@@ -24,16 +25,11 @@ export type AppRouteObject = RouteObject & {
   children?: AppRouteObject[];
 };
 
-type SubjectParams = {
-  subjectId: SubjectPath;
-  themeId?: string;
-};
-
 export const CATALOG_ITEMS = [
   { id: 'ephysic', path: 'ephysic', title: 'ЕГЭ Физика' },
   { id: 'emath', path: 'emath', title: 'ЕГЭ Математика' },
   { id: 'ophysic', path: 'ophysic', title: 'ОГЭ Физика' },
-  { id: 'omath', path: 'omath', title: 'ОГЭ Математика' },
+  { id: 'omath', path: 'omath', title: 'ОГЭ Математика' }
 ] as const;
 
 export type SubjectPath = (typeof CATALOG_ITEMS)[number]['path'];
@@ -47,121 +43,88 @@ export const PATHS = {
     CATALOG: '/student/catalog',
     CALENDAR: '/student/calendar',
     ACCOUNT: '/student/account',
-    SUBJECT: (subjectId: SubjectPath) => `/student/catalog/${subjectId}`,
-    HOMEWORK: `/student/homework`,
+    SUBJECT: (subjectId: string) => `/student/catalog/${subjectId}`,
+    HOMEWORK_LINK: (id: string | number) => `/student/homework/${id}`,
+    HOMEWORK: `/student/homework`
   },
   TEST: '/test',
-  NOT_FOUND: '*',
+  NOT_FOUND: '*'
 } as const;
 
 export const getRoutesConfig = (): AppRouteObject[] => [
   {
     path: PATHS.HOME,
     element: <HomePage />,
-    handle: {
-      breadcrumb: 'Главная',
-    },
   },
   {
     path: PATHS.LOGIN,
     element: <LoginPage />,
-    handle: {
-      breadcrumb: 'Вход',
-    },
   },
   {
     path: PATHS.REGISTRATION,
     element: <RegistrationPage />,
-    handle: {
-      breadcrumb: 'Регистрация',
-    },
   },
   {
     path: PATHS.STUDENT.ACCOUNT,
     element: <StudentPersonalAccountPage />,
-    handle: {
-      breadcrumb: 'Личный кабинет',
-    },
   },
   {
     path: `${PATHS.STUDENT.CATALOG}`,
     element: <StudentObjectCatalogPage />,
-    handle: {
-      breadcrumb: 'Каталог заданий',
-    },
     children: [
       {
         index: true,
-        element: <CatalogObjectCards />,
+        element: <CatalogObjectCards />
       },
       {
         path: ':subjectId',
         element: <CatalogLayout />,
-        handle: {
-          breadcrumb: (match: { params: SubjectParams }) => {
-            const subject = CATALOG_ITEMS.find(
-              (item) => item.path === match.params.subjectId,
-            );
-
-            return subject ? subject.title : 'Предмет';
-          },
-        },
         children: [
           {
             index: true,
-            element: <TaskThemeList />,
+            element: <TaskThemeList />
           },
           {
             path: ':themeId',
-            element: <TaskList />,
-            handle: {
-              breadcrumb: (match: { params: SubjectParams }) => {
-                const { subjectId, themeId } = match.params;
-                const theme = THEMES_BY_SUBJECT[subjectId].find(
-                  (theme) => theme.themeNumber === match.params.themeId,
-                );
-                return theme
-                  ? `Задания по теме ${theme.themeTitle}`
-                  : `Тема ${themeId}`;
-              },
-            },
-          },
-        ],
-      },
-    ],
+            element: <CatalogTaskList />,
+          }
+        ]
+      }
+    ]
   },
   {
     path: PATHS.STUDENT.CALENDAR,
     element: <StudentCalendarPage />,
     handle: {
-      breadcrumb: 'Календарь заданий',
-    },
+      breadcrumb: 'Календарь заданий'
+    }
   },
   {
     path: PATHS.STUDENT.HOMEWORK,
     element: <StudentHomeworkPage />,
-    handle: {
-      breadcrumb: 'Домашнее задание',
-    },
     children: [
+      {
+        index: true,
+        element: <StudentHomework />
+      },
       {
         path: ':homeworkId',
         element: <HomeworkLayout />,
         children: [
           {
             index: true,
-            element: <TaskList/>
+            element: <HomeworkTaskList />,
           }
         ]
-      },
-    ],
+      }
+    ]
   },
   {
     path: PATHS.TEST,
-    element: <KnowledgeTestPage />,
+    element: <KnowledgeTestPage />
   },
   {
     path: PATHS.NOT_FOUND,
-    element: <NotFound />,
-  },
+    element: <NotFound />
+  }
 ];

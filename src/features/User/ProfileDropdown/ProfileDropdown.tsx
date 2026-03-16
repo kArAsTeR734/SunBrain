@@ -18,6 +18,7 @@ const ProfileDropdown = () => {
   };
   return (
     <ul className="profile-dropdown">
+      <li onClick={() => navigate('/student/account')}>Личный кабинет</li>
       <li onClick={() => navigate('/student/homework')}>Домашние работы</li>
       <li onClick={handleTest}>Пройти тест</li>
       <li className="logout" onClick={handleLogout}>Выйти</li>
