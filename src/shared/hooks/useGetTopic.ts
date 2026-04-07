@@ -1,10 +1,9 @@
-import { useTopics } from '@features/Topics/hooks/useTopics.ts';
+import { useTopics } from '@features/Topics/models/hooks/useTopics.ts';
 
 export const useGetTopic = (topicId: string) => {
-  const {data:topics} = useTopics(topicId);
+  const { data: topics } = useTopics(topicId);
 
-  if(!topics) return;
+  if (!topics) return;
 
-  return topics.find(topic => topic.number === Number(topicId))
-
-}
+  return topics.find((topic) => topic.number === Number(topicId));
+};

@@ -1,27 +1,22 @@
-export interface HomeworkBase {
-  id: number,
-  title: string,
-  subject: string
-  deadline: string,
-}
+import { Task } from '@entities/Task/model/types.ts';
 
-export interface HomeworkTask {
-  id: number,
-  number: number,
-  question: string,
-  points: number
+export interface HomeworkBase {
+  id: number;
+  title: string;
+  subject: string;
+  deadline: string;
 }
 
 export interface HomeworkTopic {
-  id: number,
-  number: string,
-  name: string,
-  code: string
+  id: number;
+  number: string;
+  name: string;
+  code: string;
 }
 
 export interface Homework extends HomeworkBase {
-  tasks: HomeworkTask[],
-  topic: HomeworkTopic,
+  tasks: Task[];
+  topic: HomeworkTopic;
 }
 
 export interface HomeworkListItem extends HomeworkBase {
@@ -35,9 +30,4 @@ export interface MyHomeworksResponse {
 export interface CheckAnswerResponse {
   correct: boolean;
   points: number;
-}
-
-export interface CheckAnswerPayload {
-  taskId:number,
-  answer:string
 }

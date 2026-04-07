@@ -3,17 +3,15 @@ import Footer from '@/widgets/Footer';
 import CalendarSlider from '@/widgets/CalendarSlider';
 import { Breadcrumbs } from '@widgets/Breadcrumbs';
 
-const StudentCalendarPage = () => {
+export const StudentCalendarPage = () => {
   return (
     <>
       <Header />
       <div className="container">
-        <Breadcrumbs/>
+        <Breadcrumbs />
       </div>
       <CalendarSlider />
       <Footer />
     </>
   );
 };
-
-export default StudentCalendarPage;

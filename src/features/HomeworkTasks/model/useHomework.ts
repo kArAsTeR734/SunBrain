@@ -7,7 +7,7 @@ export const useHomework = () => {
     queryFn: () => HomeworkService.getUserHomeworkList(),
     staleTime: 1000 * 60 * 5,
     enabled: !!localStorage.getItem('access_token'),
-    refetchOnWindowFocus:false,
-    select: data => data.homeworks
+    refetchOnWindowFocus: false,
+    select: (data) => data.homeworks,
   });
-}
+};

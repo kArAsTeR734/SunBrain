@@ -33,42 +33,6 @@
   border-left: 4px solid #27ae60;
 }
 
-.solution__step {
-  background: #fff;
-  padding: 12px 16px;
-  margin: 12px 0;
-  border-radius: 6px;
-  border-left: 3px solid #3498db;
-
-  p {
-    line-height: 2rem;
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-  }
-
-  strong{
-    line-height: 1.5rem;
-    font-size: 2rem;
-    margin-bottom: 8px;
-  }
-}
-
-.solution__final {
-  background: #e8f5e8;
-  padding: 16px;
-  border-radius: 6px;
-  border-left: 3px solid #27ae60;
-  margin-top: 16px;
-
-  p {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #27ae60;
-    margin: 0;
-  }
-}
-
-/* KaTeX стили */
 .katex {
   display: inline;
 }
@@ -78,5 +42,5 @@
 }
 
 .katex .mord {
-  font-size: 2rem;
+  font-size: 1.1rem;
 }

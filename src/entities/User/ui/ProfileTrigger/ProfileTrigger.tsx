@@ -1,8 +1,8 @@
-import './ProfileTrigger.scss'
+import './ProfileTrigger.scss';
 import { getUserInitials } from '@shared/utils/getUserInitials.ts';
 import { useAppSelector } from '@shared/hooks/redux.ts';
 
-const ProfileTrigger = () => {
+export const ProfileTrigger = () => {
   const { user } = useAppSelector((state) => state.userReducer);
 
   return (
@@ -19,5 +19,3 @@ const ProfileTrigger = () => {
     </div>
   );
 };
-
-export default ProfileTrigger;

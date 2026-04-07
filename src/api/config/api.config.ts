@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { AuthorizationService } from '../services/AuthorizationService.ts';
 
-export const API_URL = 'http://localhost:5000';
-
 export const api = axios.create({
-  baseURL: API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -12,7 +10,7 @@ export const api = axios.create({
 });
 
 export const authApi = axios.create({
-  baseURL: API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

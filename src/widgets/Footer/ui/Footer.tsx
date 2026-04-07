@@ -1,34 +1,34 @@
-import classes from './footer.module.css';
+import './footer.scss';
 import { aboutLinks, studyLinks } from '@/shared/constants/footerLinks.ts';
 
 export const Footer = () => {
   return (
-    <section className={classes.footer}>
+    <section className="footer">
       <div className="container">
-        <div className={classes.footerWrapper}>
-          <div className="about">
-            <div className={classes.footerHeader}>О SunBrain</div>
+        <div className="footer__wrapper">
+          <div className="footer__item">
+            <h3 className="footer__header">О SunBrain</h3>
             {aboutLinks.map(({ href, label }) => (
-              <div key={label} className={classes.footerItem}>
-                <a href={href} className={classes.footerLink}>
+              <div key={label} className="footer__item">
+                <a href={href} className="footer__link">
                   {label}
                 </a>
               </div>
             ))}
           </div>
-          <div className="study">
-            <div className={classes.footerHeader}>Учеба в SunBrain</div>
+          <div className="footer__item">
+            <h3 className="footer__header">Учеба в SunBrain</h3>
             {studyLinks.map(({ href, label }) => (
-              <div key={label} className={classes.footerItem}>
-                <a href={href} className={classes.footerLink}>
+              <div key={label} className="footer__item">
+                <a href={href} className="footer__link">
                   {label}
                 </a>
               </div>
             ))}
           </div>
-          <div className="contacts">
-            <div className={classes.footerHeader}>Свяжитесь с нами</div>
-            <a href="tel:+88003020412" className={classes.footerLink}>
+          <div className="footer__item">
+            <h3 className="footer__header">Свяжитесь с нами</h3>
+            <a href="tel:+88003020412" className="footer__link">
               +7 (499) 922-89-74
             </a>
           </div>

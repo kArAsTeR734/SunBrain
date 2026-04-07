@@ -1,15 +1,14 @@
 import './studentAccountInfo.css';
-import { useUploadAvatar } from '@features/User/hooks/useUploadAvatar.ts';
-import AvatarUpload from '@/features/User/AvatarUpload/AvatarUpload.tsx';
+import { useAvatar } from '@entities/User/models/useAvatar.ts';
 import { useAppSelector } from '@shared/hooks/redux.ts';
+import { AvatarUpload } from '@features/User';
 
 export const StudentAccountInfo = () => {
-  const uploadAvatarMutation = useUploadAvatar();
+  const uploadAvatarMutation = useAvatar();
   const { user } = useAppSelector((state) => state.userReducer);
   const handleUpload = async (file: File) => {
     await uploadAvatarMutation.mutateAsync(file);
   };
-
   return (
     <>
       <div className="general">

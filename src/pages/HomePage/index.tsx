@@ -1,11 +1,9 @@
 import Home from '@/widgets/Home';
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <>
       <Home />
     </>
   );
 };
-
-export default HomePage;

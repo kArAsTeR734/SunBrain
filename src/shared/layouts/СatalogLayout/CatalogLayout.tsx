@@ -1,7 +1,7 @@
 import { Outlet, useParams } from 'react-router-dom';
-import { useTopics } from '@features/Topics/hooks/useTopics.ts';
+import { useTopics } from '@features/Topics/models/hooks/useTopics.ts';
 
-const CatalogLayout = () => {
+export const CatalogLayout = () => {
   const { subjectId } = useParams();
   const { data: topics } = useTopics(subjectId ?? '');
 
@@ -11,5 +11,3 @@ const CatalogLayout = () => {
     </>
   );
 };
-
-export default CatalogLayout;

@@ -1,11 +1,8 @@
-import {
-  LoginForm,
-  LoginFormInput
-} from '@features/login/ui/LoginForm.tsx';
+import { LoginForm, LoginFormInput } from '@features/login/ui/LoginForm.tsx';
 import { FormProvider, useForm } from 'react-hook-form';
 import Header from '@/widgets/Header';
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const methods = useForm<LoginFormInput>();
   return (
     <>
@@ -16,5 +13,3 @@ const LoginPage = () => {
     </>
   );
 };
-
-export default LoginPage;

@@ -1,14 +1,17 @@
 import React, { ReactNode } from 'react';
 import { HomeworkBase } from '@entities/Homework/model/types.ts';
-import './HomeworkCard.scss'
+import './HomeworkCard.scss';
 import { formatHomeworksDeadline } from '@entities/Homework/lib/formatDeadline.ts';
 
 interface HomeworkCardProps {
-  homework: HomeworkBase,
-  action?: ReactNode
+  homework: HomeworkBase;
+  action?: ReactNode;
 }
 
-export const HomeworkCard: React.FC<HomeworkCardProps> = ({ homework, action }) => {
+export const HomeworkCard: React.FC<HomeworkCardProps> = ({
+  homework,
+  action,
+}) => {
   const deadline = formatHomeworksDeadline(homework.deadline);
   return (
     <div className="homework-card">

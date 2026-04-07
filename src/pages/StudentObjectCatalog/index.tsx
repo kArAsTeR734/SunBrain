@@ -1,8 +1,8 @@
 import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
-import ObjectsCatalog from '@/widgets/ObjectsCatalog';
+import { ObjectsCatalog } from '@widgets/ObjectsCatalog';
 
-const StudentObjectCatalogPage = () => {
+export const StudentObjectCatalogPage = () => {
   return (
     <>
       <Header />
@@ -11,5 +11,3 @@ const StudentObjectCatalogPage = () => {
     </>
   );
 };
-
-export default StudentObjectCatalogPage;

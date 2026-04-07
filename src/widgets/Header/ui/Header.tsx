@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import './header.scss';
 import NavbarMenu from '@/widgets/Header/ui/NavbarMenu/NavbarMenu.tsx';
-import ProfileHeaderData from '@/features/User/ProfileData/ProfileHeaderData.tsx';
+import { ProfileHeaderData } from '@features/User';
 
 export const Header = () => {
   return (

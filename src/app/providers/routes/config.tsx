@@ -1,20 +1,26 @@
 import { RouteObject } from 'react-router-dom';
-import StudentObjectCatalogPage from '../../../pages/StudentObjectCatalog';
-import StudentPersonalAccountPage from '../../../pages/StudentPersonalAccoutn';
-import HomePage from '../../../pages/HomePage';
-import LoginPage from '../../../pages/LoginPage';
-import RegistrationPage from '../../../pages/RegistrationPage';
-import StudentCalendarPage from '../../../pages/StudentPersonalCalendar';
-import StudentHomeworkPage from '@/pages/StudentHomework';
-import NotFound from '@/pages/NotFound';
-import CatalogObjectCards from '@widgets/ObjectsCatalog/CatalogObjectCards/CatalogObjectCards.tsx';
-import CatalogLayout from '@shared/layouts/СatalogLayout/CatalogLayout.tsx';
-import TaskThemeList from '@widgets/ObjectsCatalog/TaskThemeList/TaskThemeList.tsx';
-import HomeworkLayout from '@shared/layouts/HomeworkLayout/HomeworkLayout.tsx';
-import KnowledgeTestPage from '@pages/KnowledgeTestPage';
 import { StudentHomework } from '@/widgets/StudentHomework/ui/StudentHomework.tsx';
-import HomeworkTaskList from '@features/HomeworkTasks/ui/HomeworkTaskList/HomeworkTaskList.tsx';
-import CatalogTaskList from '@widgets/CatalogTaskList/CatalogTaskList.tsx';
+import { HomeworkTaskList } from '@features/HomeworkTasks';
+import { ProtectedRoute } from '@app/providers/ProtectedRoute/ProtectedRoute.tsx';
+import { TaskList } from '@shared/ui';
+import { CatalogObjectCards, TaskThemeList } from '@widgets/ObjectsCatalog';
+import {
+  KnowledgeTest,
+  KnowledgeTestSubjectCards,
+  KnowledgeTestSubjectDetails,
+} from '@widgets/KnowledgeTest';
+import { CatalogLayout, HomeworkLayout } from '@shared/layouts';
+import {
+  HomePage,
+  KnowledgeTestPage,
+  LoginPage,
+  NotFoundPage,
+  RegistrationPage,
+  StudentCalendarPage,
+  StudentHomeworkPage,
+  StudentObjectCatalogPage,
+  StudentPersonalAccountPage,
+} from '@/pages';
 
 export type AppRouteHandle = {
   breadcrumb?: string | ((_match: any) => string);
@@ -29,11 +35,10 @@ export const CATALOG_ITEMS = [
   { id: 'ephysic', path: 'ephysic', title: 'ЕГЭ Физика' },
   { id: 'emath', path: 'emath', title: 'ЕГЭ Математика' },
   { id: 'ophysic', path: 'ophysic', title: 'ОГЭ Физика' },
-  { id: 'omath', path: 'omath', title: 'ОГЭ Математика' }
+  { id: 'omath', path: 'omath', title: 'ОГЭ Математика' },
 ] as const;
 
 export type SubjectPath = (typeof CATALOG_ITEMS)[number]['path'];
-
 
 export const PATHS = {
   HOME: '/',
@@ -45,10 +50,12 @@ export const PATHS = {
     ACCOUNT: '/student/account',
     SUBJECT: (subjectId: string) => `/student/catalog/${subjectId}`,
     HOMEWORK_LINK: (id: string | number) => `/student/homework/${id}`,
-    HOMEWORK: `/student/homework`
+    HOMEWORK: `/student/homework`,
   },
-  TEST: '/test',
-  NOT_FOUND: '*'
+  TEST: '/student/test',
+  TEST_SUBJECT: (subjectId: string) => `/student/test/${subjectId}`,
+  TEST_RUN: (subjectId: string) => `/student/test/${subjectId}/run`,
+  NOT_FOUND: '*',
 } as const;
 
 export const getRoutesConfig = (): AppRouteObject[] => [
@@ -65,66 +72,85 @@ export const getRoutesConfig = (): AppRouteObject[] => [
     element: <RegistrationPage />,
   },
   {
-    path: PATHS.STUDENT.ACCOUNT,
-    element: <StudentPersonalAccountPage />,
-  },
-  {
-    path: `${PATHS.STUDENT.CATALOG}`,
-    element: <StudentObjectCatalogPage />,
+    element: <ProtectedRoute />,
     children: [
       {
-        index: true,
-        element: <CatalogObjectCards />
+        path: PATHS.STUDENT.ACCOUNT,
+        element: <StudentPersonalAccountPage />,
       },
       {
-        path: ':subjectId',
-        element: <CatalogLayout />,
+        path: `${PATHS.STUDENT.CATALOG}`,
+        element: <StudentObjectCatalogPage />,
         children: [
           {
             index: true,
-            element: <TaskThemeList />
+            element: <CatalogObjectCards />,
           },
           {
-            path: ':themeId',
-            element: <CatalogTaskList />,
-          }
-        ]
-      }
-    ]
-  },
-  {
-    path: PATHS.STUDENT.CALENDAR,
-    element: <StudentCalendarPage />,
-    handle: {
-      breadcrumb: 'Календарь заданий'
-    }
-  },
-  {
-    path: PATHS.STUDENT.HOMEWORK,
-    element: <StudentHomeworkPage />,
-    children: [
-      {
-        index: true,
-        element: <StudentHomework />
+            path: ':subjectId',
+            element: <CatalogLayout />,
+            children: [
+              {
+                index: true,
+                element: <TaskThemeList />,
+              },
+              {
+                path: ':themeId',
+                element: <TaskList />,
+              },
+            ],
+          },
+        ],
       },
       {
-        path: ':homeworkId',
-        element: <HomeworkLayout />,
+        path: PATHS.STUDENT.CALENDAR,
+        element: <StudentCalendarPage />,
+        handle: {
+          breadcrumb: 'Календарь заданий',
+        },
+      },
+      {
+        path: PATHS.STUDENT.HOMEWORK,
+        element: <StudentHomeworkPage />,
         children: [
           {
             index: true,
-            element: <HomeworkTaskList />,
-          }
-        ]
-      }
-    ]
-  },
-  {
-    path: PATHS.TEST,
-    element: <KnowledgeTestPage />
+            element: <StudentHomework />,
+          },
+          {
+            path: ':homeworkId',
+            element: <HomeworkLayout />,
+            children: [
+              {
+                index: true,
+                element: <HomeworkTaskList />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: PATHS.TEST,
+        element: <KnowledgeTestPage />,
+        children: [
+          {
+            index: true,
+            element: <KnowledgeTestSubjectCards />,
+          },
+          {
+            path: ':subjectId',
+            element: <KnowledgeTestSubjectDetails />,
+          },
+          {
+            path: ':subjectId/run',
+            element: <KnowledgeTest />,
+          },
+        ],
+      },
+    ],
   },
   {
     path: PATHS.NOT_FOUND,
-    element: <NotFound />
-  }
+    element: <NotFoundPage />,
+  },
 ];

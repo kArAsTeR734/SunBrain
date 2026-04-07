@@ -1,10 +1,11 @@
-import RegistrationForm, {
+import {
+  RegistrationForm,
   RegistrationFormInput,
-} from '@/features/Authorization/RegistrationForm/RegistrationForm.tsx';
+} from '@features/Registration/ui/RegistrationForm.tsx';
 import { FormProvider, useForm } from 'react-hook-form';
 import Header from '@/widgets/Header';
 
-const RegistrationPage = () => {
+export const RegistrationPage = () => {
   const methods = useForm<RegistrationFormInput>();
   return (
     <>
@@ -15,5 +16,3 @@ const RegistrationPage = () => {
     </>
   );
 };
-
-export default RegistrationPage;

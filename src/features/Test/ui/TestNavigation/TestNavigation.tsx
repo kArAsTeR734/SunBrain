@@ -10,7 +10,7 @@ interface TaskNavigationProps {
   onFinish: () => void;
 }
 
-const TestNavigation: React.FC<TaskNavigationProps> = ({
+export const TestNavigation: React.FC<TaskNavigationProps> = ({
   tasks,
   onTaskSelect,
   currentTask,
@@ -79,5 +79,3 @@ const TestNavigation: React.FC<TaskNavigationProps> = ({
     </div>
   );
 };
-
-export default TestNavigation;

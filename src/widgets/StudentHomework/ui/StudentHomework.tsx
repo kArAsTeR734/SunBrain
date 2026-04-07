@@ -1,13 +1,13 @@
-import HomeworkList from "@/widgets/HomeworkList";
+import HomeworkList from '@widgets/StudentHomework/ui/HomeworkList';
 
 export const StudentHomework = () => {
-  return(
+  return (
     <>
-      <section className="homework" aria-label='homework'>
+      <section className="homework" aria-label="homework">
         <div className="container">
-          <HomeworkList/>
+          <HomeworkList />
         </div>
       </section>
     </>
-    )
+  );
 };

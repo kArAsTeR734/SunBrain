@@ -1,12 +1,13 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { AuthorizationService } from '@/api/services/AuthorizationService.ts';
-import { LeaderboardUser, ProfileUser } from '@entities/User/types.ts';
+import { ProfileUser } from '@entities/User/models/types.ts';
+import { Leaderboard } from '@entities/Leaderboard/types.ts';
 
 export interface UserState {
   isAuth: boolean;
   isLoading: boolean;
   user: ProfileUser | null;
-  leaderboard: LeaderboardUser | null;
+  leaderboard: Leaderboard | null;
 }
 
 const initialState: UserState = {
@@ -29,7 +30,7 @@ export const userSlice = createSlice({
     setLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
-    setLeaderboard: (state, action: PayloadAction<LeaderboardUser>) => {
+    setLeaderboard: (state, action: PayloadAction<Leaderboard>) => {
       state.leaderboard = action.payload;
     },
     logout: (state) => {

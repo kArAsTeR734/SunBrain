@@ -3,17 +3,19 @@ import { useLocation, useParams } from 'react-router-dom';
 import getSubjectTitle from '@shared/utils/getSubjectTitle.ts';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import React from 'react';
-import './Breadcrumbs.scss'
+import './Breadcrumbs.scss';
 import { PATHS } from '@app/providers/routes/config.tsx';
-import { useTopics } from '@features/Topics/hooks/useTopics.ts';
+import { useTopics } from '@features/Topics/models/hooks/useTopics.ts';
 import { Link } from 'react-router-dom';
 
 export const Breadcrumbs = () => {
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   const { subjectId, themeId, homeworkId } = useParams();
 
   const { data: homework } = useHomeworkTasks(Number(homeworkId));
-  const { data: topics } = useTopics(subjectId || (homework?.topic?.code ?? ''));
+  const { data: topics } = useTopics(
+    subjectId || (homework?.topic?.code ?? ''),
+  );
 
   const activeSubjectId = subjectId || homework?.topic.code;
   const crumbs = [];
@@ -28,21 +30,20 @@ export const Breadcrumbs = () => {
     crumbs.push({ label: 'Календарь', href: PATHS.STUDENT.CALENDAR });
   }
 
-  if(pathname.includes('/homework')){
-    crumbs.push({label:'Домашнее задание', href:PATHS.STUDENT.HOMEWORK})
+  if (pathname.includes('/homework')) {
+    crumbs.push({ label: 'Домашнее задание', href: PATHS.STUDENT.HOMEWORK });
   }
 
   if (activeSubjectId) {
     crumbs.push({
       label: getSubjectTitle(activeSubjectId),
-      href: PATHS.STUDENT.SUBJECT(activeSubjectId)
+      href: PATHS.STUDENT.SUBJECT(activeSubjectId),
     });
   }
 
-  const currentTopic = topics?.find(t =>
-    String(t.number) === themeId || t.id === homework?.topic.id
+  const currentTopic = topics?.find(
+    (t) => String(t.number) === themeId || t.id === homework?.topic.id,
   );
-  console.log(currentTopic);
   if (currentTopic) {
     crumbs.push({ label: currentTopic.name, href: pathname });
   }
@@ -63,7 +64,5 @@ export const Breadcrumbs = () => {
         ))}
       </nav>
     </section>
-
   );
 };
-

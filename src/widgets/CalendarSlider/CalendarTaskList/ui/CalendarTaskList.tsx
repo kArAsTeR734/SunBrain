@@ -10,17 +10,16 @@ interface CalendarTaskListProps {
 }
 
 const CalendarTask: FC<HomeworkListItem> = ({
-    id,
-    title,
-    subject,
-    deadline
-  }) => {
-
+  id,
+  title,
+  subject,
+  deadline,
+}) => {
   const navigate = useNavigate();
 
   const handleClickItem = () => {
-    navigate(`/student/homework/${id}`)
-  }
+    navigate(`/student/homework/${id}`);
+  };
 
   return (
     <button

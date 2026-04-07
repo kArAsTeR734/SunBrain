@@ -11,6 +11,14 @@ export const useLogin = () => {
     mutationFn: AuthorizationService.login,
     onSuccess: (userData) => {
       dispatch(setAuth(true));
+      console.log(userData.user);
+      if (userData.user.avatarUrl) {
+        let avatarUrl = userData.user.avatarUrl;
+        if (avatarUrl.startsWith('/uploads/')) {
+          userData.user.avatarUrl = `http://localhost:5000${avatarUrl}`;
+        }
+      }
+      console.log(userData.user.avatarUrl);
       dispatch(setUser(userData.user));
       localStorage.setItem('access_token', userData.accessToken);
     },

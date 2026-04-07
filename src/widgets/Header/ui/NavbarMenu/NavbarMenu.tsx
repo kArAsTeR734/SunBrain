@@ -5,11 +5,15 @@ import './NavbarMenu.scss';
 const NavbarMenu = () => {
   return (
     <nav className="menu">
-      {navLinks.map(({ label, href }) => (
-        <li key={href} className="menu__item">
-          <NavLink to={href}>{label}</NavLink>
-        </li>
-      ))}
+      <ul className="menu__list">
+        {navLinks.map(({ label, href }) => (
+          <li key={href} className="menu__item">
+            <NavLink className="menu__item-link" to={href}>
+              {label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };

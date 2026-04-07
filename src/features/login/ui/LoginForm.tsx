@@ -6,12 +6,12 @@ import './loginForm.scss';
 import {
   emailValidation,
   passwordValidation,
-} from '../../Authorization/config/validationConfig.ts';
+} from '@features/Authorization/model/config/validationConfig.ts';
 import clsx from 'clsx';
-import Button from '@shared/ui/Button/Button.tsx';
 import '@shared/ui/Button/button.css';
 import { useLogin } from '@features/login/model/useLogin.ts';
-import { LoginRequest } from '@features/Authorization/config/types.ts';
+import { LoginRequest } from '@features/Registration/model/types.ts';
+import { Button } from '@/shared/ui';
 
 export interface LoginFormInput {
   email: string;
@@ -19,7 +19,7 @@ export interface LoginFormInput {
 }
 
 export const LoginForm = () => {
-  const { register, handleSubmit, shouldShowError, getErrorMessage, reset } =
+  const { register, handleSubmit, shouldShowError, getErrorMessage, setError } =
     useFormValidationContext<LoginFormInput>();
   const { mutateAsync: login } = useLogin();
   const navigate = useNavigate();
@@ -32,8 +32,19 @@ export const LoginForm = () => {
     try {
       await login(loginData);
       navigate('/student/account');
-    } finally {
-      reset();
+    } catch (error: any) {
+      const serverMessage =
+        error?.response?.data?.message || 'Неверный логин или пароль';
+
+      setError('email', {
+        type: 'server',
+        message: serverMessage,
+      });
+
+      setError('password', {
+        type: 'server',
+        message: '',
+      });
     }
   };
 

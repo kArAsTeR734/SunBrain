@@ -1,11 +1,15 @@
-import KnowledgeTest from '@features/Test/ui/KnowledgeTest/KnowledgeTest.tsx';
+import Header from '@widgets/Header';
+import Footer from '@widgets/Footer';
+import { Outlet } from 'react-router-dom';
 
-const KnowledgeTestPage = () => {
+export const KnowledgeTestPage = () => {
   return (
     <>
-     <KnowledgeTest have={false}/>
+      <Header />
+      <main className="container">
+        <Outlet />
+      </main>
+      <Footer />
     </>
   );
 };
-
-export default KnowledgeTestPage;

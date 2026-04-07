@@ -2,7 +2,7 @@ import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
 import StudentAccount from '@/widgets/StudentAccount';
 
-const StudentPersonalAccountPage = () => {
+export const StudentPersonalAccountPage = () => {
   return (
     <>
       <Header />
@@ -11,5 +11,3 @@ const StudentPersonalAccountPage = () => {
     </>
   );
 };
-
-export default StudentPersonalAccountPage;

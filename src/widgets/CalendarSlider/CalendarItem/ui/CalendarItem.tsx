@@ -1,6 +1,6 @@
 import './calendarItem.scss';
 import { FC } from 'react';
-import {DataTime } from '@features/Calendar/types.ts';
+import { DataTime } from '@features/Calendar/types.ts';
 
 export interface CalendarItemProps {
   dataTime: DataTime;

@@ -1,42 +1,45 @@
-import classes from './promo.module.css';
-import '../../../../shared/ui/Button/button.css';
+import './promo.scss';
+import '@shared/ui/Button/button.scss';
 import clsx from 'clsx';
-import Button from '../../../../shared/ui/Button/Button.tsx';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@shared/ui';
 
 export const Promo = () => {
   const navigate = useNavigate();
 
   const handleClickTest = () => {
-    navigate('/test');
+    navigate('/student/test');
   };
 
   const handleClickAccount = () => {
-    navigate('login');
+    navigate('/login');
   };
   return (
-    <section className={classes.promo}>
+    <section className="promo">
       <div className="container">
-        <div className={classes.title}>
-          Твой личный путь к ЕГЭ – AI создаст план, а ты <br /> достигнешь цели!
-        </div>
-        <div className={classes.subtitle}>
-          Измените свои привычки в учебе с помощью индивидуальных идей <br />{' '}
-          искусственного интеллекта.
-        </div>
-        <div className={classes.actionButtons}>
-          <Button
-            className={clsx('button', 'button__pass-test')}
-            onClick={handleClickTest}
-          >
-            Пройти вступительный тест
-          </Button>
-          <Button
-            className={clsx('button', 'button__have-account')}
-            onClick={handleClickAccount}
-          >
-            У меня уже есть аккаунт
-          </Button>
+        <div className="promo__body">
+          <h1 className="promo__title">
+            Твой личный путь к ЕГЭ – AI создаст план, а ты <br /> достигнешь
+            цели!
+          </h1>
+          <p className="promo__subtitle">
+            Измените свои привычки в учебе с помощью индивидуальных идей <br />{' '}
+            искусственного интеллекта.
+          </p>
+          <div className="promo__actions">
+            <Button
+              className={clsx('button', 'button__pass-test')}
+              onClick={handleClickTest}
+            >
+              Пройти вступительный тест
+            </Button>
+            <Button
+              className={clsx('button', 'button__have-account')}
+              onClick={handleClickAccount}
+            >
+              У меня уже есть аккаунт
+            </Button>
+          </div>
         </div>
       </div>
     </section>

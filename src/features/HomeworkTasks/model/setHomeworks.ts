@@ -4,7 +4,7 @@ import { formatCalendarDeadline } from '@entities/Homework/lib/formatDeadline.ts
 export const groupHomeworksByDate = (homeworks: HomeworkListItem[]) => {
   const map: Record<string, HomeworkListItem[]> = {};
 
-  homeworks.forEach(hw => {
+  homeworks.forEach((hw) => {
     const formattedDate = formatCalendarDeadline(hw.deadline);
 
     if (!map[formattedDate]) {
@@ -15,5 +15,4 @@ export const groupHomeworksByDate = (homeworks: HomeworkListItem[]) => {
   });
 
   return map;
-
 };

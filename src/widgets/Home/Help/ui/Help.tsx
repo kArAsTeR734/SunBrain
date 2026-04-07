@@ -1,15 +1,15 @@
-import classes from './help.module.css';
+import './help.scss';
 
 export const Help = () => {
   return (
-    <section className={classes.help}>
+    <section className="help">
       <div className="container">
-        <div className={classes.helpWrapper}>
-          <div className={classes.helpDescription}>
-            <div className={classes.helpTitle}>
+        <div className="help__body">
+          <div className="help__about">
+            <h2 className="help__title">
               Поддержка учителей на <br /> каждом этапе
-            </div>
-            <div className={classes.helpSubtitle}>
+            </h2>
+            <p className="help__description">
               На нашей платформе учителя играют важную роль в <br />{' '}
               образовательном процессе. За каждым педагогом закреплено
               определённое количество учеников, что позволяет следить за их
@@ -18,11 +18,17 @@ export const Help = () => {
               комментарии. Это не просто контроль — это персональная поддержка и
               советы, которые помогут каждому ученику лучше понять материал и
               усовершенствовать свои знания.
-            </div>
+            </p>
           </div>
-          <div className="helpImg">
+          <div className="help__image">
             <a href="#">
-              <img src="/src/assets/teacher.svg" alt="" />
+              <img
+                src="/src/assets/teacher.svg"
+                alt="teacher"
+                loading="lazy"
+                width={'581'}
+                height={'546'}
+              />
             </a>
           </div>
         </div>

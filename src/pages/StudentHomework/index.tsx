@@ -1,21 +1,19 @@
-import Hints from '@/shared/ui/Hints/Hints.tsx';
 import Footer from '@/widgets/Footer';
 import Header from '@/widgets/Header';
 import { Outlet } from 'react-router-dom';
 import { Breadcrumbs } from '@widgets/Breadcrumbs';
+import { CatalogHints } from '@shared/ui';
 
-const StudentHomeworkPage = () => {
+export const StudentHomeworkPage = () => {
   return (
     <>
       <Header />
       <div className="container">
-        <Breadcrumbs/>
-        <Hints />
+        <Breadcrumbs />
+        <CatalogHints />
         <Outlet />
       </div>
       <Footer />
     </>
   );
 };
-
-export default StudentHomeworkPage;

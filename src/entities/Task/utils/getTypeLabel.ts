@@ -1,4 +1,4 @@
-export default function getTypeLabel(type: string){
+export function getTypeLabel(type: string) {
   switch (type) {
     case 'single':
       return 'Выберите один вариант';
@@ -11,4 +11,4 @@ export default function getTypeLabel(type: string){
     default:
       return '';
   }
-};
+}

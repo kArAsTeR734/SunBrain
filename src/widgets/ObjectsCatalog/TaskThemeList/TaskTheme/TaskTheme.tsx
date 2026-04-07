@@ -2,7 +2,7 @@ import './taskTheme.scss';
 import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SubjectId } from '@/models/Subject.ts';
-import { Topic } from '@features/Topics/types.ts';
+import { Topic } from '@features/Topics/models/types.ts';
 
 const TaskTheme: FC<Topic> = ({ name, number }: Topic) => {
   const navigate = useNavigate();

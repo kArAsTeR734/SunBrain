@@ -1,8 +1,9 @@
 import {
   AuthResponse,
   LoginRequest,
+  RefreshResponse,
   RegistrationRequest,
-} from '@features/Authorization/config/types.ts';
+} from '@features/Registration/model/types.ts';
 import { authApi } from '@/api/config/api.config.ts';
 import { request } from '@shared/api/api-client.ts';
 
@@ -17,7 +18,7 @@ export class AuthorizationService {
     return request(authApi.post('/api/auth/register', data));
   }
 
-  public static async refresh(): Promise<AuthResponse> {
+  public static async refresh(): Promise<RefreshResponse> {
     return request(authApi.post('/api/auth/refresh'));
   }
 

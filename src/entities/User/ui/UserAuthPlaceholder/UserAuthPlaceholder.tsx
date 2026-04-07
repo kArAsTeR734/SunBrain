@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './UserAuthPlaceholder.scss';
 
-const UserAuthPlaceholder = () => {
+export const UserAuthPlaceholder = () => {
   return (
     <div className="auth-placeholder">
       <h1 className="auth-placeholder__title">
@@ -13,5 +13,3 @@ const UserAuthPlaceholder = () => {
     </div>
   );
 };
-
-export default UserAuthPlaceholder;

@@ -1,29 +1,24 @@
 import React from 'react';
 import './TestResult.scss';
-
-interface Answer {
-  taskId: number;
-  userAnswer: string | string[] | number;
-  correctAnswer: string | string[] | number;
-  isCorrect: boolean;
-}
+import { KnowledgeTestAnswerResult } from '@features/Test/models/types.ts';
 
 interface TestResultsProps {
-  answers: Answer[];
+  answers: KnowledgeTestAnswerResult[];
   onRestart: () => void;
   onReview: (_taskId: number) => void;
 }
 
-const TestResults: React.FC<TestResultsProps> = ({
+export const TestResults: React.FC<TestResultsProps> = ({
   answers,
   onRestart,
   onReview,
 }) => {
-  const correctCount = answers.filter((a) => a.isCorrect).length;
   const totalCount = answers.length;
-  const percentage = Math.round((correctCount / totalCount) * 100);
+  const correctCount = answers.filter((answer) => answer.isCorrect).length;
+  const percentage =
+    totalCount === 0 ? 0 : Math.round((correctCount / totalCount) * 100);
 
-  const formatAnswer = (answer: string | string[] | number) => {
+  const formatAnswer = (answer: string | string[] | number): string => {
     if (Array.isArray(answer)) {
       return answer.join(', ');
     }
@@ -73,7 +68,7 @@ const TestResults: React.FC<TestResultsProps> = ({
                 </div>
               </div>
               <div className="answer-status">
-                {answer.isCorrect ? '✓ Верно' : '✗ Неверно'}
+                {answer.isCorrect ? 'Верно' : 'Неверно'}
               </div>
             </div>
           ))}
@@ -83,7 +78,7 @@ const TestResults: React.FC<TestResultsProps> = ({
       <div className="results-actions">
         <button
           className="review-button"
-          onClick={() => onReview(answers[0].taskId)}
+          onClick={() => onReview(answers[0]?.taskId ?? 1)}
         >
           Пройти заново с разбором
         </button>
@@ -94,5 +89,3 @@ const TestResults: React.FC<TestResultsProps> = ({
     </div>
   );
 };
-
-export default TestResults;

@@ -1,6 +1,6 @@
 import './positionItem.css';
 import clsx from 'clsx';
-import { LeaderboardUser } from '@entities/User/types.ts';
+import { LeaderboardUser } from '@entities/Leaderboard/types.ts';
 
 const PositionItem = ({ fullName, position, points }: LeaderboardUser) => {
   return (

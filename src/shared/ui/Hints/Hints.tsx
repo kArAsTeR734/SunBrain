@@ -1,7 +1,7 @@
 import './Hints.scss';
 import CatalogHint from '@/shared/ui/Hints/CatalogHint/CatalogHint.tsx';
 
-const CatalogHints = () => {
+export const CatalogHints = () => {
   return (
     <>
       <div className="catalog__hints">
@@ -10,5 +10,3 @@ const CatalogHints = () => {
     </>
   );
 };
-
-export default CatalogHints;

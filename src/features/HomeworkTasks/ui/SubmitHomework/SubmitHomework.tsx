@@ -1,4 +1,4 @@
-import './SubmitHomework.scss'
+import './SubmitHomework.scss';
 import { useNavigate } from 'react-router-dom';
 
 export const SubmitButton = ({ homeworkId }: { homeworkId: number }) => {
@@ -7,5 +7,9 @@ export const SubmitButton = ({ homeworkId }: { homeworkId: number }) => {
     navigate(`/student/homework/${homeworkId}`);
   };
 
-  return <button className='submit-button' onClick={handleHomework}>Перейти к заданию</button>;
+  return (
+    <button className="submit-button" onClick={handleHomework}>
+      Перейти к заданию
+    </button>
+  );
 };

@@ -3,10 +3,8 @@ import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 import './TaskSolution.scss';
 
-const TaskSolution = () => {
+export const TaskSolution = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isAnswerCorrect, setAnswerCorrect] = useState<boolean>(false);
-
 
   return (
     <div className="solution">
@@ -65,5 +63,3 @@ const TaskSolution = () => {
     </div>
   );
 };
-
-export default TaskSolution;
