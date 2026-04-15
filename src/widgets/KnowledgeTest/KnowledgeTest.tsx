@@ -1,14 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {useNavigate, useParams } from 'react-router-dom';
 import './KnowledgeTest.scss';
-import {
-  buildKnowledgeTestTasks,
-  getKnowledgeTestSubjectById,
-} from '@features/Test/models/knowledgeTestConfig.ts';
+import { getKnowledgeTestSubjectById } from '@features/Test/models/knowledgeTestConfig.ts';
 import {
   KnowledgeTestAnswerResult,
   KnowledgeTestSubjectId,
-  UserAnswerValue,
 } from '@features/Test/models/types.ts';
 import { PATHS } from '@app/providers/routes/config.tsx';
 import { TestNavigation, TestResults } from '@features/Test';
@@ -18,46 +14,32 @@ export const KnowledgeTest = () => {
   const { subjectId } = useParams<{ subjectId: KnowledgeTestSubjectId }>();
   const subject = getKnowledgeTestSubjectById(subjectId ?? '');
 
-  const tasks = useMemo(
-    () => buildKnowledgeTestTasks(subject.id),
-    [subject.id ?? ''],
-  );
-  const initialTime = subject.estimatedDurationMinutes * 60;
+  const tasks = useGetTestTasks();
+  const navigate = useNavigate();
 
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState<
-    Record<number, UserAnswerValue>
-  >({});
+  const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(initialTime);
 
   useEffect(() => {
     setCurrentTaskIndex(0);
     setUserAnswers({});
     setShowResults(false);
-    setTimeLeft(initialTime);
-  }, [initialTime, subject.id]);
+  }, [subject?.id]);
 
   useEffect(() => {
     if (showResults) {
       return;
     }
+  }, [showResults]);
 
-    if (timeLeft === 0) {
-      setShowResults(true);
-      return;
+  useEffect(() => {
+    if (!subject || tasks.length === 0 || !subjectId) {
+      navigate(PATHS.TEST, { replace: true });
     }
+  }, [subjectId, tasks, subject, navigate]);
 
-    const timer = window.setTimeout(() => {
-      setTimeLeft((prev) => Math.max(prev - 1, 0));
-    }, 1000);
-
-    return () => {
-      window.clearTimeout(timer);
-    };
-  }, [timeLeft, showResults]);
-
-  const handleAnswerSubmit = (taskId: number, answer: UserAnswerValue) => {
+  const handleAnswerSubmit = (taskId: number, answer: string) => {
     setUserAnswers((prev) => ({
       ...prev,
       [taskId]: answer,
@@ -79,7 +61,6 @@ export const KnowledgeTest = () => {
     setUserAnswers({});
     setCurrentTaskIndex(0);
     setShowResults(false);
-    setTimeLeft(initialTime);
   };
 
   const handleReviewTask = (taskId: number) => {
@@ -90,16 +71,7 @@ export const KnowledgeTest = () => {
     }
   };
 
-  const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs
-      .toString()
-      .padStart(2, '0')}`;
-  };
-
-  const normalizeAnswer = (answer: UserAnswerValue) => {
+  const normalizeAnswer = (answer: string) => {
     if (Array.isArray(answer)) {
       return [...answer].sort().join('|').trim();
     }
@@ -140,25 +112,12 @@ export const KnowledgeTest = () => {
     );
   }
 
-  if (!subjectId) {
-    return <Navigate to={PATHS.TEST} replace />;
-  }
-
-  if (!subject) {
-    return <Navigate to={PATHS.TEST} replace />;
-  }
-
-  if (tasks.length === 0) {
-    return <Navigate to={PATHS.TEST} replace />;
-  }
-
   return (
     <div className="math-test-container">
       <div className="test-header">
         <h1>
-          {subject.examLabel} по предмету {subject.subjectLabel}
+          {subject?.examLabel} по предмету {subject?.subjectLabel}
         </h1>
-        <div className="timer">Осталось времени: {formatTime(timeLeft)}</div>
       </div>
 
       <div className="test-content">

@@ -1,6 +1,5 @@
 import { Card } from '@shared/ui';
 import {
-  getKnowledgeTestTotalTaskCount,
   KNOWLEDGE_TEST_SUBJECTS,
 } from '@features/Test/models/knowledgeTestConfig.ts';
 import { PATHS } from '@app/providers/routes/config.tsx';
@@ -25,10 +24,6 @@ export const KnowledgeTestSubjectCards = () => {
               fullPath={PATHS.TEST_SUBJECT(subject.id)}
               title={subject.title}
             />
-            <p className="knowledge-test-subjects__item-meta">
-              {getKnowledgeTestTotalTaskCount(subject)} заданий, примерно{' '}
-              {subject.estimatedDurationMinutes} минут
-            </p>
           </div>
         ))}
       </div>

@@ -1,50 +1,43 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   getKnowledgeTestSubjectById,
-  getKnowledgeTestTotalTaskCount,
 } from '@features/Test/models/knowledgeTestConfig.ts';
 import { PATHS } from '@app/providers/routes/config.tsx';
 import './KnowledgeTestSubjectDetails.scss';
+import { useGetKnowledgeTestTotalTaskCount } from '@features/Test/models/hooks/useGetKnowledgeTestTotalTaskCount.ts';
 
 export const KnowledgeTestSubjectDetails = () => {
   const { subjectId } = useParams<{ subjectId: string }>();
+  const navigate = useNavigate();
 
-  if (!subjectId) {
-    return <Navigate to={PATHS.TEST} replace />;
+  const subject = getKnowledgeTestSubjectById(subjectId ?? 'emath');
+
+  if(!subject || subjectId) {
+    navigate(PATHS.TEST);
   }
 
-  const subject = getKnowledgeTestSubjectById(subjectId);
-
-  if (!subject) {
-    return <Navigate to={PATHS.TEST} replace />;
-  }
-
-  const totalTasks = getKnowledgeTestTotalTaskCount(subject);
+  const { data: totalTasks } = useGetKnowledgeTestTotalTaskCount(subject?.id);
 
   return (
     <section className="knowledge-test-details">
-      <h1 className="knowledge-test-details__title">{subject.title}</h1>
+      <h1 className="knowledge-test-details__title">{subject?.title}</h1>
 
       <div className="knowledge-test-details__card">
         <div className="knowledge-test-details__row">
           <span>Формат экзамена</span>
-          <strong>{subject.examLabel}</strong>
+          <strong>{subject?.examLabel}</strong>
         </div>
         <div className="knowledge-test-details__row">
           <span>Номеров в экзамене</span>
-          <strong>{subject.examTaskCount}</strong>
+          <strong>{subject?.examTaskCount}</strong>
         </div>
         <div className="knowledge-test-details__row">
           <span>Заданий на каждый номер</span>
-          <strong>3 уровня сложности</strong>
+          <strong>1-2 уровня сложности</strong>
         </div>
         <div className="knowledge-test-details__row">
           <span>Итого заданий</span>
           <strong>{totalTasks}</strong>
-        </div>
-        <div className="knowledge-test-details__row">
-          <span>Примерное время</span>
-          <strong>{subject.estimatedDurationMinutes} минут</strong>
         </div>
       </div>
 
@@ -57,7 +50,7 @@ export const KnowledgeTestSubjectDetails = () => {
         </Link>
         <Link
           className="knowledge-test-details__action primary"
-          to={PATHS.TEST_RUN(subject.id)}
+          to={PATHS.TEST_RUN(subjectId ?? 'emath')}
         >
           Начать тестирование
         </Link>

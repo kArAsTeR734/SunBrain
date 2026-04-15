@@ -4,7 +4,7 @@ import {
   KnowledgeTestTask,
 } from '@features/Test/models/types.ts';
 
-const DIFFICULTY_LEVELS = [1, 2, 3] as const;
+const DIFFICULTY_LEVELS = ['easy', 'medium', 'hard'] as const;
 
 export const KNOWLEDGE_TEST_SUBJECTS: KnowledgeTestSubject[] = [
   {
@@ -13,7 +13,6 @@ export const KNOWLEDGE_TEST_SUBJECTS: KnowledgeTestSubject[] = [
     examLabel: 'ЕГЭ',
     subjectLabel: 'Математика',
     examTaskCount: 19,
-    estimatedDurationMinutes: 180,
   },
   {
     id: 'omath',
@@ -21,7 +20,6 @@ export const KNOWLEDGE_TEST_SUBJECTS: KnowledgeTestSubject[] = [
     examLabel: 'ОГЭ',
     subjectLabel: 'Математика',
     examTaskCount: 25,
-    estimatedDurationMinutes: 235,
   },
   {
     id: 'ephysic',
@@ -29,7 +27,6 @@ export const KNOWLEDGE_TEST_SUBJECTS: KnowledgeTestSubject[] = [
     examLabel: 'ЕГЭ',
     subjectLabel: 'Физика',
     examTaskCount: 30,
-    estimatedDurationMinutes: 235,
   },
   {
     id: 'ophysic',
@@ -37,7 +34,6 @@ export const KNOWLEDGE_TEST_SUBJECTS: KnowledgeTestSubject[] = [
     examLabel: 'ОГЭ',
     subjectLabel: 'Физика',
     examTaskCount: 25,
-    estimatedDurationMinutes: 180,
   },
 ];
 
@@ -73,14 +69,11 @@ export const buildKnowledgeTestTasks = (
     DIFFICULTY_LEVELS.forEach((difficultyLevel) => {
       tasks.push({
         id: taskId,
-        examNumber,
+        answerFormat: 'text',
+        content: '',
+        taskNumber: 0,
         difficultyLevel,
-        question: `${subject.examLabel} ${subject.subjectLabel}. Номер ${examNumber}, уровень ${difficultyLevel}. Введите числовой ответ.`,
-        type: 'text',
-        points: difficultyLevel,
-        correctAnswer: String(examNumber * difficultyLevel),
       });
-
       taskId += 1;
     });
   }
