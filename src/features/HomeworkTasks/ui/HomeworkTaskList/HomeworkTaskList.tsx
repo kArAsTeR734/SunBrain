@@ -6,7 +6,6 @@ import { Loader, TaskItem, TaskList } from '@shared/ui';
 export const HomeworkTaskList = () => {
   const { homeworkId } = useParams();
   const { data: homework, isLoading } = useHomeworkTasks(Number(homeworkId));
-
   return (
     <>
       <TaskList>

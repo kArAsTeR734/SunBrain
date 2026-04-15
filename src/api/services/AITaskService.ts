@@ -1,24 +1,21 @@
-import { AxiosResponse } from 'axios';
-import {
-  GenerateTaskRequest,
-  GenerateTaskResponse,
-} from '../types/ai-types.ts';
 import { api } from '@/api/config/api.config.ts';
 
 export class AIService {
-  public static async generateTask(
-    generateTaskRequest: GenerateTaskRequest,
-  ): Promise<GenerateTaskResponse> {
-    try {
-      const response: AxiosResponse<GenerateTaskResponse> = await api.post(
-        '/api/ai/generate-task',
-        generateTaskRequest,
-      );
+  public static async test(): Promise<string> {
+    const response = await api.post(
+      '/api/ai/chat',
+      {
+        messages: [
+          { role: 'system', content: 'You are a helpful assistant.' },
+          { role: 'user', content: 'Сгенерируй 5 задач по квадратным уравнениям' },
+        ],
+      },
+      {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
 
-      return response.data;
-    } catch (error: any) {
-      console.error('Ошибка генерации задания', error);
-      throw error;
-    }
+    console.log(response.data);
+    return response.data.content;
   }
 }

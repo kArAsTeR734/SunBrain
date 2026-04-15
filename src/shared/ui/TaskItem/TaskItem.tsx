@@ -24,7 +24,6 @@ export const TaskItem: FC<TaskItemProps> = ({ task, isHomeworkTask }) => {
       const data = await checkAnswerMutate.mutateAsync({
         answer: answer.value,
       });
-
       setIsChecked(true);
       setIsTaskComplete(data.correct);
     } catch (error) {
@@ -75,7 +74,7 @@ export const TaskItem: FC<TaskItemProps> = ({ task, isHomeworkTask }) => {
           </Button>
         </div>
 
-        {isHomeworkTask && isChecked && isTaskComplete && <TaskSolution />}
+        {isHomeworkTask && isChecked && isTaskComplete && <TaskSolution solution={task.solutionLatex} />}
       </div>
     </>
   );

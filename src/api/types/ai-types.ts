@@ -1,4 +1,4 @@
-import { HomeworkTask } from '@entities/Homework/model/types.ts';
+import { Task } from '@entities/Task/model/types.ts';
 
 export interface GenerateTaskRequest {
   studentId: number;
@@ -13,5 +13,5 @@ export interface TestResult {
 
 export interface GenerateTaskResponse {
   success: boolean;
-  task: HomeworkTask;
+  task: Task;
 }
