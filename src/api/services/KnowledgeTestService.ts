@@ -1,10 +1,9 @@
 import {
-  FinishTestParams,
   FinishTestResponse,
   GetTestPoolMetaResponse,
+  GetTestReviewDataResponse,
   KnowledgeTestSubjectCode,
   StartTestResponse,
-  SubmitTestAnswerParams,
   SubmitTestAnswerRequest,
   SubmitTestAnswerResponse,
 } from '@features/Test/models/types.ts';
@@ -28,8 +27,8 @@ export class KnowledgeTestService {
     );
   }
 
-  public static async testAnswer(
-    { testId }: SubmitTestAnswerParams,
+  public static async testSubmitAnswer(
+    {testId}: {testId:number},
     { taskId, answer }: SubmitTestAnswerRequest,
   ): Promise<SubmitTestAnswerResponse> {
     return request(
@@ -40,9 +39,15 @@ export class KnowledgeTestService {
     );
   }
 
-  public static async finishTest({
-    testId,
-  }: FinishTestParams): Promise<FinishTestResponse> {
+  public static async finishTest({testId}: {testId:number}): Promise<FinishTestResponse> {
     return request(api.post(`/api/test/${testId}/finish`));
+  }
+
+  public static async getTestReview({
+    testId,
+  }: {
+    testId: number;
+  }): Promise<GetTestReviewDataResponse> {
+    return request(api.get(`/test/${testId}/review`));
   }
 }

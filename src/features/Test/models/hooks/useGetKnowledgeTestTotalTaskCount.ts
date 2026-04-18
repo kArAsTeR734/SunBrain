@@ -8,7 +8,7 @@ export const useGetKnowledgeTestTotalTaskCount = (
   subjectId?: KnowledgeTestSubjectId,
 ) => {
   return useQuery({
-    queryKey: ['test-meta', subjectId],
+    queryKey: ['test, meta', subjectId],
     queryFn: subjectId
       ? () => KnowledgeTestService.getTestMetaData({ subjectCode: subjectId })
       : skipToken,

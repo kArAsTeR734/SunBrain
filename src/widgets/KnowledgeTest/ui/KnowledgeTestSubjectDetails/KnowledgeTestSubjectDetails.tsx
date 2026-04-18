@@ -5,18 +5,28 @@ import {
 import { PATHS } from '@app/providers/routes/config.tsx';
 import './KnowledgeTestSubjectDetails.scss';
 import { useGetKnowledgeTestTotalTaskCount } from '@features/Test/models/hooks/useGetKnowledgeTestTotalTaskCount.ts';
+import { useStartTestMutation } from '@features/Test/models/hooks/useStartTestMutation.ts';
+import { KnowledgeTestSubjectId } from '@features/Test/models/types.ts';
+import React from 'react';
 
 export const KnowledgeTestSubjectDetails = () => {
-  const { subjectId } = useParams<{ subjectId: string }>();
+  const { subjectId } = useParams<{ subjectId: KnowledgeTestSubjectId }>();
   const navigate = useNavigate();
 
   const subject = getKnowledgeTestSubjectById(subjectId ?? 'emath');
 
+  const { data: totalTasks } = useGetKnowledgeTestTotalTaskCount(subject?.id);
+  const startTestMutation = useStartTestMutation()
+
+  const handleStartTest = (e:React.MouseEvent) => {
+    e.preventDefault();
+    if (!subjectId) return;
+    startTestMutation.mutate(subjectId)
+  }
+
   if(!subject || subjectId) {
     navigate(PATHS.TEST);
   }
-
-  const { data: totalTasks } = useGetKnowledgeTestTotalTaskCount(subject?.id);
 
   return (
     <section className="knowledge-test-details">
@@ -48,12 +58,12 @@ export const KnowledgeTestSubjectDetails = () => {
         >
           Назад к выбору предмета
         </Link>
-        <Link
+        <button
           className="knowledge-test-details__action primary"
-          to={PATHS.TEST_RUN(subjectId ?? 'emath')}
+          onClick={handleStartTest}
         >
           Начать тестирование
-        </Link>
+        </button>
       </div>
     </section>
   );

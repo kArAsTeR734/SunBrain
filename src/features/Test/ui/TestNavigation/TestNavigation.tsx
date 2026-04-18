@@ -17,6 +17,7 @@ export const TestNavigation: React.FC<TaskNavigationProps> = ({
   totalTasks,
   onFinish,
 }) => {
+
   return (
     <div className="navigation-container">
       <div className="navigation-header">

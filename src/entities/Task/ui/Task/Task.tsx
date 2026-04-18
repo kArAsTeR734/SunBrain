@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import './Task.scss';
-import { getTypeLabel } from '@entities/Task';
+import { MarkdownContent } from '@features/HomeworkTasks';
 
 interface TaskProps {
   id: number;
   question: string;
-  type: 'text';
-  imageUrl?: string;
-  onAnswerSubmit: (_id: number, _answer: string | string[] | number) => void;
+  onAnswerSubmit: (_id: number, _answer: string) => void;
 }
 
-export const Task: React.FC<TaskProps> = ({
+export const TestTask: React.FC<TaskProps> = ({
   id,
   question,
-  type,
-  imageUrl,
   onAnswerSubmit,
 }) => {
   const [textAnswer, setTextAnswer] = useState<string>('');
@@ -44,17 +40,10 @@ export const Task: React.FC<TaskProps> = ({
     <div className="task-container">
       <div className="task-header">
         <h3>Задание №{id}</h3>
-        <span className="task-type">{getTypeLabel(type)}</span>
       </div>
 
       <div className="task-content">
-        <p className="question-text">{question}</p>
-
-        {imageUrl && (
-          <div className="task-image">
-            <img src={imageUrl} alt="Иллюстрация к задаче" />
-          </div>
-        )}
+        <MarkdownContent content={question} />
 
         {renderQuestionType()}
       </div>

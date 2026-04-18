@@ -1,3 +1,3 @@
-export { Task } from './ui/Task/Task';
+export { TestTask } from './ui/Task/Task';
 
 export * from './utils/getTypeLabel';
