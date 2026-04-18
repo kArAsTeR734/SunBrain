@@ -13,6 +13,7 @@ export const useGetKnowledgeTestTotalTaskCount = (
       ? () => KnowledgeTestService.getTestMetaData({ subjectCode: subjectId })
       : skipToken,
     enabled: !!subjectId,
+    retry:3,
     select: (data) => data.targetTotalTasks,
   });
 };

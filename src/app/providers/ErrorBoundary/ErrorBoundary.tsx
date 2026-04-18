@@ -1,21 +1,32 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
-export class ErrorBoundary {
-  private error: string = '';
-  private children: ReactNode;
+type State = {
+  hasError: boolean
+}
 
-  constructor() {
-    this.componentDidMount();
+type Props = {
+  children: ReactNode,
+  fallback?: ReactNode
+}
+
+export class ErrorBoundary extends React.Component<Props, State> {
+  state: State = {
+    hasError: false
+  };
+
+  static getDerivedHasError(): State {
+    return { hasError: true };
   }
 
-  private componentDidMount() {
-    if (this.error) {
-      return (
-        <>
-          <h1>An error has occured {this.error}</h1>
-          {this.children}
-        </>
-      );
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('An error was occured', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      ErrorBoundary.getDerivedHasError();
+      return this.props.fallback ?? <h1>Произошла непредвиденная ошибка в приложении</h1>;
     }
+    return this.props.children;
   }
 }
