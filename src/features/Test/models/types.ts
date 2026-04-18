@@ -55,10 +55,6 @@ export interface StartTestData {
 
 export type StartTestResponse = StartTestData;
 
-export interface SubmitTestAnswerParams {
-  testId: number;
-}
-
 export interface SubmitTestAnswerRequest {
   taskId: number;
   answer: string;
@@ -69,10 +65,6 @@ export interface SubmitTestAnswerData {
 }
 
 export type SubmitTestAnswerResponse = SubmitTestAnswerData;
-
-export interface FinishTestParams {
-  testId: number;
-}
 
 export interface GeneratedHomeworkTopic {
   id: number;
@@ -97,7 +89,7 @@ export interface TestGenerationError {
 export interface FinishTestData {
   totalTasks: number;
   correctTasks: number;
-  masteryByTaskNumber: Record<string, boolean>; // JSON keys come as strings
+  masteryByTaskNumber: Record<string, boolean>;
   failedTaskNumbers: number[];
   generatedHomeworks: GeneratedHomeworkMeta[];
   generationErrors: TestGenerationError[];
@@ -105,18 +97,33 @@ export interface FinishTestData {
 
 export type FinishTestResponse = FinishTestData;
 
+export interface TestReviewItem {
+  taskId: number;
+  taskNumber: number;
+  orderIndex: number;
+  difficulty: 'easy' | 'medium' | 'hard' | string;
+  content: string;
+  originalTex: string | null;
+  answerFormat: string | null;
+  userAnswer: string | null;
+  correctAnswer: string;
+  isCorrect: boolean;
+}
+
+export interface GetTestReviewData {
+  testId: number;
+  subjectId: number;
+  totalTasks: number;
+  correctTasks: number;
+  answers: TestReviewItem[];
+}
+
+export type GetTestReviewDataResponse = GetTestReviewData;
+
 export interface KnowledgeTestSubject {
   id: KnowledgeTestSubjectId;
   title: string;
   examLabel: string;
   subjectLabel: string;
   examTaskCount: number;
-}
-
-export interface KnowledgeTestTask {
-  id: number;
-  taskNumber: number;
-  difficultyLevel: KnowledgeTestDifficultyLevel;
-  content: string;
-  answerFormat: 'text';
 }

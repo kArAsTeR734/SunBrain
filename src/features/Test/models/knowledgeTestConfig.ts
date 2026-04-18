@@ -1,10 +1,6 @@
 import {
   KnowledgeTestSubject,
-  KnowledgeTestSubjectId,
-  KnowledgeTestTask,
 } from '@features/Test/models/types.ts';
-
-const DIFFICULTY_LEVELS = ['easy', 'medium', 'hard'] as const;
 
 export const KNOWLEDGE_TEST_SUBJECTS: KnowledgeTestSubject[] = [
   {
@@ -41,42 +37,4 @@ export const getKnowledgeTestSubjectById = (
   id: string,
 ): KnowledgeTestSubject | undefined => {
   return KNOWLEDGE_TEST_SUBJECTS.find((subject) => subject.id === id);
-};
-
-export const getKnowledgeTestTotalTaskCount = (
-  subject: KnowledgeTestSubject,
-): number => {
-  return subject.examTaskCount * DIFFICULTY_LEVELS.length;
-};
-
-export const buildKnowledgeTestTasks = (
-  subjectId: KnowledgeTestSubjectId,
-): KnowledgeTestTask[] => {
-  const subject = getKnowledgeTestSubjectById(subjectId);
-
-  if (!subject) {
-    return [];
-  }
-
-  let taskId = 1;
-  const tasks: KnowledgeTestTask[] = [];
-
-  for (
-    let examNumber = 1;
-    examNumber <= subject.examTaskCount;
-    examNumber += 1
-  ) {
-    DIFFICULTY_LEVELS.forEach((difficultyLevel) => {
-      tasks.push({
-        id: taskId,
-        answerFormat: 'text',
-        content: '',
-        taskNumber: 0,
-        difficultyLevel,
-      });
-      taskId += 1;
-    });
-  }
-
-  return tasks;
 };

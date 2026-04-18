@@ -1,21 +1,36 @@
 import { useEffect, useState } from 'react';
-import {useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './KnowledgeTest.scss';
-import { getKnowledgeTestSubjectById } from '@features/Test/models/knowledgeTestConfig.ts';
 import {
-  KnowledgeTestAnswerResult,
   KnowledgeTestSubjectId,
 } from '@features/Test/models/types.ts';
 import { PATHS } from '@app/providers/routes/config.tsx';
-import { TestNavigation, TestResults } from '@features/Test';
-import { Task } from '@/entities/Task';
+import {
+  getKnowledgeTestSubjectById,
+  TestNavigation,
+  TestResults,
+} from '@features/Test';
+import { TestTask } from '@/entities/Task';
+import { Loader } from '@shared/ui';
+import { useTestData } from '@features/Test/models/hooks/useTestData.ts';
+import { useMySearchParams } from '@shared/hooks/useMySearchParams.ts';
+import { useFinishTestMutation } from '@features/Test/models/hooks/useFinishTestMutation.ts';
+import { useSubmitTestTaskMutation } from '@features/Test/models/hooks/useSubmitTestTaskMutation.ts';
 
 export const KnowledgeTest = () => {
   const { subjectId } = useParams<{ subjectId: KnowledgeTestSubjectId }>();
-  const subject = getKnowledgeTestSubjectById(subjectId ?? '');
 
-  const tasks = useGetTestTasks();
   const navigate = useNavigate();
+
+  const {data, isReady} = useTestData();
+  const subject = getKnowledgeTestSubjectById(data?.subjectCode ?? 'emath');
+  const tasks = data?.tasks ?? []
+
+  const params = useMySearchParams('testId');
+  const testId = Number(params);
+
+  const finishTest = useFinishTestMutation()
+  const submitAnswer = useSubmitTestTaskMutation();
 
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
@@ -25,7 +40,7 @@ export const KnowledgeTest = () => {
     setCurrentTaskIndex(0);
     setUserAnswers({});
     setShowResults(false);
-  }, [subject?.id]);
+  }, [data?.subjectCode]);
 
   useEffect(() => {
     if (showResults) {
@@ -34,12 +49,17 @@ export const KnowledgeTest = () => {
   }, [showResults]);
 
   useEffect(() => {
-    if (!subject || tasks.length === 0 || !subjectId) {
+    if (!data || !subjectId) {
       navigate(PATHS.TEST, { replace: true });
     }
-  }, [subjectId, tasks, subject, navigate]);
+  }, [subjectId, data, navigate]);
 
   const handleAnswerSubmit = (taskId: number, answer: string) => {
+    submitAnswer.mutate({
+      testId,
+      taskId,
+      answer
+    });
     setUserAnswers((prev) => ({
       ...prev,
       [taskId]: answer,
@@ -54,6 +74,7 @@ export const KnowledgeTest = () => {
   };
 
   const handleFinishTest = () => {
+    finishTest.mutate({ testId: testId });
     setShowResults(true);
   };
 
@@ -71,27 +92,6 @@ export const KnowledgeTest = () => {
     }
   };
 
-  const normalizeAnswer = (answer: string) => {
-    if (Array.isArray(answer)) {
-      return [...answer].sort().join('|').trim();
-    }
-
-    return String(answer).trim();
-  };
-
-  const results: KnowledgeTestAnswerResult[] = tasks.map((task) => {
-    const userAnswer = userAnswers[task.id];
-
-    return {
-      taskId: task.id,
-      userAnswer: userAnswer ?? 'Нет ответа',
-      correctAnswer: task.correctAnswer,
-      isCorrect:
-        userAnswer !== undefined &&
-        normalizeAnswer(userAnswer) === normalizeAnswer(task.correctAnswer),
-    };
-  });
-
   const currentTask = tasks[currentTaskIndex];
   const navigationTasks = tasks.map((task) => ({
     id: task.id,
@@ -102,10 +102,12 @@ export const KnowledgeTest = () => {
 
   const answeredCount = Object.keys(userAnswers).length;
 
+  if (!isReady)
+    return <Loader />;
+
   if (showResults) {
     return (
       <TestResults
-        answers={results}
         onRestart={handleRestartTest}
         onReview={handleReviewTask}
       />
@@ -122,7 +124,8 @@ export const KnowledgeTest = () => {
 
       <div className="test-content">
         <div className="task-section">
-          <Task
+          <TestTask
+            question={currentTask.content}
             key={currentTask.id}
             {...currentTask}
             onAnswerSubmit={handleAnswerSubmit}
