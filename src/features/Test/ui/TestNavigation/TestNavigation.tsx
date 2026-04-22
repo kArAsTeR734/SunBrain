@@ -8,6 +8,7 @@ interface TaskNavigationProps {
   currentTask: number;
   totalTasks: number;
   onFinish: () => void;
+  isFinishing?: boolean;
 }
 
 export const TestNavigation: React.FC<TaskNavigationProps> = ({
@@ -16,7 +17,15 @@ export const TestNavigation: React.FC<TaskNavigationProps> = ({
   currentTask,
   totalTasks,
   onFinish,
+  isFinishing = false,
 }) => {
+  const currentTaskListIndex = tasks.findIndex((task) => task.isCurrent);
+  const prevTaskId =
+    currentTaskListIndex > 0 ? tasks[currentTaskListIndex - 1].id : null;
+  const nextTaskId =
+    currentTaskListIndex >= 0 && currentTaskListIndex < tasks.length - 1
+      ? tasks[currentTaskListIndex + 1].id
+      : null;
 
   return (
     <div className="navigation-container">
@@ -36,7 +45,7 @@ export const TestNavigation: React.FC<TaskNavigationProps> = ({
             }`}
             onClick={() => onTaskSelect(task.id)}
           >
-            {task.id}
+            {task.orderIndex + 1}
           </button>
         ))}
       </div>
@@ -44,22 +53,22 @@ export const TestNavigation: React.FC<TaskNavigationProps> = ({
       <div className="navigation-footer">
         <button
           className="prev-button"
-          onClick={() => onTaskSelect(currentTask - 1)}
-          disabled={currentTask === 1}
+          onClick={() => prevTaskId !== null && onTaskSelect(prevTaskId)}
+          disabled={prevTaskId === null}
         >
           Назад
         </button>
 
         <button
           className="next-button"
-          onClick={() => onTaskSelect(currentTask + 1)}
-          disabled={currentTask === totalTasks}
+          onClick={() => nextTaskId !== null && onTaskSelect(nextTaskId)}
+          disabled={nextTaskId === null}
         >
-          Вперед
+          Вперёд
         </button>
 
-        <button className="finish-button" onClick={onFinish}>
-          Завершить тест
+        <button className="finish-button" onClick={onFinish} disabled={isFinishing}>
+          {isFinishing ? 'Завершение...' : 'Завершить тест'}
         </button>
       </div>
 
@@ -80,3 +89,4 @@ export const TestNavigation: React.FC<TaskNavigationProps> = ({
     </div>
   );
 };
+

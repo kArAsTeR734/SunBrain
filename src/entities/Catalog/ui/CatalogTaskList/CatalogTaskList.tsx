@@ -1,31 +1,55 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useCatalogTasks } from '@features/Catalog';
-import { Loader, TaskItem, TaskList } from '@shared/ui';
+import { DataFallback, TaskItem, TaskList } from '@shared/ui';
 
 export const CatalogTaskList = () => {
   const { themeId } = useParams();
-  const history = useHistory();
-  const { data: catalogTasks, isLoading } = useCatalogTasks(Number(themeId));
+  const navigate = useNavigate();
+  const {
+    data: catalogTasks,
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  } = useCatalogTasks(Number(themeId));
 
-  if(!catalogTasks){
+  if (isLoading || isFetching) {
     return (
-      <>
-        <h1>Заданий по этой теме пока не появилось</h1>
-        <button onClick={() => history.goBack()}></button>
-      </>
-    )
+      <DataFallback
+        state="loading"
+        title="Загружаем задания по теме..."
+      />
+    );
+  }
 
+  if (isError) {
+    return (
+      <DataFallback
+        state="error"
+        title="Не удалось загрузить задания."
+        description="Проверьте соединение и попробуйте снова."
+        onAction={() => void refetch()}
+      />
+    );
+  }
+
+  if (!catalogTasks?.length) {
+    return (
+      <DataFallback
+        state="empty"
+        title="Заданий по этой теме пока нет."
+        actionLabel="Назад"
+        onAction={() => navigate(-1)}
+      />
+    );
   }
 
   return (
-    <>
-      <TaskList>
-      {isLoading && <Loader />}
-        {catalogTasks.map((task) => (
-          <TaskItem isHomeworkTask={true} key={task.number} task={task} />
-        ))}
-      </TaskList>
-    </>
+    <TaskList>
+      {catalogTasks.map((task) => (
+        <TaskItem isHomeworkTask={true} key={task.number} task={task} />
+      ))}
+    </TaskList>
   );
 };
 

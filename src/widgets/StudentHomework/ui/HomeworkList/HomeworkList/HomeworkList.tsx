@@ -2,27 +2,57 @@ import { SubmitButton } from '@features/HomeworkTasks/ui/SubmitHomework/SubmitHo
 import './HomeworkList.scss';
 import { useHomework } from '@features/HomeworkTasks/model/useHomework.ts';
 import { HomeworkCard } from '@entities/Homework';
+import { DataFallback } from '@shared/ui';
 
 export const HomeworkList = () => {
-  const { data: homeworks, isFetching, isError } = useHomework();
+  const {
+    data: homeworks,
+    isFetching,
+    isLoading,
+    isError,
+    refetch,
+  } = useHomework();
 
-  if (!homeworks || isError) {
-    return;
+  if (isLoading || isFetching) {
+    return (
+      <DataFallback
+        state="loading"
+        title="Список домашних загружается..."
+        description="Пожалуйста, подождите немного."
+      />
+    );
+  }
+
+  if (isError) {
+    return (
+      <DataFallback
+        state="error"
+        title="Не удалось получить список домашних заданий."
+        description="Попробуйте снова через пару секунд."
+        onAction={() => void refetch()}
+      />
+    );
+  }
+
+  if (!homeworks?.length) {
+    return (
+      <DataFallback
+        state="empty"
+        title="У вас пока нет назначенных домашних заданий."
+      />
+    );
   }
 
   return (
     <div className="homework-list">
-      {isFetching ? (
-        <h1>Список домашних заданий загружается...</h1>
-      ) : (
-        homeworks.map((homework) => (
-          <HomeworkCard
-            key={homework.id}
-            homework={homework}
-            action={<SubmitButton homeworkId={homework.id} />}
-          />
-        ))
-      )}
+      {homeworks.map((homework) => (
+        <HomeworkCard
+          key={homework.id}
+          homework={homework}
+          action={<SubmitButton homeworkId={homework.id} />}
+        />
+      ))}
     </div>
   );
 };
+

@@ -86,13 +86,20 @@ export interface TestGenerationError {
   message: string;
 }
 
+export interface GenerateTestHomeworksData {
+  testId: number,
+  subjectId: number,
+  generatedFromTaskNumbers: number[],
+  generatedHomeworks: GeneratedHomeworkMeta,
+  generationErrors: TestGenerationError
+}
+
 export interface FinishTestData {
   totalTasks: number;
   correctTasks: number;
   masteryByTaskNumber: Record<string, boolean>;
   failedTaskNumbers: number[];
-  generatedHomeworks: GeneratedHomeworkMeta[];
-  generationErrors: TestGenerationError[];
+  hasFailedTaskNumbers: boolean;
 }
 
 export type FinishTestResponse = FinishTestData;
@@ -119,6 +126,10 @@ export interface GetTestReviewData {
 }
 
 export type GetTestReviewDataResponse = GetTestReviewData;
+
+export interface GenerateTestHomeworkRequest {
+  taskNumbers?: number[];
+}
 
 export interface KnowledgeTestSubject {
   id: KnowledgeTestSubjectId;

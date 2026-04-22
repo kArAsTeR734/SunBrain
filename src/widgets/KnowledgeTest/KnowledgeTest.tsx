@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './KnowledgeTest.scss';
-import {
-  KnowledgeTestSubjectId,
-} from '@features/Test/models/types.ts';
+import { KnowledgeTestSubjectId } from '@features/Test/models/types.ts';
 import { PATHS } from '@app/providers/routes/config.tsx';
 import {
   getKnowledgeTestSubjectById,
@@ -11,7 +9,7 @@ import {
   TestResults,
 } from '@features/Test';
 import { TestTask } from '@/entities/Task';
-import { Loader } from '@shared/ui';
+import { DataFallback } from '@shared/ui';
 import { useTestData } from '@features/Test/models/hooks/useTestData.ts';
 import { useMySearchParams } from '@shared/hooks/useMySearchParams.ts';
 import { useFinishTestMutation } from '@features/Test/models/hooks/useFinishTestMutation.ts';
@@ -19,17 +17,16 @@ import { useSubmitTestTaskMutation } from '@features/Test/models/hooks/useSubmit
 
 export const KnowledgeTest = () => {
   const { subjectId } = useParams<{ subjectId: KnowledgeTestSubjectId }>();
-
   const navigate = useNavigate();
 
-  const {data, isReady} = useTestData();
+  const { data, isReady } = useTestData();
   const subject = getKnowledgeTestSubjectById(data?.subjectCode ?? 'emath');
-  const tasks = data?.tasks ?? []
+  const tasks = data?.tasks ?? [];
 
   const params = useMySearchParams('testId');
   const testId = Number(params);
 
-  const finishTest = useFinishTestMutation()
+  const finishTest = useFinishTestMutation();
   const submitAnswer = useSubmitTestTaskMutation();
 
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
@@ -43,12 +40,6 @@ export const KnowledgeTest = () => {
   }, [data?.subjectCode]);
 
   useEffect(() => {
-    if (showResults) {
-      return;
-    }
-  }, [showResults]);
-
-  useEffect(() => {
     if (!data || !subjectId) {
       navigate(PATHS.TEST, { replace: true });
     }
@@ -58,8 +49,9 @@ export const KnowledgeTest = () => {
     submitAnswer.mutate({
       testId,
       taskId,
-      answer
+      answer,
     });
+
     setUserAnswers((prev) => ({
       ...prev,
       [taskId]: answer,
@@ -74,8 +66,13 @@ export const KnowledgeTest = () => {
   };
 
   const handleFinishTest = () => {
-    finishTest.mutate({ testId: testId });
+    if (!Number.isFinite(testId) || testId <= 0 || finishTest.isPending) {
+      return;
+    }
+
+    // Показываем результаты сразу, а генерация домашек продолжается в фоне.
     setShowResults(true);
+    finishTest.mutate({ testId });
   };
 
   const handleRestartTest = () => {
@@ -92,24 +89,44 @@ export const KnowledgeTest = () => {
     }
   };
 
+  if (!isReady) {
+    return (
+      <DataFallback
+        state="loading"
+        title="Загружаем тест..."
+        description="Подготавливаем задания и навигацию."
+      />
+    );
+  }
+
+  if (!tasks.length) {
+    return (
+      <DataFallback
+        state="empty"
+        title="Тест не содержит заданий."
+        description="Выберите другой предмет или запустите тест позже."
+        actionLabel="К выбору предмета"
+        onAction={() => navigate(PATHS.TEST)}
+      />
+    );
+  }
+
   const currentTask = tasks[currentTaskIndex];
   const navigationTasks = tasks.map((task) => ({
     id: task.id,
     title: `Задание ${task.id}`,
     isAnswered: userAnswers[task.id] !== undefined,
     isCurrent: task.id === currentTask.id,
+    orderIndex: task.orderIndex,
   }));
-
   const answeredCount = Object.keys(userAnswers).length;
-
-  if (!isReady)
-    return <Loader />;
 
   if (showResults) {
     return (
       <TestResults
         onRestart={handleRestartTest}
         onReview={handleReviewTask}
+        isFinishing={finishTest.isPending}
       />
     );
   }
@@ -136,9 +153,10 @@ export const KnowledgeTest = () => {
           <TestNavigation
             tasks={navigationTasks}
             onTaskSelect={handleTaskSelect}
-            currentTask={currentTask.id}
+            currentTask={currentTask.orderIndex + 1}
             totalTasks={tasks.length}
             onFinish={handleFinishTest}
+            isFinishing={finishTest.isPending}
           />
         </div>
       </div>
@@ -159,3 +177,5 @@ export const KnowledgeTest = () => {
     </div>
   );
 };
+
+export default KnowledgeTest;
