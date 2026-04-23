@@ -15,7 +15,6 @@ export const TaskThemeList = () => {
     isError,
     refetch,
   } = useTopics(subjectId ?? '');
-
   if (!subjectId) {
     return (
       <DataFallback
@@ -71,7 +70,7 @@ export const TaskThemeList = () => {
 
       <div className="themes__list">
         {themes.map((theme) => (
-          <TaskTheme key={theme.number} {...theme} />
+          <TaskTheme key={theme.id} {...theme} />
         ))}
       </div>
     </section>

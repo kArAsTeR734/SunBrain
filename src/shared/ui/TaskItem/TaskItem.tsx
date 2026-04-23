@@ -5,11 +5,11 @@ import clsx from 'clsx';
 import './TaskItem.scss'
 import { Button } from '@shared/ui';
 import { useCheckTask } from '@features/Task';
-import { Task } from '@entities/Task/model/types.ts';
+import { CatalogTask, HomeworkTask } from '@entities/Task/model/types.ts';
 
 interface TaskItemProps {
-  task: Task;
   isHomeworkTask: boolean;
+  task: HomeworkTask | CatalogTask;
 }
 
 export const TaskItem: FC<TaskItemProps> = ({ task, isHomeworkTask }) => {
@@ -18,6 +18,10 @@ export const TaskItem: FC<TaskItemProps> = ({ task, isHomeworkTask }) => {
   const [isTaskComplete, setIsTaskComplete] = useState(false);
 
   const checkAnswerMutate = useCheckTask(task.id);
+
+  const taskContent = isHomeworkTask
+    ? (task as HomeworkTask).question
+    : (task as CatalogTask).content;
 
   const checkAnswerCorrect = async () => {
     try {
@@ -45,11 +49,13 @@ export const TaskItem: FC<TaskItemProps> = ({ task, isHomeworkTask }) => {
       <div className="task">
         <div className="task__header">
           <h4>
-            <span className="task__number">Задача {task.number}</span>
+            <span className="task__number">Задача {task.id}</span>
           </h4>
         </div>
         <div className="task__text">
-          <MarkdownContent content={task.question} />
+          <MarkdownContent
+            content={taskContent}
+          />
         </div>
         <div className="task__actions">
           <div className="task__answer">

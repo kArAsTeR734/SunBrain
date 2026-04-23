@@ -8,12 +8,11 @@ export const CatalogTaskList = () => {
   const {
     data: catalogTasks,
     isLoading,
-    isFetching,
     isError,
     refetch,
   } = useCatalogTasks(Number(themeId));
-
-  if (isLoading || isFetching) {
+  console.log(catalogTasks);
+  if (isLoading) {
     return (
       <DataFallback
         state="loading"
@@ -47,7 +46,7 @@ export const CatalogTaskList = () => {
   return (
     <TaskList>
       {catalogTasks.map((task) => (
-        <TaskItem isHomeworkTask={true} key={task.number} task={task} />
+        <TaskItem isHomeworkTask={false} key={task.id} task={task} />
       ))}
     </TaskList>
   );

@@ -2,7 +2,6 @@ import { RouteObject } from 'react-router-dom';
 import { StudentHomework } from '@/widgets/StudentHomework/ui/StudentHomework.tsx';
 import { HomeworkTaskList } from '@features/HomeworkTasks';
 import { ProtectedRoute } from '@app/providers/ProtectedRoute/ProtectedRoute.tsx';
-import { TaskList } from '@shared/ui';
 import { CatalogObjectCards, TaskThemeList } from '@widgets/ObjectsCatalog';
 import {
   KnowledgeTest,
@@ -21,6 +20,7 @@ import {
   StudentObjectCatalogPage,
   StudentPersonalAccountPage,
 } from '@/pages';
+import { CatalogTaskList } from '@entities/Catalog';
 
 export type AppRouteHandle = {
   breadcrumb?: string | ((_match: any) => string);
@@ -96,7 +96,7 @@ export const getRoutesConfig = (): AppRouteObject[] => [
               },
               {
                 path: ':themeId',
-                element: <TaskList />,
+                element: <CatalogTaskList />,
               },
             ],
           },
